@@ -36,12 +36,10 @@ public class CreateGroupTestSet extends BasicTestSet {
 
     @Test(description = "CreateOrganization",dataProvider = "remoteParams")
     public void createOrganization(String remoteParams) {
- 
-
+    	
         // Login
         String username = "admin";
-
-       isReady(login = new Login(driver));
+        isReady(login = new Login(driver));
         login.fillUsername(username);
         login.fillPassword("Local.2019");
         sriHome = login.clickOnLogin();
