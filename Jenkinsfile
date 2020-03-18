@@ -1,7 +1,7 @@
 library identifier: 'shared-library@master', retriever: modernSCM(
   [$class: 'GitSCMSource',
    remote: 'git@github.com:emergya/ed-jenkins-shared-libraries.git',
-   credentialsId: 'ed-cloud-github-ssh'])
+   credentialsId: 'ed-cloud-ssh-key-id'])
 
 pipeline {
     agent {
