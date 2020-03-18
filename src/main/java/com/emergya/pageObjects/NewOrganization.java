@@ -390,8 +390,8 @@ public class NewOrganization extends BasePageObject {
             log.info("[log-" + this.getClass().getSimpleName()
                     + "]- Start DeleteButton -[" + this.getClass().getSimpleName()
                     + "- method]");
-
-                this.getElementByXPath(DELETEBUTTON).click();
+            this.getElementsByXPath(DELETEBUTTON).get(0).click();
+                //this.getElementByXPath(DELETEBUTTON).click();
                 driver.sleep(2);
        
         }     
