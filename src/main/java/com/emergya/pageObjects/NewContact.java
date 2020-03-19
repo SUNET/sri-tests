@@ -27,22 +27,16 @@ public class NewContact extends BasePageObject {
      * Items keys selectors.
      */
     
-    private static final String NEWORGANIZATION = "NewOrganization";
-    private static final String ORGANIZATIONAME = "OrganizationName";
-    private static final String ORGANIZATIONTYPE = "OrganizationType";
-    private static final String ORGANIZATIONTYPE1 = "OrganizationType1";
-    private static final String AFFILIATION = "Affiation";
-    private static final String ORGANIZATIONID = "OrganizationID";
-    private static final String ORGANIZATIONDESCRIPTION = "Description";
-    private static final String ORGANIZATIONWEBSITE = "OrganizationWebsite";
-    private static final String ADDNEWADDRESS = "AddNewAdress";
-    private static final String STREET = "Street";
-    private static final String POSTALCODE = "PostalCode";
-    private static final String POSTALAREA = "PostalArea";
-    private static final String PHONE = "Phone";
-    private static final String SAVEBUTTON = "SaveButton";
-    private static final String ORGANIZATIONVISIBLE = "TestVisible";
-    private static final String DELETEBUTTON = "DeleteButton";
+    private static final String NEWCONTACT = "newContact";
+    private static final String  LASTNAMEINPUT = "lastName";
+    private static final String  ADDNOTESTEXT = "addNotes";
+    private static final String  TYPETITLE = "typeTitle";
+    private static final String  SELECTTYPE = "selectType";
+    private static final String  BUTTONSADDNEW = "buttonsAddNew";
+    private static final String  INPUTEMAIL = "inputEmail";
+    private static final String  EMAILTYPE = "emailType";
+    private static final String  PHONE = "phone";
+    private static final String  PHONETYPE = "phoneType";
 
 
     /**
@@ -58,7 +52,7 @@ public class NewContact extends BasePageObject {
         log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start isReady method");
 
-        boolean status = this.isElementVisibleByXPath(NEWORGANIZATION);
+        boolean status = this.isElementVisibleByXPath(NEWCONTACT);
 
         log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - End isReady method");
@@ -66,383 +60,201 @@ public class NewContact extends BasePageObject {
         return status;
     }
     
-    // Organization name field
-    public void organizationName(String stringSearch) {
-        log.info("[log-" + this.getClass().getSimpleName()
-                + "]- Start organizationName -[" + this.getClass().getSimpleName()
-                + "- method]");
-
-        if (organizationNameVisible()) {
-            this.getElementByXPath(ORGANIZATIONAME).sendKeys(stringSearch);
-        }
-
-        log.info(
-                "[log-" + this.getClass().getSimpleName() + "]- End organizationName -["
-                        + this.getClass().getSimpleName() + "- method]");
+    public void setName(String name) {
+    	 log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                 + " - Start setName method");
+    	this.getElementByXPath(NEWCONTACT).sendKeys(name);
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - End setName method");
     }
+    
+    
+    
+    public void setLastName(String lastName) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setName method");
+    	if(isLastNameVisible()) {
+    		this.getElementByXPath(LASTNAMEINPUT).sendKeys(lastName);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setName method");
+    }
+    
+    public void setAddNotes(String notes) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setName method");
+    	if(isLastNameVisible()) {
+    		this.getElementByXPath(ADDNOTESTEXT).sendKeys(notes);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setName method");
+    }
+    
+    public void setTypeTitle(String typeTitle) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setTypeTitle method");
+    	if(isLastNameVisible()) {
+    		this.getElementByXPath(TYPETITLE).sendKeys(typeTitle);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setTypeTitle method");
+    }
+    
+    public void setSelectType(String type) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setSelectType method");
+    	if(isSelectTypeVisible()) {
+    		Select select = new Select(this.getElementByXPath(SELECTTYPE));
+    		select.selectByVisibleText(type);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setSelectType method");
+    }
+    
+    public void clickAddNewMail() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickAddNewMail method");
+    	if(isSelectTypeVisible()) {
+    		this.getElementsByXPath(BUTTONSADDNEW).get(0).click();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickAddNewMail method");
+    }
+    
+    public void setEmail(String email) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setEmail method");
+    	if(isInputEmailVisible()) {
+    		this.getElementByXPath(INPUTEMAIL).sendKeys(email);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setEmail method");
+    }
+    
+    public void setEmailType(String type) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setSelectType method");
+    	if(isEmailTypeSelectVisible()) {
+    		Select select = new Select(this.getElementByXPath(EMAILTYPE));
+    		select.selectByVisibleText(type);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setSelectType method");
+    }
+    
+    public void clickAddNewPhone() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickAddNewPhone method");
+    	if(isAddNewPhoneVisible()) {
+    		this.getElementsByXPath(BUTTONSADDNEW).get(1).click();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickAddNewPhone method");
+    }
+    
+    public void setPhone(String phone) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setPhone method");
+    	if(isInputPhoneVisible()) {
+    		this.getElementByXPath(PHONE).sendKeys(phone);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setPhone method");
+    }
+    
+    public void setPhoneType(String type) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setPhoneType method");
+    	if(isEmailTypeSelectVisible()) {
+    		Select select = new Select(this.getElementByXPath(PHONETYPE));
+    		select.selectByVisibleText(type);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setPhoneType method");
+    }
+    
+    //Check if Delete Button is visible
+    public boolean isLastNameVisible() {
+    log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+            + "]- Start DeleteButtonVisible method");
+    log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+            + "]- End DeleteButtonVisible method");
+
+    return this.isElementVisibleByXPath(LASTNAMEINPUT);
+}  
+    public boolean isAddNotesVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isAddNotesVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isAddNotesVisible method");
+
+        return this.isElementVisibleByXPath(ADDNOTESTEXT);
+    }  
        
-  // Check if organizationName is visible
-    public boolean organizationNameVisible() {
+    public boolean isTypeTitleVisible() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start organizationNameVisible method");
+                + "]- Start isTypeTitleVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End organizationNameVisible method");
+                + "]- End isTypeTitleVisible method");
 
-        return this.isElementVisibleByXPath(ORGANIZATIONAME);
-    }  
-    
- // Description name field
-    public void organizationDescription(String stringSearch) {
-        log.info("[log-" + this.getClass().getSimpleName()
-                + "]- Start organizationDescription -[" + this.getClass().getSimpleName()
-                + "- method]");
-
-        if ((organizationDescriptionVisible())) {
-            this.getElementByXPath(ORGANIZATIONDESCRIPTION).sendKeys(stringSearch);
-        }
-
-        log.info(
-                "[log-" + this.getClass().getSimpleName() + "]- End organizationName -["
-                        + this.getClass().getSimpleName() + "- method]");
+        return this.isElementVisibleByXPath(TYPETITLE);
     }
-
-    
- // Check if Description is visible
-    public boolean organizationDescriptionVisible() {
-        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start organizationDescriptionVisible method");
-        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End organizationDescriptionVisible method");
-
-        return this.isElementVisibleByXPath(ORGANIZATIONDESCRIPTION);
-    }  
-    
    
-    //Organization affiliation type
-    public void selectType() {
-        log.info("[log-" + this.getClass().getSimpleName()
-                + "]- Start organizationName -[" + this.getClass().getSimpleName()
-                + "- method]");
+    public boolean isSelectTypeVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isSelectTypeVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isSelectTypeVisible method");
 
-            this.getElementByXPath(ORGANIZATIONTYPE).click();
-            driver.sleep(2);
-            this.getElementByXPath(ORGANIZATIONTYPE1).click();
-           // this.getElementByXPath(ORGANIZATIONTYPE).sendKeys(stringSearch);
-      
-
-        log.info(
-                "[log-" + this.getClass().getSimpleName() + "]- End organizationName -["
-                        + this.getClass().getSimpleName() + "- method]");
+        return this.isElementVisibleByXPath(SELECTTYPE);
+    } 
+    
+    public boolean isAddNewMailVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isAddNewMailVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isAddNewMailVisible method");
+        return this.isVisible(this.getElementsByXPath(BUTTONSADDNEW).get(0));
     }
- // Check if OrganizationType is visible
-    public boolean organizationTypeVisible() {
+    
+    public boolean isInputEmailVisible() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start organizationTypeVisible method");
+                + "]- Start isInputEmailVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End organizationTypeVisible method");
-
-        return this.isElementVisibleByXPath(ORGANIZATIONTYPE);
-    }  
+                + "]- End isInputEmailVisible method");
+        return this.isElementVisibleByXPath(INPUTEMAIL);
+    }
     
-    //Check if affiliation is visible
-        public boolean affiliationVisible() {
+    public boolean isEmailTypeSelectVisible() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start affiliationVisible method");
+                + "]- Start isEmailTypeSelectVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End affiliationVisible method");
-
-        return this.isElementVisibleByXPath(AFFILIATION);
-    }  
+                + "]- End isEmailTypeSelectVisible method");
+        return this.isElementVisibleByXPath(EMAILTYPE);
+    }
     
-        //Select Affiliation
-        public void selectAffiliation() {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start selectAffiliation -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-                this.getElementByXPath(AFFILIATION).click();
-                driver.sleep(2);
-       
-        }     
-        
-        //Check if organization ID is visible
-        public boolean organizationIDVisible() {
+    public boolean isAddNewPhoneVisible() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start organizationIDVisible method");
+                + "]- Start isAddNewPhoneVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End organizationIDVisible method");
-
-        return this.isElementVisibleByXPath(ORGANIZATIONID);
-    }  
-        
-       // Organization ID field
-        public void organizationID(String stringSearch) {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start organizationID -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-            if (organizationIDVisible()) {
-                this.getElementByXPath(ORGANIZATIONID).sendKeys(stringSearch);
-            }
-
-            log.info(
-                    "[log-" + this.getClass().getSimpleName() + "]- End organizationID -["
-                            + this.getClass().getSimpleName() + "- method]");
-        }
-        
-     // Website field
-        public void organizationWebsite(String stringSearch) {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start organizationWebsite -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-            if ((organizationWebsiteVisible())) {
-                this.getElementByXPath(ORGANIZATIONWEBSITE).sendKeys(stringSearch);
-            }
-
-            log.info(
-                    "[log-" + this.getClass().getSimpleName() + "]- End organizationWebsite -["
-                            + this.getClass().getSimpleName() + "- method]");
-        }
-        
-     // Check Website field is visible
-        public boolean organizationWebsiteVisible() {
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- Start organizationWebsiteVisible method");
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- End organizationWebsiteVisible method");
-
-            return this.isElementVisibleByXPath(ORGANIZATIONWEBSITE);
-        }  
-
-        //Add new Adress
-        public void AddNewAdress() {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start AddNewAdress -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-                this.getElementByXPath(ADDNEWADDRESS).click();
-                driver.sleep(2);
-       
-        }     
-        
-        //Check if New Address button is visible
-        public boolean NewAddressButtonVisible() {
+                + "]- End isAddNewPhoneVisible method");
+        return this.isVisible(this.getElementsByXPath(BUTTONSADDNEW).get(1));
+    }
+    
+    public boolean isInputPhoneVisible() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start NewAddressButtonVisible method");
+                + "]- Start isInputPhoneVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End NewAddressButtonVisible method");
-
-        return this.isElementVisibleByXPath(ADDNEWADDRESS);
-    }  
-        
-        
-     // Street Field
-        public void Street(String stringSearch) {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start Street -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-            if ((StreetVisible())) {
-                this.getElementByXPath(STREET).sendKeys(stringSearch);
-            }
-
-            log.info(
-                    "[log-" + this.getClass().getSimpleName() + "]- End organizationWebsite -["
-                            + this.getClass().getSimpleName() + "- method]");
-        }
-        
-     // Check Street Field
-        public boolean StreetVisible() {
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- Start StreetVisible method");
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- End StreetVisible method");
-
-            return this.isElementVisibleByXPath(STREET);
-        }  
-
-        // Postal Code Field
-        public void PostalCode(String stringSearch) {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start PostalCode -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-            if ((PostalCodeVisible())) {
-                this.getElementByXPath(POSTALCODE).sendKeys(stringSearch);
-            }
-
-            log.info(
-                    "[log-" + this.getClass().getSimpleName() + "]- End PostalCode -["
-                            + this.getClass().getSimpleName() + "- method]");
-        }
-        
-     // Check Postal Code
-        public boolean PostalCodeVisible() {
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- Start PostalCodeVisible method");
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- End PostalCodeVisible method");
-
-            return this.isElementVisibleByXPath(POSTALCODE);
-        }  
-        
-        // Postal Area Field
-        public void PostaArea(String stringSearch) {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start PostaArea -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-            if ((PostalAreaVisible())) {
-                this.getElementByXPath(POSTALAREA).sendKeys(stringSearch);
-            }
-
-            log.info(
-                    "[log-" + this.getClass().getSimpleName() + "]- End PostalArea -["
-                            + this.getClass().getSimpleName() + "- method]");
-        }
-        
-     // Check Area Code
-        public boolean PostalAreaVisible() {
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- Start PostalAreaVisible method");
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- End PostalAreaVisible method");
-
-            return this.isElementVisibleByXPath(POSTALAREA);
-        }  
-        
-        // Phone Field
-        public void Phone(String stringSearch) {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start Phone -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-            if ((PhoneVisible())) {
-                this.getElementByXPath(PHONE).sendKeys(stringSearch);
-            }
-
-            log.info(
-                    "[log-" + this.getClass().getSimpleName() + "]- End PostalArea -["
-                            + this.getClass().getSimpleName() + "- method]");
-        }
-        
-     // Check Phone Field
-        public boolean PhoneVisible() {
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- Start PhoneVisible method");
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- End PhoneVisible method");
-
-            return this.isElementVisibleByXPath(PHONE);
-        }  
-        
-      
-        //Save
-        public void SaveButton() {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start SaveButton -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-                this.getElementByXPath(SAVEBUTTON).click();
-                driver.sleep(2);
-       
-        }     
-        
-        //Check if Save Button button is visible
-        public boolean SaveButtonVisible() {
+                + "]- End isInputPhoneVisible method");
+        return this.isElementVisibleByXPath(PHONE);
+    }
+    
+    public boolean isPhoneTypeVisible() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start SaveButtonVisible method");
+                + "]- Start isPhoneTypeVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End SaveButtonVisible method");
-
-        return this.isElementVisibleByXPath(SAVEBUTTON);
-    }  
-        
-        /**
-         * This method checks if view key button is displayed
-         */
-        public boolean isOrganizationVisible(String organizationName) {
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- Start isDescriptonNotDisplayed method");
-           // String xpathExpression = "//div[contains(text(),"
-            //        + StringFormatter.escapeSimpleQuotesForXpath(organizationName)
-            //        + ")]";
-            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                    + "]- End isDescriptonNotDisplayed method");
-            //return true;
-            return this.isElementVisibleByXPath(ORGANIZATIONVISIBLE);
-        }
-        
-      //Click on the created test
-        public void ClickOnTest() {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start ClickOnTest -[" + this.getClass().getSimpleName()
-                    + "- method]");
-
-                this.getElementByXPath(ORGANIZATIONVISIBLE).click();
-                
-        
-}
-        
-        //Delete Button
-        public void DeleteButton() {
-            log.info("[log-" + this.getClass().getSimpleName()
-                    + "]- Start DeleteButton -[" + this.getClass().getSimpleName()
-                    + "- method]");
-            this.getElementsByXPath(DELETEBUTTON).get(0).click();
-                //this.getElementByXPath(DELETEBUTTON).click();
-                driver.sleep(2);
-       
-        }     
-        
-        //Check if Delete Button is visible
-        public boolean DeleteButtonVisible() {
-        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- Start DeleteButtonVisible method");
-        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End DeleteButtonVisible method");
-
-        return this.isElementVisibleByXPath(DELETEBUTTON);
-    }  
-
-            
-        }
-
- 
+                + "]- End isPhoneTypeVisible method");
+        return this.isElementVisibleByXPath(PHONETYPE);
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ }

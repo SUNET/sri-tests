@@ -86,82 +86,23 @@ public class CreateGroupTestSet2 extends BasicTestSet {
         
         // Click on item contact in the menu
         communityPage.clickContactItem();
+        newContact = communityPage.clickAddNewContact();
         driver.sleep(1);
-
-       //Description
-       String organizationDescription = "This is a example description for seleniumTest1 Organization";
-       isReady (newOrganization = new NewOrganization (driver));
-       newOrganization.organizationDescription(organizationDescription);
-       driver.sleep(1);
-
-       //Select Type
-       newOrganization.selectType();
-       driver.sleep(1);
-
-       //Select Affiliation
-       isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.selectAffiliation();
-       driver.sleep(1);
-
-       //Organization ID
-       String organizationID = "111111112";
-       isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.organizationID(organizationID);
-       driver.sleep(1);
-
-       //Organization Website
-       String organizationWebsite = "www.emergya.com/es";
-       isReady (newOrganization = new NewOrganization(driver));
-       newOrganization.organizationWebsite(organizationWebsite);
-       driver.sleep(1);
-  
-       //Adress
-       newOrganization.AddNewAdress();
-       driver.sleep(1);
-
-      //Street       
-       String Street = "Luis de Morales 32, 5º";
-       isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.Street(Street);       
-       driver.sleep(2);
-
-       //Postal Code
-       String postalCode = "41018";
-       isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.PostalCode(postalCode);  
-       driver.sleep(1);
-
-       //Postal Area
-       String postalArea = "Sevilla";
-       isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.PostaArea(postalArea); 
-       driver.sleep(2);
-
-       //Phone
-       String Phone = "954 51 75 77";
-       isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.Phone(Phone); 
-       driver.sleep(1);
-
-       //Save
-       newOrganization.SaveButton();
-       driver.sleep(1);
-
-       //Community click
-       communityPage = sriHome.clickOnCommunity();
-   
-       // Check Organization by name 
-       //isOrganizationVisible(organizationName);
-       //driver.sleep(100);
-       driver.sleep(1);
-
-       // click on the created test
-       newOrganization.ClickOnTest();
-       driver.sleep(2);
-
-       //delete the test
-       newOrganization.DeleteButton();
-       
+        
+        isReady(newContact);
+        
+        String name="SeleniumTest";
+        newContact.setName(name);
+        newContact.setLastName("LastName");
+        newContact.setAddNotes("NOTES");
+        newContact.setTypeTitle("Mr");
+        newContact.setSelectType("Person");
+        newContact.clickAddNewMail();
+        newContact.setEmail("hello@world.com");
+        newContact.setEmailType("Personal");
+        newContact.clickAddNewPhone();
+        newContact.setPhone("555504040404");
+        newContact.setPhoneType("Personal");
     }
     public void isOrganizationVisible(String organizationName) {
         if (newOrganization == null) {
