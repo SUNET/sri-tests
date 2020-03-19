@@ -197,7 +197,7 @@ public class CommunityPage extends BasePageObject {
                 + "]- End clickOnLogin method");   
     }
     
-    public void clickAddNewContact() {
+    public NewContact clickAddNewContact() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickAddOrganization method");
 
@@ -206,7 +206,8 @@ public class CommunityPage extends BasePageObject {
         }
 
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
-                + "]- End clickOnLogin method");   
+                + "]- End clickOnLogin method");
+        return new NewContact(driver);
     }
     
     
