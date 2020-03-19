@@ -103,7 +103,29 @@ public class CreateGroupTestSet2 extends BasicTestSet {
         newContact.clickAddNewPhone();
         newContact.setPhone("555504040404");
         newContact.setPhoneType("Personal");
-    }
+        newContact.setPGPFingerPrint("1212130303030303");
+        newContact.clickAddNewProfessionalDetails();
+        newContact.setRole("Account Executive");
+        newContact.setOrganization("Abata");
+        newContact.setComment("This is an example of a comment, right here");
+        newContact.clickSave();
+        
+        communityPage = new CommunityPage(driver);
+        communityPage.clickContactItem();
+        newContact = communityPage.clickOnContact();
+        newContact.clickEdit();
+        newContact.setComment("New comment comment");
+        newContact.clickSend();
+        newContact.clickSave();
+        
+        communityPage = new CommunityPage(driver);
+        communityPage.clickContactItem();
+        newContact = communityPage.clickOnContact();
+        
+        newContact.clickDelete();
+        
+        
+        }
     public void isOrganizationVisible(String organizationName) {
         if (newOrganization == null) {
             newOrganization = new NewOrganization(driver);

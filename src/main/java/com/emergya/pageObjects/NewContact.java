@@ -37,7 +37,15 @@ public class NewContact extends BasePageObject {
     private static final String  EMAILTYPE = "emailType";
     private static final String  PHONE = "phone";
     private static final String  PHONETYPE = "phoneType";
-
+    private static final String  PGPFINGERPRINT = "PGPFingerprint";
+    private static final String  ADDPROFESSIONALDETAILS = "addProfessionalDetails";
+    private static final String  SELECTROLE = "selectRole";
+    private static final String  SELECTORGANIZATION = "selectOrganization";
+    private static final String  ADDCOMMENT = "addComment";
+    private static final String  SAVEBUTTON = "saveButton";
+    private static final String  EDITBUTTON = "editContant";
+    private static final String  SENDBUTTON = "clickSend";
+    private static final String  DELETEBUTTON = "clickSend";
 
     /**
      * Constructor method
@@ -173,6 +181,98 @@ public class NewContact extends BasePageObject {
                + " - End setPhoneType method");
     }
     
+    public void setPGPFingerPrint(String pgpfingerprint) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setPGPFingerPrint method");
+    	if(isInputPhoneVisible()) {
+    		this.getElementByXPath(PGPFINGERPRINT).sendKeys(pgpfingerprint);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setPGPFingerPrint method");
+    }
+    
+    public void clickAddNewProfessionalDetails() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickAddNewProfessionalDetails method");
+    	if(isAddNewProfessionalDetailsVisible()) {
+    		this.getElementByXPath(ADDPROFESSIONALDETAILS).click();;
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickAddNewProfessionalDetails method");
+    }
+    
+    public void setRole(String role) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setRole method");
+    	if(isEmailTypeSelectVisible()) {
+    		Select select = new Select(this.getElementByXPath(SELECTROLE));
+    		select.selectByVisibleText(role);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setRole method");
+    }
+    
+    public void setOrganization(String organization) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setRole method");
+    	if(isEmailTypeSelectVisible()) {
+    		Select select = new Select(this.getElementByXPath(SELECTORGANIZATION));
+    		select.selectByVisibleText(organization);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setRole method");
+    }
+    
+    public void setComment(String comment) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setComment method");
+    	if(isCommentAreaVisible()) {
+    		this.getElementByXPath(ADDCOMMENT).sendKeys(comment);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setComment method");
+    }
+    
+    public void clickSave() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickSave method");
+    	if(isButtonSaveVisible()) {
+    		this.getElementByXPath(SAVEBUTTON).click();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickSave method");
+    }
+    
+    public void clickEdit() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickEdit method");
+    	if(isButtonEditVisible()) {
+    		this.getElementByXPath(EDITBUTTON).click();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickEdit method");
+    }
+    
+    public void clickSend() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickSend method");
+    	if(isButtonSendVisible()) {
+    		this.getElementByXPath(SENDBUTTON).click();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickSend method");
+    }
+    
+    public void clickDelete() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickDelete method");
+    	if(isButtonSendVisible()) {
+    		this.getElementByXPath(DELETEBUTTON).click();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickDelete method");
+    }
+    
     //Check if Delete Button is visible
     public boolean isLastNameVisible() {
     log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -256,5 +356,74 @@ public class NewContact extends BasePageObject {
                 + "]- End isPhoneTypeVisible method");
         return this.isElementVisibleByXPath(PHONETYPE);
     }
+    public boolean isPGPFingerPrintVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isPGPFingerPrintVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isPGPFingerPrintVisible method");
+        return this.isElementVisibleByXPath(PGPFINGERPRINT);
+    }
+    public boolean isAddNewProfessionalDetailsVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isAddNewProfessionalDetailsVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isAddNewProfessionalDetailsVisible method");
+        return this.isElementVisibleByXPath(ADDPROFESSIONALDETAILS);
+    }
     
+    public boolean isSelectRoleVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isSelectRoleVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isSelectRoleVisible method");
+        return this.isElementVisibleByXPath(SELECTROLE);
+    }
+    
+    public boolean isSelectOrganizationVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isSelectOrganizationVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isSelectOrganizationVisible method");
+        return this.isElementVisibleByXPath(SELECTORGANIZATION);
+    }
+    
+    public boolean isCommentAreaVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isSelectOrganizationVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isSelectOrganizationVisible method");
+        return this.isElementVisibleByXPath(ADDCOMMENT);
+    }
+    
+    public boolean isButtonSaveVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isSelectOrganizationVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isSelectOrganizationVisible method");
+        return this.isVisible(this.getElementsByXPath(SAVEBUTTON).get(1));
+    }
+    
+    public boolean isButtonEditVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isButtonEditVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isButtonEditVisible method");
+        return this.isElementVisibleByXPath(EDITBUTTON);
+    }
+    
+    public boolean isButtonSendVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isButtonSendVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isButtonSendVisible method");
+        return this.isElementVisibleByXPath(SENDBUTTON);
+    }
+    
+    public boolean isButtonDeteleVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isButtonDeteleVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isButtonDeteleVisible method");
+        return this.isElementVisibleByXPath(DELETEBUTTON);
+    }
  }
