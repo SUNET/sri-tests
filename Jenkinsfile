@@ -21,8 +21,12 @@ pipeline {
             steps {
                 container('maven') {
                     script {
-                        // Steps
-                        sh "mvn install"
+                    withCredentials([
+                                string(credentialsId: 'remoteUserKey', variable: 'remoteUserKey'),
+                                string(credentialsId: 'remoteUserName', variable: 'remoteUserName')
+                        ]){
+                            sh "mvn install '-DremoteUserKey=$remoteUserKey' '-DremoteUserName=$remoteUserName' "
+                        }  
                     }
                 }
             }
