@@ -25,10 +25,12 @@ pipeline {
         stage('Example') {
             steps {
                 container('maven') {
-                    withCredentials([usernamePassword(credentialsId: 'd1147c5d-40af-4c2e-a3ae-4ac4b3e9c3ca', passwordVariable: 'remoteUserKey', usernameVariable: 'remoteUserName')]) {
-                        // Steps  
-                        sh "mvn install '-DremoteUserKey=$remoteUserKey' '-DremoteUserName=$remoteUserName' "
-                    }
+                    withCredentials([
+                                string(credentialsId: 'remoteUserKey', variable: 'remoteUserKey'),
+                                string(credentialsId: 'remoteUserName', variable: 'remoteUserName')
+                        ]){
+                            sh "mvn install '-DremoteUserKey=$remoteUserKey' '-DremoteUserName=$remoteUserName' "
+                        }  
                 }
             }
         }
