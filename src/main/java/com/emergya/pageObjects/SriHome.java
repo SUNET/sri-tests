@@ -82,6 +82,7 @@ public class SriHome extends BasePageObject {
 
        return this.isElementVisibleByXPath(COMMUNITY);
     }
+    
 }
 
 

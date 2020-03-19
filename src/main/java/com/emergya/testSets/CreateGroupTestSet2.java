@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 import com.emergya.pageObjects.AddOrganization;
 import com.emergya.pageObjects.CommunityPage;
 import com.emergya.pageObjects.Login;
+import com.emergya.pageObjects.NewOrganization;
 import com.emergya.pageObjects.SriHome;
 import com.emergya.utils.BasicTestSet;
 
@@ -31,47 +32,148 @@ public class CreateGroupTestSet2 extends BasicTestSet {
     public CreateGroupTestSet2() {
         super();
     }
-  
-
-    }
 
     // **************** TESTS ****************
     // ------ EMERGYA QA SAMPLE TEST ------ //
-    // ------ US00001 - Check google main page and do a search ------ //
+    // ------ US00001 - Add Contact ------ //
     /**
-     * Description: Create a new group and assert that is created propertly
+     * Description: It should be possible to add a contact, with or without 
+     * organization and role associated to it. Currently it only allows to add 
+     * users with organizations associated.
+
      *
      * Pre steps:
      * - Open the browser
      * - Login
      *
      * Steps:
-     * - Go to www.google.es
-     * - Check that the google logo is displayed
-     * - Check that the 'Buscar con Google' button is displayed
-     * - Check that the 'Voy a tener suerte' button is displayed
-     * - Check that the search field is displayed
-     * - Do this search 'Hello world!'
-     * - Check that several results are displayed
+     * -Access to the website (https://sri.ed-integrations.com/)
+     * - Login as Admin
+     * - Click on Community
+     * - Click Contacts
+     * - Add contact
+     * - Complete all the fields including a Role and a Organization
+     * - Save
+
      *
      * Post steps:
-     * - Close the browser
-     *
-   
-    @Test(description = "googleMainPageSearch")
-    public void googleMainPageSearch(Method method) {
-        log.info("[log-TestSet] " + this.getClass().getName()
-                + " - Start test method: " + method.getName());
+     * - Open the contact
+     * - Click on the button Click 
+     * - Close Browser
+     */
+    @AfterMethod(description = "endTest")
+    public void afterAllIsSaidAndDone() {
+        super.afterAllIsSaidAndDone();
+    }
+    
+    @BeforeMethod(description = "login")
+    public void login() {
+    	// Login
+        String username = "admin";
+        isReady(login = new Login(driver));
+        login.fillUsername(username);
+        login.fillPassword("Local.2019");
+        sriHome = login.clickOnLogin();
+    }
 
-       CreateGroupTestSet testInstance = new CreateGroupTestSet();
-       testInstance.googleMainPageSearch(null);
+    @Test(description = "CreateOrganization",dataProvider = "remoteParams")
+    public void createOrganization(String remoteParams) {
        
-       
-       
-       
-    }    
+        //Go to community page
+        communityPage = sriHome.clickOnCommunity();    
+        driver.sleep(1);
+
         
-          */
+        // Click on item contact in the menu
+        communityPage.clickContactItem();
+        driver.sleep(1);
+
+       //Description
+       String organizationDescription = "This is a example description for seleniumTest1 Organization";
+       isReady (newOrganization = new NewOrganization (driver));
+       newOrganization.organizationDescription(organizationDescription);
+       driver.sleep(1);
+
+       //Select Type
+       newOrganization.selectType();
+       driver.sleep(1);
+
+       //Select Affiliation
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.selectAffiliation();
+       driver.sleep(1);
+
+       //Organization ID
+       String organizationID = "111111112";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.organizationID(organizationID);
+       driver.sleep(1);
+
+       //Organization Website
+       String organizationWebsite = "www.emergya.com/es";
+       isReady (newOrganization = new NewOrganization(driver));
+       newOrganization.organizationWebsite(organizationWebsite);
+       driver.sleep(1);
+  
+       //Adress
+       newOrganization.AddNewAdress();
+       driver.sleep(1);
+
+      //Street       
+       String Street = "Luis de Morales 32, 5º";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.Street(Street);       
+       driver.sleep(2);
+
+       //Postal Code
+       String postalCode = "41018";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.PostalCode(postalCode);  
+       driver.sleep(1);
+
+       //Postal Area
+       String postalArea = "Sevilla";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.PostaArea(postalArea); 
+       driver.sleep(2);
+
+       //Phone
+       String Phone = "954 51 75 77";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.Phone(Phone); 
+       driver.sleep(1);
+
+       //Save
+       newOrganization.SaveButton();
+       driver.sleep(1);
+
+       //Community click
+       communityPage = sriHome.clickOnCommunity();
+   
+       // Check Organization by name 
+       //isOrganizationVisible(organizationName);
+       //driver.sleep(100);
+       driver.sleep(1);
+
+       // click on the created test
+       newOrganization.ClickOnTest();
+       driver.sleep(2);
+
+       //delete the test
+       newOrganization.DeleteButton();
+       
+    }
+    public void isOrganizationVisible(String organizationName) {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+        assertTrue("Action 'reassign owner' is displayed. It should be displayed",
+                newOrganization.isOrganizationVisible(organizationName));
+    } 
+    
+}
+
+
         
         
         

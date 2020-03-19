@@ -1,5 +1,7 @@
 package com.emergya.pageObjects;
 
+import java.util.concurrent.TimeoutException;
+
 import org.apache.log4j.Logger;
 import com.emergya.selenium.pageObject.*;
 import org.openqa.selenium.Keys;
@@ -28,6 +30,8 @@ public class CommunityPage extends BasePageObject {
     private static final String LOGINBUTTON= "loginButton";
     private static final String ADDORGANIZATIONBUTTON = "AddOrganizationButton";
     private static final String ISORGANIZATIONVISIBLE = "isOrganizationVisible";
+    private static final String CONTACTMENUITEM = "contactMenuItem";
+    private static final String ADDCONTACTBUTTON = "AddContactButton";
 
     /**
      * Constructor method
@@ -180,6 +184,33 @@ public class CommunityPage extends BasePageObject {
         
         
     }
+    
+    public void clickContactItem() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickContactItem method");
+
+        if ((isContactVisible())) {
+            this.getElementByXPath(CONTACTMENUITEM).click();
+        }
+
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnLogin method");   
+    }
+    
+    public void clickAddNewContact() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickAddOrganization method");
+
+        if ((isAddContactButtonVisible())) {
+            this.getElementByXPath(ADDCONTACTBUTTON).click();
+        }
+
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnLogin method");   
+    }
+    
+    
+    
     /**
      * Return if the button of contact is visible
      * @return
@@ -201,8 +232,26 @@ public class CommunityPage extends BasePageObject {
 
         return this.isElementVisibleByXPath(ISORGANIZATIONVISIBLE);
     }
+    
+    public boolean isContactVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isContactVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isContactVisible method");
 
+         return this.isElementVisibleByXPath(CONTACTMENUITEM);
     }
+    
+    public boolean isAddContactButtonVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isContactVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isContactVisible method");
+
+        return this.isElementVisibleByXPath(ADDCONTACTBUTTON);
+   }
+
+}
     
 
     

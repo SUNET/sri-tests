@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This test suite contains all the regression tests -->
+<suite name="SRI-Test-Set" enabled="true" configfailurepolicy="continue">
+	<test name="SRI-Test" order-by-instances="true">
+		<classes>
+			<class name="com.emergya.testSets.CreateGroupTestSet" >
+				<methods>
+                    <include name="createOrganization" />
+                </methods>
+            </class>
+		</classes>
+	</test>
+</suite>

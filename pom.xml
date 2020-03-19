@@ -12,7 +12,7 @@
 	<properties>
 		<!-- Parameters for test executions -->
 		<!-- Remote, Firefox, Chrome, IE -->
-		<browser>Remote</browser>
+		<browser>Chrome</browser>
 		<local.OS>ubuntu</local.OS>
 		<video.Recording.Path>target/surefire-reports/testCasesVideos</video.Recording.Path>
 		<activate.Video.Recording>true</activate.Video.Recording>
@@ -61,7 +61,7 @@
 			resolucion, deviceName -->
 
 		<!-- Default test suite -->
-		<test.suite>src/main/resources/suites/emergyaAcceptanceTest.xml</test.suite>
+		<test.suite>src/main/resources/suites/sri-auto-regresion-suite.xml</test.suite>
 
 		<!-- Default parameters for selenium -->
 		<environment.url>https://sri.ed-integrations.com/</environment.url>
@@ -153,14 +153,14 @@
 		<profile>
 			<id>Emergya-Acceptance</id>
 			<properties>
-				<test.suite>src/main/resources/suites/emergyaAcceptanceTest.xml</test.suite>
+				<test.suite>src/main/resources/suites/sri-auto-regresion-suite.xml</test.suite>
 			</properties>
 		</profile>
 
 		<profile>
 			<id>Emergya-Regression</id>
 			<properties>
-				<test.suite>src/main/resources/suites/emergyaRegressionTest.xml</test.suite>
+				<test.suite>src/main/resources/suites/sri-auto-regresion-suite.xml</test.suite>
 			</properties>
 		</profile>
 	</profiles>
