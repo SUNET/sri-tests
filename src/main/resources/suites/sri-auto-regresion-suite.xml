@@ -8,6 +8,11 @@
                     <include name="createOrganization" />
                 </methods>
             </class>
+            <class name="com.emergya.testSets.CreateGroupTestSet2" >
+				<methods>
+                    <include name="createContact" />
+                </methods>
+            </class>
 		</classes>
 	</test>
 </suite>

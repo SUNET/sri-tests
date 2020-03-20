@@ -32,6 +32,7 @@ public class CommunityPage extends BasePageObject {
     private static final String ISORGANIZATIONVISIBLE = "isOrganizationVisible";
     private static final String CONTACTMENUITEM = "contactMenuItem";
     private static final String ADDCONTACTBUTTON = "AddContactButton";
+    private static final String CLICKCONTACT = "clickContact";
 
     /**
      * Constructor method
@@ -210,6 +211,16 @@ public class CommunityPage extends BasePageObject {
         return new NewContact(driver);
     }
     
+    public NewContact clickOnContact() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOnContact method");
+        this.getElementByXPath(CLICKCONTACT).click();
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnContact method");
+        return new NewContact(driver);
+    	
+    }
+    
     
     
     /**
@@ -251,6 +262,7 @@ public class CommunityPage extends BasePageObject {
 
         return this.isElementVisibleByXPath(ADDCONTACTBUTTON);
    }
+    
 
 }
     

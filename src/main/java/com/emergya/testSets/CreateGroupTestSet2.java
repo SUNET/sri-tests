@@ -76,8 +76,8 @@ public class CreateGroupTestSet2 extends BasicTestSet {
         sriHome = login.clickOnLogin();
     }
 
-    @Test(description = "CreateOrganization",dataProvider = "remoteParams")
-    public void createOrganization(String remoteParams) {
+    @Test(description = "CreateContact",dataProvider = "remoteParams")
+    public void createContact(String remoteParams) {
        
         //Go to community page
         communityPage = sriHome.clickOnCommunity();    
@@ -103,7 +103,43 @@ public class CreateGroupTestSet2 extends BasicTestSet {
         newContact.clickAddNewPhone();
         newContact.setPhone("555504040404");
         newContact.setPhoneType("Personal");
-    }
+        newContact.setPGPFingerPrint("1212130303030303");
+        newContact.clickAddNewProfessionalDetails();
+        newContact.setRole("Account Executive");
+        newContact.setOrganization("Abata");
+        newContact.setComment("This is an example of a comment, right here");
+        newContact.clickSave();
+        driver.sleep(3);
+        
+        communityPage = new CommunityPage(driver);
+        communityPage.clickContactItem();
+        newContact = communityPage.clickOnContact();
+        driver.sleep(3);
+        newContact.clickEdit();
+        newContact.setLastName("LastName2");
+        newContact.setAddNotes("NOTES2");
+        newContact.setTypeTitle("Mr");
+        newContact.setSelectType("Group");
+        newContact.setEmail("hello2@world.com");
+        newContact.setEmailType("Work");
+        newContact.setPhone("0005050505005");
+        newContact.setPhoneType("Work");
+        newContact.setPGPFingerPrint("2323232");
+        newContact.setRole("Account Executive");
+        newContact.setOrganization("Abata");
+        newContact.setComment("This is an example of a comment, right here");
+        newContact.setComment("New comment comment");
+        newContact.clickSend();
+        newContact.clickSave();
+        
+        communityPage = new CommunityPage(driver);
+        communityPage.clickContactItem();
+        newContact = communityPage.clickOnContact();
+        
+        newContact.clickDelete();
+        
+        
+        }
     public void isOrganizationVisible(String organizationName) {
         if (newOrganization == null) {
             newOrganization = new NewOrganization(driver);
