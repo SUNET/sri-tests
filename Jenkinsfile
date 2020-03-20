@@ -1,3 +1,4 @@
+properties([[$class: 'JiraProjectProperty'], parameters([text(defaultValue: 'Windows 10,Firefox,73x64,1920x1080', description: '', name: 'remoteConfiguration')])])
 library identifier: 'shared-library@master', retriever: modernSCM(
   [$class: 'GitSCMSource',
    remote: 'git@github.com:emergya/ed-jenkins-shared-libraries.git',
