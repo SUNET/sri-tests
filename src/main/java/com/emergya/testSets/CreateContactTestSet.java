@@ -25,11 +25,11 @@ import com.emergya.utils.BasicTestSet;
  * @author Ivan Bermudez <ibermudez@emergya.com>
  * @author Ivan Gomez <igomez@emergya.com>
  */
-public class CreateGroupTestSet2 extends BasicTestSet {
+public class CreateContactTestSet extends BasicTestSet {
 
-    static Logger log = Logger.getLogger(CreateGroupTestSet2.class);
+    static Logger log = Logger.getLogger(CreateContactTestSet.class);
 
-    public CreateGroupTestSet2() {
+    public CreateContactTestSet() {
         super();
     }
 

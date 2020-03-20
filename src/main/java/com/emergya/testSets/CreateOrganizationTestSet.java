@@ -19,11 +19,11 @@ import com.emergya.pageObjects.NewOrganization;
 import com.emergya.pageObjects.SriHome;
 import com.emergya.utils.BasicTestSet;
 
-public class CreateGroupTestSet extends BasicTestSet {
+public class CreateOrganizationTestSet extends BasicTestSet {
 
-    static Logger log = Logger.getLogger(CreateGroupTestSet.class);
+    static Logger log = Logger.getLogger(CreateOrganizationTestSet.class);
 
-    public CreateGroupTestSet() {
+    public CreateOrganizationTestSet() {
         super();
     }
 

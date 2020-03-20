@@ -3,12 +3,12 @@
 <suite name="SRI-Test-Set" enabled="true" configfailurepolicy="continue">
 	<test name="SRI-Test" order-by-instances="true">
 		<classes>
-			<class name="com.emergya.testSets.CreateGroupTestSet" >
+			<class name="com.emergya.testSets.CreateOrganizationTestSet" >
 				<methods>
                     <include name="createOrganization" />
                 </methods>
             </class>
-            <class name="com.emergya.testSets.CreateGroupTestSet2" >
+            <class name="com.emergya.testSets.CreateContactTestSet" >
 				<methods>
                     <include name="createContact" />
                 </methods>
