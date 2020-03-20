@@ -133,6 +133,7 @@ public class NewContact extends BasePageObject {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setEmail method");
     	if(isInputEmailVisible()) {
+    		this.getElementByXPath(INPUTEMAIL).clear();
     		this.getElementByXPath(INPUTEMAIL).sendKeys(email);
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
@@ -237,7 +238,7 @@ public class NewContact extends BasePageObject {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start clickSave method");
     	if(isButtonSaveVisible()) {
-    		this.getElementByXPath(SAVEBUTTON).click();
+    		this.getElementsByXPath(SAVEBUTTON).get(0).click();
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickSave method");
@@ -400,7 +401,7 @@ public class NewContact extends BasePageObject {
                 + "]- Start isSelectOrganizationVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isSelectOrganizationVisible method");
-        return this.isVisible(this.getElementsByXPath(SAVEBUTTON).get(1));
+        return this.isVisible(this.getElementsByXPath(SAVEBUTTON).get(0));
     }
     
     public boolean isButtonEditVisible() {
