@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ISelect;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -127,13 +128,47 @@ public class CreateGroupTestSet extends BasicTestSet {
         newGroup.setComment("This is a comment");
         isButtonSaveVisible();
         newGroup.clickSave();
+        driver.sleep(3);
         isGroupItemVisible();
         communityPage.clickGroupItem();
         driver.sleep(3);
         isGroupVisible();
         newGroup = communityPage.clickGroup();
+        driver.sleep(3);
+        isButtonEditVisible();
+        newGroup.clickEdit();
+        isReady(newGroup);
+        newGroup.setName("Test");
+        isDescriptionTexstAreaVisible();
+        newGroup.setDescription("This is a great description for a test");
+        isInputSearchContactVisible();
+        newGroup.setSearchForContact("John");
+        driver.sleep(2);
+        isCommentAreaVisible();
+        newGroup.setComment("This is a new comment");
+        driver.sleep(2);
+        isButtonSendVisible();
+        newGroup.clickSend();
+        driver.sleep(2);
+        isButtonSaveVisible();
+        newGroup.clickSave();
+        driver.sleep(2);
+        isGroupItemVisible();
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        isGroupVisible();
+        newGroup = communityPage.clickGroup();
+        isButtonDeteleVisible();
+        newGroup.clickDelete();
         
-        }
+        driver.sleep(2);
+        communityPage = new CommunityPage(driver);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        newContact = communityPage.clickOnContact();
+        driver.sleep(2);
+        newContact.clickDelete();
+      }
     
     public void isDescriptionTexstAreaVisible() {
         if (newGroup == null) {

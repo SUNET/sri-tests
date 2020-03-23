@@ -33,9 +33,9 @@ public class NewGroup extends BasePageObject {
     private static final String  INPUTSEARCHCONTACT = "inputSearchContact";
     private static final String  ADDCOMMENT = "addComment";
     private static final String  SAVEBUTTON = "saveButton";
-    private static final String  EDITBUTTON = "editContant";
+    private static final String  EDITBUTTON = "editGroup";
     private static final String  SENDBUTTON = "clickSend";
-    private static final String  DELETEBUTTON = "clickSend";
+    private static final String  DELETEBUTTON = "clickDelete";
 
     /**
      * Constructor method
@@ -81,11 +81,11 @@ public class NewGroup extends BasePageObject {
                 + " - Start setDescription method");
     	if(isInputSearchContactVisible()) {
     		driver.sleep(3);
-    		this.getElementById(INPUTSEARCHCONTACT).sendKeys(contact);
+    		this.getElementByXPath(INPUTSEARCHCONTACT).sendKeys(contact);
     		driver.sleep(3);
-    		this.getElementById(INPUTSEARCHCONTACT).sendKeys(Keys.ARROW_DOWN);
+    		this.getElementByXPath(INPUTSEARCHCONTACT).sendKeys(Keys.ARROW_DOWN);
     		driver.sleep(3);
-    		this.getElementById(INPUTSEARCHCONTACT).sendKeys(Keys.ENTER);
+    		this.getElementByXPath(INPUTSEARCHCONTACT).sendKeys(Keys.ENTER);
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End setDescription method");
@@ -156,14 +156,19 @@ public class NewGroup extends BasePageObject {
                 + "]- Start isSelectOrganizationVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isSelectOrganizationVisible method");
-        return this.isElementVisibleByXPath(ADDCOMMENT);
+        return this.isElementVisibleByXPath(ADDCOMMENT) || this.isElementVisibleById(ADDCOMMENT);
     }
     
     public void setComment(String comment) {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setComment method");
     	if(isCommentAreaVisible()) {
-    		this.getElementByXPath(ADDCOMMENT).sendKeys(comment);
+    		try {
+    			this.getElementByXPath(ADDCOMMENT).sendKeys(comment);
+    		}catch(Exception e) {
+    			this.getElementById(ADDCOMMENT).sendKeys(comment);
+    		}
+    		
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End setComment method");
@@ -182,7 +187,7 @@ public class NewGroup extends BasePageObject {
                 + "]- Start isInputSearchContactVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isInputSearchContactVisible method");
-        return this.isElementVisibleById(INPUTSEARCHCONTACT);
+        return this.isElementVisibleByXPath(INPUTSEARCHCONTACT);
     }
     
     //Check if Delete Button is visible
