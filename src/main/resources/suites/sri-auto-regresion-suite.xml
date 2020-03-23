@@ -13,6 +13,11 @@
                     <include name="createContact" />
                 </methods>
             </class>
+            <class name="com.emergya.testSets.CreateGroupTestSet" >
+				<methods>
+                    <include name="createGroup" />
+                </methods>
+            </class>
 		</classes>
 	</test>
 </suite>

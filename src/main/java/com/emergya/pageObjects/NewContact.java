@@ -202,6 +202,14 @@ public class NewContact extends BasePageObject {
                + " - End clickAddNewProfessionalDetails method");
     }
     
+    public void clickAddNewProfessionalDetailsModal() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickAddNewProfessionalDetails method");
+    	this.getElementsByXPath(ADDPROFESSIONALDETAILS).get(1).click();;
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickAddNewProfessionalDetails method");
+    }
+    
     public void setRole(String role) {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setRole method");
@@ -240,6 +248,14 @@ public class NewContact extends BasePageObject {
     	if(isButtonSaveVisible()) {
     		this.getElementsByXPath(SAVEBUTTON).get(0).click();
     	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickSave method");
+    }
+    
+    public void clickSaveModal() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickSave method");
+    	this.getElementsByXPath(SAVEBUTTON).get(2).click();
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickSave method");
     }

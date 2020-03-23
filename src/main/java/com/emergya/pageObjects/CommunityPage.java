@@ -31,8 +31,11 @@ public class CommunityPage extends BasePageObject {
     private static final String ADDORGANIZATIONBUTTON = "AddOrganizationButton";
     private static final String ISORGANIZATIONVISIBLE = "isOrganizationVisible";
     private static final String CONTACTMENUITEM = "contactMenuItem";
+    private static final String GROUPSMENUITEM = "contactGroupsItem";
     private static final String ADDCONTACTBUTTON = "AddContactButton";
     private static final String CLICKCONTACT = "clickContact";
+    private static final String ADDGROUPBUTTON = "AddGroupButton";
+    private static final String  CLICKGROUP = "clickGroup";
 
     /**
      * Constructor method
@@ -198,6 +201,18 @@ public class CommunityPage extends BasePageObject {
                 + "]- End clickOnLogin method");   
     }
     
+    public void clickGroupItem() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickGroupItem method");
+
+        if (isGroupItemVisible()) {
+            this.getElementByXPath(GROUPSMENUITEM).click();
+        }
+
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickGroupItem method");   
+    }
+    
     public NewContact clickAddNewContact() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickAddOrganization method");
@@ -209,6 +224,30 @@ public class CommunityPage extends BasePageObject {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnLogin method");
         return new NewContact(driver);
+    }
+    
+    public NewGroup clickGroup() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start isGroupItemVisible method");
+    	 if (isGroupVisible()) {
+    		 this.getElementByXPath(CLICKGROUP).click();
+    	 }
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End isGroupItemVisible method");
+    	return new NewGroup(driver);
+    }
+    
+    public NewGroup clickAddNewGroup() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickAddNewGroup method");
+
+        if ((isGroupVisible())) {
+            this.getElementByXPath(ADDGROUPBUTTON).click();
+        }
+
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickAddNewGroup method");
+        return new NewGroup(driver);
     }
     
     public NewContact clickOnContact() {
@@ -254,6 +293,24 @@ public class CommunityPage extends BasePageObject {
          return this.isElementVisibleByXPath(CONTACTMENUITEM);
     }
     
+    public boolean isGroupVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isGroupVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isGroupVisible method");
+
+        return this.isElementVisibleByXPath(CLICKGROUP);
+   }
+   
+    public boolean isGroupItemVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isGroupItemVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isGroupItemVisible method");
+
+           return this.isElementVisibleByXPath(GROUPSMENUITEM);
+      }
+    
     public boolean isAddContactButtonVisible() {
    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start isContactVisible method");
@@ -261,46 +318,6 @@ public class CommunityPage extends BasePageObject {
                 + "]- End isContactVisible method");
 
         return this.isElementVisibleByXPath(ADDCONTACTBUTTON);
-   }
-    
+   }  
 
 }
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

@@ -117,6 +117,7 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        driver.sleep(1);
 
        //Save
+       isSaveButtonVisible();
        newOrganization.SaveButton();
        driver.sleep(1);
 
@@ -133,12 +134,10 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        driver.sleep(2);
 
        //delete the test
+       isDeleteButtonVisible();
        newOrganization.DeleteButton();
        
-    }    
-   
-        
-        
+    } 
     public void isOrganizationVisible(String organizationName) {
         if (newOrganization == null) {
             newOrganization = new NewOrganization(driver);
@@ -147,8 +146,19 @@ public class CreateOrganizationTestSet extends BasicTestSet {
                 newOrganization.isOrganizationVisible(organizationName));
     }   
         
-        
-        
-      
-        
+    //Check if Save Button button is visible
+    public void isSaveButtonVisible() {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+    	assertTrue("Button Save is not visible",newOrganization.SaveButtonVisible());
+    }    
+    
+    //Check if Delete Button is visible
+    public void isDeleteButtonVisible() {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+        assertTrue("Button Save is not visible",newOrganization.SaveButtonVisible());
     }
+   }
