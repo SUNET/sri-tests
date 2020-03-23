@@ -132,7 +132,79 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        // click on the created test
        newOrganization.ClickOnTest();
        driver.sleep(2);
+       
+       isEditButtonVisible();
+       newOrganization.clickEditButton();
+       
+       String organizationName2 = "44";
+       isReady (newOrganization = new NewOrganization(driver));
+       newOrganization.organizationName(organizationName2);
+       driver.sleep(1);
 
+       //Description
+       String organizationDescription2 = "Added more information";
+       isReady (newOrganization = new NewOrganization (driver));
+       newOrganization.organizationDescription(organizationDescription2);
+       driver.sleep(1);
+
+       //Select Type
+       newOrganization.selectType();
+       driver.sleep(1);
+
+       //Select Affiliation
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.selectAffiliation();
+       driver.sleep(1);
+
+       //Organization ID
+       String organizationID2 = "32222222";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.organizationID(organizationID2);
+       driver.sleep(1);
+
+       //Organization Website
+       String organizationWebsite2 = "/and";
+       isReady (newOrganization = new NewOrganization(driver));
+       newOrganization.organizationWebsite(organizationWebsite2);
+       driver.sleep(1);
+
+      //Street       
+       String Street2 = "Calle";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.Street(Street2);       
+       driver.sleep(2);
+
+       //Postal Code
+       String postalCode2 = "2";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.PostalCode(postalCode2);  
+       driver.sleep(1);
+
+       //Postal Area
+       String postalArea2 = "(SEVILLA)";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.PostaArea(postalArea2); 
+       driver.sleep(2);
+
+       //Phone
+       String Phone2 = "11";
+       isReady(newOrganization = new NewOrganization(driver));
+       newOrganization.Phone(Phone2); 
+       driver.sleep(1);
+       
+       isProviderAffiliationVisible();
+       newOrganization.clickProviderAffiliationButton();
+       
+       isSaveButtonVisible();
+       newOrganization.SaveButton();
+       
+       
+       communityPage = sriHome.clickOnCommunity();
+       
+       // Check Organization by name 
+       isOrganizationVisible(organizationName);
+       newOrganization.ClickOnTest();
+       
        //delete the test
        isDeleteButtonVisible();
        newOrganization.DeleteButton();
@@ -160,5 +232,19 @@ public class CreateOrganizationTestSet extends BasicTestSet {
             newOrganization = new NewOrganization(driver);
         }
         assertTrue("Button Save is not visible",newOrganization.SaveButtonVisible());
+    }
+    
+    public void isEditButtonVisible() {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+        assertTrue("Button Edit is not visible",newOrganization.EditButtonVisible());
+    }
+    
+    public void isProviderAffiliationVisible() {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+        assertTrue("Button Provider in affiliation is not visible",newOrganization.isProviderAffiliationVisible());
     }
    }

@@ -43,7 +43,8 @@ public class NewOrganization extends BasePageObject {
     private static final String SAVEBUTTON = "SaveButton";
     private static final String ORGANIZATIONVISIBLE = "TestVisible";
     private static final String DELETEBUTTON = "DeleteButton";
-
+    private static final String EDITBUTTON = "EditButton";
+    private static final String PROVIDERAFFILICATION = "providerAffiliation";
 
     /**
      * Constructor method
@@ -404,45 +405,46 @@ public class NewOrganization extends BasePageObject {
                 + "]- End DeleteButtonVisible method");
 
         return this.isElementVisibleByXPath(DELETEBUTTON);
-    }  
-
-            
         }
+        
+        //Check if Delete Button is visible
+        public boolean EditButtonVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start EditButtonVisisble method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End EditButtonVisisble method");
 
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        return this.isElementVisibleByXPath(EDITBUTTON);
+        }
+        
+        //Delete Button
+        public void clickEditButton() {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start DeleteButton -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            if(EditButtonVisible()) {
+            	this.getElementByXPath(EDITBUTTON).click();
+            }
+            driver.sleep(2);
+        }
+        
+        public boolean isProviderAffiliationVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isProviderAffiliationVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isProviderAffiliationVisible method");
+
+        return this.isElementVisibleByXPath(PROVIDERAFFILICATION);
+        }
+        
+        
+        public void clickProviderAffiliationButton() {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start clickProviderAffiliationButton -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            if(isProviderAffiliationVisible()) {
+            	this.getElementByXPath(PROVIDERAFFILICATION).click();
+            }
+            driver.sleep(2);
+        }
+   }   
