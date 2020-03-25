@@ -3,9 +3,11 @@ package com.emergya.pageObjects;
 import org.apache.log4j.Logger;
 import com.emergya.selenium.pageObject.*;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import com.emergya.selenium.drivers.EmergyaWebDriver;
 import com.emergya.selenium.pageObject.BasePageObject;
+import com.emergya.utils.WebDriverUtils;
 
 /**
  * A Page Object (PO) contain the behavior of a specific page in the application
@@ -63,6 +65,13 @@ public class SriHome extends BasePageObject {
 
         if ((communityButtonVisible())) {
             this.getElementByXPath(COMMUNITY).click();
+        }
+        
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(COMMUNITY);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
         }
 
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()

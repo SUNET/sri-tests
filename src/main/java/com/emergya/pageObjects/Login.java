@@ -1,7 +1,12 @@
 package com.emergya.pageObjects;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+
 import com.emergya.selenium.drivers.EmergyaWebDriver;
 import com.emergya.selenium.pageObject.BasePageObject;
+import com.emergya.utils.WebDriverUtils;
 import com.emergya.selenium.pageObject.*;
 
 /**
@@ -140,6 +145,13 @@ public class Login extends BasePageObject {
         if ((loginButtonvisible())) {
             this.getElementByXPath(LOGINBUTTON).click();
         }
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(LOGINBUTTON);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver, this.getElementByXPath(LOGINBUTTON));
+        	}
+        }
+        
 
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnLogin method");

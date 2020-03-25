@@ -69,11 +69,12 @@ public class CreateGroupTestSet extends BasicTestSet {
      * - Click on the button Click 
      * - Close Browser
      */
+    /***
     @AfterMethod(description = "endTest")
     public void afterAllIsSaidAndDone() {
         super.afterAllIsSaidAndDone();
-    }
-    
+        }
+    */
     @BeforeMethod(description = "login")
     public void login() {
     	// Login
@@ -98,7 +99,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         driver.sleep(3);
         
         isReady(newGroup);
-        newGroup.setName("Test");
+        newGroup.setName("Test4");
         isDescriptionTexstAreaVisible();
         newGroup.setDescription("This is a great description for a test");
         newContact = newGroup.clickAddNewContact();
@@ -138,7 +139,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         isButtonEditVisible();
         newGroup.clickEdit();
         isReady(newGroup);
-        newGroup.setName("Test");
+        newGroup.setName("Test4");
         isDescriptionTexstAreaVisible();
         newGroup.setDescription("This is a great description for a test");
         isInputSearchContactVisible();
@@ -160,7 +161,8 @@ public class CreateGroupTestSet extends BasicTestSet {
         newGroup = communityPage.clickGroup();
         isButtonDeteleVisible();
         newGroup.clickDelete();
-        
+        driver.sleep(3);
+        isGroupDeleted();
         driver.sleep(2);
         communityPage = new CommunityPage(driver);
         communityPage.clickContactItem();
@@ -239,8 +241,16 @@ public class CreateGroupTestSet extends BasicTestSet {
         if (communityPage == null) {
         	communityPage = new CommunityPage(driver);
         }
-        assertTrue("Group is not visible in the menu",
+        assertTrue("New group is not visible",
                 communityPage.isGroupVisible());
+      }
+    
+    public void isGroupDeleted() {
+        if (communityPage == null) {
+        	communityPage = new CommunityPage(driver);
+        }
+        assertTrue("New Group has not been deleted",
+                !communityPage.isGroupVisible());
       }
       
     
@@ -248,7 +258,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         if (communityPage == null) {
         	communityPage = new CommunityPage(driver);
         }
-        assertTrue("The group we created previously is not visible",
+        assertTrue("Group is not visible in the menu",
                 communityPage.isGroupItemVisible());
      }
     

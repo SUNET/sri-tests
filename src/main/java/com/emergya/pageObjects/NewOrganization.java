@@ -5,11 +5,13 @@ import com.emergya.selenium.pageObject.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.emergya.selenium.drivers.EmergyaWebDriver;
 import com.emergya.selenium.pageObject.BasePageObject;
 import com.emergya.selenium.utils.StringFormatter;
+import com.emergya.utils.WebDriverUtils;
 
 /**
  * A Page Object (PO) contain the behavior of a specific page in the application
@@ -128,6 +130,16 @@ public class NewOrganization extends BasePageObject {
             this.getElementByXPath(ORGANIZATIONTYPE).click();
             driver.sleep(2);
             this.getElementByXPath(ORGANIZATIONTYPE1).click();
+            if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+            	WebElement element = this.getElementByXPath(ORGANIZATIONTYPE);
+            	if(element != null) {
+            		WebDriverUtils.clickButtonSafari(driver,element);
+            	}
+            	WebElement element1 = this.getElementByXPath(ORGANIZATIONTYPE1);
+            	if(element != null) {
+            		WebDriverUtils.clickButtonSafari(driver,element1);
+            	}
+            }
            // this.getElementByXPath(ORGANIZATIONTYPE).sendKeys(stringSearch);
       
 
@@ -162,6 +174,12 @@ public class NewOrganization extends BasePageObject {
                     + "- method]");
 
                 this.getElementByXPath(AFFILIATION).click();
+                if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+                	WebElement element = this.getElementByXPath(AFFILIATION);
+                	if(element != null) {
+                		WebDriverUtils.clickButtonSafari(driver,element);
+                	}
+                }
                 driver.sleep(2);
        
         }     
@@ -223,6 +241,12 @@ public class NewOrganization extends BasePageObject {
                     + "- method]");
 
                 this.getElementByXPath(ADDNEWADDRESS).click();
+                if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+                	WebElement element = this.getElementByXPath(ADDNEWADDRESS);
+                	if(element != null) {
+                		WebDriverUtils.clickButtonSafari(driver,element);
+                	}
+                }
                 driver.sleep(2);
        
         }     
@@ -346,6 +370,12 @@ public class NewOrganization extends BasePageObject {
                     + "- method]");
 
                 this.getElementByXPath(SAVEBUTTON).click();
+                if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+                	WebElement element = this.getElementByXPath(SAVEBUTTON);
+                	if(element != null) {
+                		WebDriverUtils.clickButtonSafari(driver,element);
+                	}
+                }
                 driver.sleep(2);
        
         }     
@@ -382,6 +412,12 @@ public class NewOrganization extends BasePageObject {
                     + "- method]");
 
                 this.getElementByXPath(ORGANIZATIONVISIBLE).click();
+                if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+                	WebElement element = this.getElementByXPath(ORGANIZATIONVISIBLE);
+                	if(element != null) {
+                		WebDriverUtils.clickButtonSafari(driver,element);
+                	}
+                }
                 
         
 }
@@ -392,6 +428,12 @@ public class NewOrganization extends BasePageObject {
                     + "]- Start DeleteButton -[" + this.getClass().getSimpleName()
                     + "- method]");
             this.getElementsByXPath(DELETEBUTTON).get(0).click();
+            if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+            	WebElement element = this.getElementsByXPath(DELETEBUTTON).get(0);
+            	if(element != null) {
+            		WebDriverUtils.clickButtonSafari(driver,element);
+            	}
+            }
                 //this.getElementByXPath(DELETEBUTTON).click();
                 driver.sleep(2);
        
@@ -425,6 +467,12 @@ public class NewOrganization extends BasePageObject {
             if(EditButtonVisible()) {
             	this.getElementByXPath(EDITBUTTON).click();
             }
+            if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+            	WebElement element = this.getElementByXPath(EDITBUTTON);
+            	if(element != null) {
+            		WebDriverUtils.clickButtonSafari(driver,element);
+            	}
+            }
             driver.sleep(2);
         }
         
@@ -444,6 +492,12 @@ public class NewOrganization extends BasePageObject {
                     + "- method]");
             if(isProviderAffiliationVisible()) {
             	this.getElementByXPath(PROVIDERAFFILICATION).click();
+            }
+            if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+            	WebElement element = this.getElementByXPath(PROVIDERAFFILICATION);
+            	if(element != null) {
+            		WebDriverUtils.clickButtonSafari(driver,element);
+            	}
             }
             driver.sleep(2);
         }

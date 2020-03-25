@@ -5,11 +5,13 @@ import com.emergya.selenium.pageObject.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import com.emergya.selenium.drivers.EmergyaWebDriver;
 import com.emergya.selenium.pageObject.BasePageObject;
 import com.emergya.selenium.utils.StringFormatter;
+import com.emergya.utils.WebDriverUtils;
 
 /**
  * A Page Object (PO) contain the behavior of a specific page in the application
@@ -97,6 +99,13 @@ public class NewGroup extends BasePageObject {
     	if(isButtonAddNewVisible()) {
     		this.getElementByXPath(ADDNEWCONTACT).click();
     	}
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element =  this.getElementByXPath(ADDNEWCONTACT);
+        	if(element!=null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
+    	
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickAddNewContact method");
     	return new NewContact(driver);
@@ -108,6 +117,12 @@ public class NewGroup extends BasePageObject {
     	if(isButtonSaveVisible()) {
     		this.getElementsByXPath(SAVEBUTTON).get(0).click();
     	}
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element =  this.getElementsByXPath(SAVEBUTTON).get(0);
+        	if(element!=null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickSave method");
     }
@@ -118,6 +133,12 @@ public class NewGroup extends BasePageObject {
     	if(isButtonEditVisible()) {
     		this.getElementByXPath(EDITBUTTON).click();
     	}
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element =  this.getElementByXPath(EDITBUTTON);
+        	if(element!=null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickEdit method");
     }
@@ -128,6 +149,12 @@ public class NewGroup extends BasePageObject {
     	if(isButtonSendVisible()) {
     		this.getElementByXPath(SENDBUTTON).click();
     	}
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element =  this.getElementByXPath(SENDBUTTON);
+        	if(element!=null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickSend method");
     }
@@ -138,6 +165,12 @@ public class NewGroup extends BasePageObject {
     	if(isButtonSendVisible()) {
     		this.getElementByXPath(DELETEBUTTON).click();
     	}
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element =  this.getElementByXPath(DELETEBUTTON);
+        	if(element!=null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickDelete method");
     }

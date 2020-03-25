@@ -5,9 +5,11 @@ import java.util.concurrent.TimeoutException;
 import org.apache.log4j.Logger;
 import com.emergya.selenium.pageObject.*;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import com.emergya.selenium.drivers.EmergyaWebDriver;
 import com.emergya.selenium.pageObject.BasePageObject;
+import com.emergya.utils.WebDriverUtils;
 
 /**
  * A Page Object (PO) contain the behavior of a specific page in the application
@@ -152,7 +154,14 @@ public class CommunityPage extends BasePageObject {
         if ((loginButtonvisible())) {
             this.getElementByXPath(LOGINBUTTON).click();
         }
-
+        
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(LOGINBUTTON);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver, this.getElementByXPath(LOGINBUTTON));
+        	}
+        }
+        
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnLogin method");
         return new CommunityPage(driver);
@@ -181,7 +190,14 @@ public class CommunityPage extends BasePageObject {
         if ((AddOrganizationButtonvisible())) {
             this.getElementByXPath(ADDORGANIZATIONBUTTON).click();
         }
-
+        
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element =  this.getElementByXPath(ADDORGANIZATIONBUTTON);
+        	if(element!=null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
+        
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnLogin method");
         return new NewOrganization(driver);
@@ -196,7 +212,14 @@ public class CommunityPage extends BasePageObject {
         if ((isContactVisible())) {
             this.getElementByXPath(CONTACTMENUITEM).click();
         }
-
+        
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(CONTACTMENUITEM);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
+        
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnLogin method");   
     }
@@ -207,6 +230,13 @@ public class CommunityPage extends BasePageObject {
 
         if (isGroupItemVisible()) {
             this.getElementByXPath(GROUPSMENUITEM).click();
+        }
+        
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(GROUPSMENUITEM);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
         }
 
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -220,7 +250,14 @@ public class CommunityPage extends BasePageObject {
         if ((isAddContactButtonVisible())) {
             this.getElementByXPath(ADDCONTACTBUTTON).click();
         }
-
+        
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(ADDCONTACTBUTTON);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
+        
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnLogin method");
         return new NewContact(driver);
@@ -232,6 +269,13 @@ public class CommunityPage extends BasePageObject {
     	 if (isGroupVisible()) {
     		 this.getElementByXPath(CLICKGROUP).click();
     	 }
+    	 
+         if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	 WebElement element = this.getElementByXPath(CLICKGROUP);
+        	 if(element != null) {
+        		 WebDriverUtils.clickButtonSafari(driver, this.getElementByXPath(CLICKGROUP)); 
+        	 }
+         }
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End isGroupItemVisible method");
     	return new NewGroup(driver);
@@ -244,7 +288,12 @@ public class CommunityPage extends BasePageObject {
         if ((isGroupVisible())) {
             this.getElementByXPath(ADDGROUPBUTTON).click();
         }
-
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(ADDGROUPBUTTON);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickAddNewGroup method");
         return new NewGroup(driver);
@@ -253,7 +302,16 @@ public class CommunityPage extends BasePageObject {
     public NewContact clickOnContact() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnContact method");
-        this.getElementByXPath(CLICKCONTACT).click();
+        if(!WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+            if(isANewContactVisible()) {
+            	this.getElementByXPath(CLICKCONTACT).click();
+            }
+        }else {
+        	WebElement element = this.getElementByXPath(CLICKCONTACT);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnContact method");
         return new NewContact(driver);
@@ -318,6 +376,14 @@ public class CommunityPage extends BasePageObject {
                 + "]- End isContactVisible method");
 
         return this.isElementVisibleByXPath(ADDCONTACTBUTTON);
-   }  
+   }
+    
+    public boolean isANewContactVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isContactVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isContactVisible method");
 
+           return this.isElementVisibleByXPath(CLICKCONTACT);
+      }  
 }

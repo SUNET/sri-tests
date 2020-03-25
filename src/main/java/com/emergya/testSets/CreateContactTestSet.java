@@ -21,6 +21,8 @@ import com.emergya.pageObjects.NewOrganization;
 import com.emergya.pageObjects.SriHome;
 import com.emergya.utils.BasicTestSet;
 
+import net.bytebuddy.matcher.IsNamedMatcher;
+
 /**
  * A test class contain the tests of a specific page in the application
  * @author Jose Antonio Sanchez <jasanchez@emergya.com>
@@ -63,10 +65,11 @@ public class CreateContactTestSet extends BasicTestSet {
      * - Click on the button Click 
      * - Close Browser
      */
+    /**
     @AfterMethod(description = "endTest")
     public void afterAllIsSaidAndDone() {
         super.afterAllIsSaidAndDone();
-    }
+    }**/
     
     @BeforeMethod(description = "login")
     public void login() {
@@ -130,6 +133,7 @@ public class CreateContactTestSet extends BasicTestSet {
         
         communityPage = new CommunityPage(driver);
         communityPage.clickContactItem();
+        isANewContactVisible();
         newContact = communityPage.clickOnContact();
         driver.sleep(3);
         isButtonEditVisible();
@@ -138,7 +142,7 @@ public class CreateContactTestSet extends BasicTestSet {
         newContact.setAddNotes("NOTES2");
         newContact.setTypeTitle("Mr");
         newContact.setSelectType("Group");
-        newContact.setEmail("hello2@world.com");
+        newContact.setEmail(".es");
         newContact.setEmailType("Work");
         newContact.setPhone("0005050505005");
         newContact.setPhoneType("Work");
@@ -154,12 +158,13 @@ public class CreateContactTestSet extends BasicTestSet {
         
         communityPage = new CommunityPage(driver);
         communityPage.clickContactItem();
+        isANewContactVisible();
         newContact = communityPage.clickOnContact();
-        
+        driver.sleep(3);
         isButtonDeteleVisible();
         newContact.clickDelete();
-        
-        
+        driver.sleep(3);
+        isANewContactDeleted();
         }
     //Check if Delete Button is visible
     public void isLastNameVisible() {
@@ -312,4 +317,25 @@ public class CreateContactTestSet extends BasicTestSet {
                 newContact.isButtonDeteleVisible());
     }
     
+    public void isContactVisible() {
+        if (communityPage == null) {
+        	communityPage = new CommunityPage(driver);
+        }
+        assertTrue("Contact in menu is not visible",
+                communityPage.isContactVisible());
+   }
+    public void isANewContactVisible() {
+        if (communityPage == null) {
+        	communityPage = new CommunityPage(driver);
+        }
+        assertTrue("New Contact is not visible",
+                communityPage.isANewContactVisible());
+     }
+    public void isANewContactDeleted() {
+        if (communityPage == null) {
+        	communityPage = new CommunityPage(driver);
+        }
+        assertTrue("New Contact is not visible",
+                !communityPage.isANewContactVisible());
+     }
 }

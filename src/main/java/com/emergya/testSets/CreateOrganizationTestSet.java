@@ -18,6 +18,7 @@ import com.emergya.pageObjects.Login;
 import com.emergya.pageObjects.NewOrganization;
 import com.emergya.pageObjects.SriHome;
 import com.emergya.utils.BasicTestSet;
+import com.emergya.utils.WebDriverUtils;
 
 public class CreateOrganizationTestSet extends BasicTestSet {
 
@@ -27,13 +28,12 @@ public class CreateOrganizationTestSet extends BasicTestSet {
         super();
     }
 
-
-  
+    /***
     @AfterMethod(description = "endTest")
     public void afterAllIsSaidAndDone() {
         super.afterAllIsSaidAndDone();
-    }
-
+    }**/
+    
     @Test(description = "CreateOrganization",dataProvider = "remoteParams")
     public void createOrganization(String remoteParams) {
     	
@@ -77,7 +77,7 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        driver.sleep(1);
 
        //Organization ID
-       String organizationID = "111111112";
+       String organizationID = WebDriverUtils.getRandomIntegerBetweenRange(1000000, 9999999).toString();
        isReady(newOrganization = new NewOrganization(driver));
        newOrganization.organizationID(organizationID);
        driver.sleep(1);
@@ -157,7 +157,7 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        driver.sleep(1);
 
        //Organization ID
-       String organizationID2 = "32222222";
+       String organizationID2 = WebDriverUtils.getRandomIntegerBetweenRange(1000000, 9999999).toString();
        isReady(newOrganization = new NewOrganization(driver));
        newOrganization.organizationID(organizationID2);
        driver.sleep(1);
