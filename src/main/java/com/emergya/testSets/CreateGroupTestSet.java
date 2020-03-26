@@ -95,6 +95,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         
         // Click on item contact in the menu
         communityPage.clickGroupItem();
+        isAddNewGroupVisible();
         newGroup = communityPage.clickAddNewGroup();
         driver.sleep(3);
         
@@ -244,6 +245,14 @@ public class CreateGroupTestSet extends BasicTestSet {
         assertTrue("New group is not visible",
                 communityPage.isGroupVisible());
       }
+    
+    public void isAddNewGroupVisible() {
+        if (communityPage == null) {
+        	communityPage = new CommunityPage(driver);
+        }
+        assertTrue("Button Add New group is not visible",
+                communityPage.isAddNewGroupVisible());
+     }
     
     public void isGroupDeleted() {
         if (communityPage == null) {

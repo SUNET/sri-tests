@@ -285,7 +285,7 @@ public class CommunityPage extends BasePageObject {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickAddNewGroup method");
 
-        if ((isGroupVisible())) {
+        if (isAddNewGroupVisible()) {
             this.getElementByXPath(ADDGROUPBUTTON).click();
         }
         if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
@@ -350,6 +350,15 @@ public class CommunityPage extends BasePageObject {
 
          return this.isElementVisibleByXPath(CONTACTMENUITEM);
     }
+    
+    public boolean isAddNewGroupVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isGroupVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isGroupVisible method");
+
+           return this.isElementVisibleByXPath(ADDGROUPBUTTON);
+      }
     
     public boolean isGroupVisible() {
    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
