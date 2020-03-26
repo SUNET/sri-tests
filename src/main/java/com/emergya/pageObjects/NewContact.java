@@ -47,7 +47,7 @@ public class NewContact extends BasePageObject {
     private static final String  SAVEBUTTON = "saveButton";
     private static final String  EDITBUTTON = "editContant";
     private static final String  SENDBUTTON = "clickSend";
-    private static final String  DELETEBUTTON = "clickSend";
+    private static final String  DELETEBUTTON = "clickDelete";
 
     /**
      * Constructor method
@@ -333,13 +333,13 @@ public class NewContact extends BasePageObject {
     public void clickDelete() {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start clickDelete method");
+    	driver.sleep(2);
     	if(isButtonSendVisible()) {
-    		this.getElementByXPath(DELETEBUTTON).click();
+    		this.getElementsByXPath(DELETEBUTTON).get(0).click();
     	}
         if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
-        	WebElement element = this.getElementByXPath(DELETEBUTTON);
+        	WebElement element = this.getElementsByXPath(DELETEBUTTON).get(0);
         	if(element != null) {
-        		WebDriverUtils.clickButtonSafari(driver,element);
         		WebDriverUtils.clickButtonSafari(driver,element);
         	}
         }

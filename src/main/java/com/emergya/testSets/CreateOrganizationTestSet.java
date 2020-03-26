@@ -208,6 +208,8 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        //delete the test
        isDeleteButtonVisible();
        newOrganization.DeleteButton();
+       driver.sleep(3);
+       isOrganizationDeleted(organizationName2);
        
     } 
     public void isOrganizationVisible(String organizationName) {
@@ -216,7 +218,15 @@ public class CreateOrganizationTestSet extends BasicTestSet {
         }
         assertTrue("Action 'reassign owner' is displayed. It should be displayed",
                 newOrganization.isOrganizationVisible(organizationName));
-    }   
+    } 
+    
+    public void isOrganizationDeleted(String organizationName) {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+        assertTrue("The organization we created was not deleted",
+                !newOrganization.isOrganizationVisible(organizationName));
+    } 
         
     //Check if Save Button button is visible
     public void isSaveButtonVisible() {

@@ -410,17 +410,17 @@ public class NewOrganization extends BasePageObject {
             log.info("[log-" + this.getClass().getSimpleName()
                     + "]- Start ClickOnTest -[" + this.getClass().getSimpleName()
                     + "- method]");
-
-                this.getElementByXPath(ORGANIZATIONVISIBLE).click();
-                if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+            if(!WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")){
+            	this.getElementByXPath(ORGANIZATIONVISIBLE).click();
+            }else {
+            	if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
                 	WebElement element = this.getElementByXPath(ORGANIZATIONVISIBLE);
                 	if(element != null) {
                 		WebDriverUtils.clickButtonSafari(driver,element);
                 	}
                 }
-                
-        
-}
+            }    
+       }
         
         //Delete Button
         public void DeleteButton() {

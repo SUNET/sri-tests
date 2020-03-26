@@ -266,16 +266,18 @@ public class CommunityPage extends BasePageObject {
     public NewGroup clickGroup() {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start isGroupItemVisible method");
-    	 if (isGroupVisible()) {
+    	if(!WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+       	 if (isGroupVisible()) {
     		 this.getElementByXPath(CLICKGROUP).click();
     	 }
-    	 
-         if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
-        	 WebElement element = this.getElementByXPath(CLICKGROUP);
-        	 if(element != null) {
-        		 WebDriverUtils.clickButtonSafari(driver, this.getElementByXPath(CLICKGROUP)); 
-        	 }
-         }
+    	}else {
+    		if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+           	 WebElement element = this.getElementByXPath(CLICKGROUP);
+           	 if(element != null) {
+           		 WebDriverUtils.clickButtonSafari(driver, this.getElementByXPath(CLICKGROUP)); 
+           	 }
+            }
+    	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End isGroupItemVisible method");
     	return new NewGroup(driver);
