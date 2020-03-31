@@ -129,6 +129,30 @@ public class CommunityFiltersTestSet extends BasicTestSet {
             isDate1OlderThanDate2(creationDate,"mm/dd/yyyy",toDate,"dd/mm/yy");
         }
         
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        isButtonUpdatedVisible();
+        communityPage.clickOnButtonUpdated();
+        isFilterFromDateVisible();
+        String fromDate2 = "31/03/20";
+        String toDate2 = "30/04/20";
+        communityPage.setFromDate(fromDate2);
+        isFilterToDateVisible();
+        communityPage.setToDate(toDate2);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(3);
+        String updateDate = communityPage.getUpdateDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate2,"dd/mm/yy",updateDate,"dd/mm/yyyy");
+            isDate1OlderThanDate2(updateDate,"dd/mm/yyyy",toDate2,"dd/mm/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate2,"dd/mm/yy",updateDate,"mm/dd/yyyy");
+            isDate1OlderThanDate2(updateDate,"mm/dd/yyyy",toDate2,"dd/mm/yy");
+        }
+        
         /*
         driver.navigate().back();
         driver.sleep(2);
@@ -176,7 +200,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         String namea = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
         assertAlphabeticalOrder(namea, namea1);
         
-        isInputWordFilterVisible();
+        
         String search_word = "Nonnah";
         communityPage.setWordFilter(search_word);
         driver.sleep(3);
@@ -217,13 +241,13 @@ public class CommunityFiltersTestSet extends BasicTestSet {
                    communityPage.isLoadAllVisible());
          }
     
-       public void isInputWordFilterVisible() {
+       public void isButtonUpdatedVisible() {
            if (communityPage == null) {
               	communityPage = new CommunityPage(driver);
               }
-              assertTrue("Filfer for words is not visible",
-                      communityPage.isInputWordFilterVisible());
-        }
+              assertTrue("Radio button Updated is not visible",
+                      communityPage.isButtonUpdatedVisible());
+              }
        
     public void isDate1OlderThanDate2(String date1, String format1, String date2, String format2){
     	assertTrue("Date1 "+date1+" is older than date2 "+date2+" so it is not true",WebDriverUtils.dateCompareTo(date1, format1, date2, format2));

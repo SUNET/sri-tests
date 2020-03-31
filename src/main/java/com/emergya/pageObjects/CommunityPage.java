@@ -51,6 +51,7 @@ public class CommunityPage extends BasePageObject {
     private static final String  LOADALLBUTTON = "loadAllButton";
     private static final String  HEADERNAME = "headerName";
     private static final String  NAMEINTABLE = "columnNameInTable";
+    private static final String  RADIOUPDATED   = "radioUpdated";
     
     /**
      * Constructor method
@@ -414,6 +415,20 @@ public class CommunityPage extends BasePageObject {
     	return res;
     }
     
+    
+    public String getUpdateDate() {
+    	String res = "";
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickLoadMore method");
+    	if(isCreationDateVisible()) {
+    		res = this.getElementsByXPath(ELEMENTDATES).get(1).getText();
+    		res = res.replace("Last update: ", "");
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickLoadMore method");
+    	return res;
+    }
+    
     public void setWordFilter(String word) {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start setToDate method");
@@ -442,6 +457,16 @@ public class CommunityPage extends BasePageObject {
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End setToDate method");
+    }
+    
+    public void clickOnButtonUpdated() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOnButtonUpdated method");
+    	if(isHeaderNameVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(RADIOUPDATED));
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnButtonUpdated method");
     }
     
     /**
@@ -579,4 +604,12 @@ public class CommunityPage extends BasePageObject {
                   + "]- End isHeaderNameVisible method");
           return this.isElementVisibleByXPath(HEADERNAME);
      }
+    
+    public boolean isButtonUpdatedVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isButtonUpdatedVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isButtonUpdatedVisible method");
+         return this.isElementVisibleByXPath(RADIOUPDATED);
+    }
 }
