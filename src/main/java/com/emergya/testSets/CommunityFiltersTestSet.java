@@ -104,7 +104,6 @@ public class CommunityFiltersTestSet extends BasicTestSet {
 
     @Test(description = "FilterContacts",dataProvider = "remoteParams")
     public void filterContact(String remoteParams) {
-       
         //Go to community page
         communityPage = sriHome.clickOnCommunity();    
         driver.sleep(3);
@@ -122,8 +121,14 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickElementNinTable(0);
         driver.sleep(3);
         String creationDate = communityPage.getCreationDate();
-        isDate1OlderThanDate2(fromDate,"dd/mm/yy",creationDate,"dd/mm/yyyy");
-        isDate1OlderThanDate2(creationDate,"dd/mm/yyyy",toDate,"dd/mm/yy");
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate,"dd/mm/yy",creationDate,"dd/mm/yyyy");
+            isDate1OlderThanDate2(creationDate,"dd/mm/yyyy",toDate,"dd/mm/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate,"dd/mm/yy",creationDate,"mm/dd/yyyy");
+            isDate1OlderThanDate2(creationDate,"mm/dd/yyyy",toDate,"dd/mm/yy");
+        }
+        
         /*
         driver.navigate().back();
         driver.sleep(2);

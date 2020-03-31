@@ -4,7 +4,9 @@ import java.awt.Robot;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,6 +18,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import com.emergya.selenium.utils.Initialization;
 import com.sun.media.Log;
 
 public class WebDriverUtils {
@@ -128,5 +131,32 @@ public class WebDriverUtils {
 			Log.error("Error when parsing date2 in dateCompareTo");
 		}
 		return (d1.compareTo(d2) >= 0);
+	}
+	
+	public static boolean isRemoteBrowser() {
+		Logger log = Logger.getLogger(WebDriverUtils.class);
+		log.info("[log-isRemoteBrowser] " + WebDriverUtils.class
+                + "- Start isRemoteBrowser method");
+		String properties = "test.properties";
+        Properties prop = new Properties();
+        String browser = "";
+
+        try {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+
+            // Load a properties file
+            prop.load(loader.getResourceAsStream(properties));
+
+            // Get the property value
+            browser = prop.getProperty("browser");
+        }catch(Exception e){
+        	log.error("[log-isRemoteBrowser] Error in" + WebDriverUtils.class
+                + "- Start isRemoteBrowser method");
+        }
+        if(browser.equalsIgnoreCase("Remote")) {
+        	return true;
+        }else {
+        	return false;
+        }
 	}
 }
