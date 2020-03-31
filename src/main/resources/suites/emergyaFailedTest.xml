@@ -9,6 +9,16 @@
           <include name="googleDoSearchAndAccessToPage" />
         </methods>
       </class>
+      <class name="com.emergya.testSets.CreateContactTestSet">
+        <methods>
+          <include name="createContact" />
+        </methods>
+      </class>
+      <class name="com.emergya.testSets.CreateGroupTestSet">
+        <methods>
+          <include name="createGroup" />
+        </methods>
+      </class>
     </classes>
   </test>
 </suite>

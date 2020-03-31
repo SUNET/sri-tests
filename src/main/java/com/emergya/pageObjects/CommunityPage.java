@@ -3,7 +3,11 @@ package com.emergya.pageObjects;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.log4j.Logger;
+import org.jaxen.NamedAccessNavigator;
+
 import com.emergya.selenium.pageObject.*;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -38,7 +42,16 @@ public class CommunityPage extends BasePageObject {
     private static final String CLICKCONTACT = "clickContact";
     private static final String ADDGROUPBUTTON = "AddGroupButton";
     private static final String  CLICKGROUP = "clickGroup";
-
+    private static final String  FROMFILTER = "fromInput";
+    private static final String  TOFILTER = "toInput";
+    private static final String  ELEMENTINTABLE = "elementsTable";
+    private static final String  LOADMOREBUTTON = "loadMoreButton";
+    private static final String  ELEMENTDATES = "elementDates";
+    private static final String  FILTERWORD = "filterWord";
+    private static final String  LOADALLBUTTON = "loadAllButton";
+    private static final String  HEADERNAME = "headerName";
+    private static final String  NAMEINTABLE = "columnNameInTable";
+    
     /**
      * Constructor method
      * @param driver selenium webdriver
@@ -320,7 +333,116 @@ public class CommunityPage extends BasePageObject {
     	
     }
     
+    public void setFromDate(String date) {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setFromDate method");
+    	if(isFilterFromDateVisible()) {
+    		this.getElementByXPath(FROMFILTER).sendKeys(date);
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setFromDate method");
+    	
+    }
     
+    public void setToDate(String date) {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setToDate method");
+    	if(isFilterFromDateVisible()) {
+    		this.getElementByXPath(TOFILTER).sendKeys(date);
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setToDate method");
+    	
+    }
+    
+    public void clickElementNinTable(Integer n) {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getElementNinTable method");
+    	WebDriverUtils.click(driver, this.getElementsByXPath(ELEMENTINTABLE).get(n));
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getElementNinTable method");
+    }
+    
+    public String getNnameInTable(Integer n) {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getNnameInTable method");
+    	String name = this.getElementsByXPath(NAMEINTABLE).get(n).getText();
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getNnameInTable method");
+    	return name;
+    }
+    
+    public Integer getNumberElementsInTable() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getNumberElementsInTable method");
+    	Integer n = this.getElementsByXPath(ELEMENTINTABLE).size();
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getNumberElementsInTable method");
+    	return n;
+    }
+    
+    public void clickLoadMore() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickLoadMore method");
+    	if(isLoadButtonVisible()) {
+    		this.getElementByXPath(LOADMOREBUTTON).click();
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickLoadMore method");	
+    }
+    
+    public void clickLoadAll() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickLoadMore method");
+    	if(isLoadAllVisible()) {
+    		this.getElementByXPath(LOADALLBUTTON).click();
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickLoadMore method");	
+    }
+    
+    public String getCreationDate() {
+    	String res = "";
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickLoadMore method");
+    	if(isCreationDateVisible()) {
+    		res = this.getElementsByXPath(ELEMENTDATES).get(0).getText();
+    		res = res.replace("Created: ", "");
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickLoadMore method");
+    	return res;
+    }
+    
+    public void setWordFilter(String word) {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setToDate method");
+    	if(isInputWordFilterVisible()) {
+    		this.getElementByXPath(FILTERWORD).sendKeys(word);
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setToDate method");
+    }
+    
+    public void clickOnHeaderName() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setToDate method");
+    	if(isHeaderNameVisible()) {
+    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(HEADERNAME).get(1));
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setToDate method");
+    }
+    
+    public void clickOnHeaderName2() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setToDate method");
+    	if(isHeaderNameVisible()) {
+    		WebDriverUtils.moveAndClick2(driver, this.getElementsByXPath(HEADERNAME).get(0));
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setToDate method");
+    }
     
     /**
      * Return if the button of contact is visible
@@ -396,5 +518,65 @@ public class CommunityPage extends BasePageObject {
                    + "]- End isContactVisible method");
 
            return this.isElementVisibleByXPath(CLICKCONTACT);
-      }  
+      }
+    
+    public boolean isFilterFromDateVisible() {
+     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- Start isFilterFromDateVisible method");
+          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- End isFilterFromDateVisible method");
+
+          return this.isElementVisibleByXPath(FROMFILTER);
+     }
+    
+    public boolean isFilterToDateVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isFilterToDateVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isFilterToDateVisible method");
+
+         return this.isElementVisibleByXPath(TOFILTER);
+    } 
+    
+    public boolean isLoadButtonVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isFilterToDateVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isFilterToDateVisible method");
+
+        return this.isElementVisibleByXPath(LOADMOREBUTTON);
+   }
+    
+    public boolean isLoadAllVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isLoadAllVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isLoadAllVisible method");
+
+           return this.isElementVisibleByXPath(LOADALLBUTTON);
+      }
+    
+    public boolean isCreationDateVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isCreationDateVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isCreationDateVisible method");
+           return this.isVisible(this.getElementsByXPath(ELEMENTDATES).get(0));
+      }
+    
+    public boolean isInputWordFilterVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isInputWordFilterVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isInputWordFilterVisible method");
+           return this.isElementVisibleByXPath(FILTERWORD);
+      }
+    
+    public boolean isHeaderNameVisible() {
+     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- Start isHeaderNameVisible method");
+          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- End isHeaderNameVisible method");
+          return this.isElementVisibleByXPath(HEADERNAME);
+     }
 }

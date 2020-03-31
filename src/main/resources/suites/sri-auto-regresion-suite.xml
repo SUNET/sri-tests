@@ -3,6 +3,11 @@
 <suite name="SRI-Test-Set" enabled="true" configfailurepolicy="continue">
 	<test name="SRI-Test" order-by-instances="true">
 		<classes>
+			<class name="com.emergya.testSets.CommunityFiltersTestSet" >
+				<methods>
+                    <include name="filterContact" />
+                </methods>
+            </class>
 			<class name="com.emergya.testSets.CreateOrganizationTestSet" >
 				<methods>
                     <include name="createOrganization" />

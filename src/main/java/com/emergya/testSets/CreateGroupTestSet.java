@@ -120,7 +120,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         newContact.setPGPFingerPrint("1212130303030303");
         newContact.clickAddNewProfessionalDetailsModal();
         newContact.setRole("Account Executive");
-        newContact.setOrganization("Abata");
+        newContact.setOrganization("Agivu");
         isCommentAreaVisible();
         newContact.setComment("This is an example of a comment, right here");
         newContact.clickSaveModal();
@@ -144,7 +144,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         isDescriptionTexstAreaVisible();
         newGroup.setDescription("This is a great description for a test");
         isInputSearchContactVisible();
-        newGroup.setSearchForContact("John");
+        newGroup.setSearchForContact("Nonnah Bottini");
         driver.sleep(2);
         isCommentAreaVisible();
         newGroup.setComment("This is a new comment");

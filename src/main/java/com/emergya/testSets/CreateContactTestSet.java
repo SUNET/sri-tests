@@ -124,7 +124,7 @@ public class CreateContactTestSet extends BasicTestSet {
         isSelectRoleVisible();
         newContact.setRole("Account Executive");
         isSelectOrganizationVisible();
-        newContact.setOrganization("Abata");
+        newContact.setOrganization("Tavu");
         isCommentAreaVisible();
         newContact.setComment("This is an example of a comment, right here");
         isButtonSaveVisible();
@@ -148,7 +148,7 @@ public class CreateContactTestSet extends BasicTestSet {
         newContact.setPhoneType("Work");
         newContact.setPGPFingerPrint("2323232");
         newContact.setRole("Account Executive");
-        newContact.setOrganization("Abata");
+        newContact.setOrganization("Aibox");
         newContact.setComment("This is an example of a comment, right here");
         newContact.setComment("New comment comment");
         isButtonSendVisible();
@@ -335,7 +335,7 @@ public class CreateContactTestSet extends BasicTestSet {
         if (communityPage == null) {
         	communityPage = new CommunityPage(driver);
         }
-        assertTrue("New Contact is not visible",
+        assertTrue("New Contact is visible",
                 !communityPage.isANewContactVisible());
      }
 }
