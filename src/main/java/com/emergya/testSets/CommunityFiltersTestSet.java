@@ -107,7 +107,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
        
         //Go to community page
         communityPage = sriHome.clickOnCommunity();    
-        driver.sleep(1);
+        driver.sleep(3);
 
         
         // Click on item contact in the menu
@@ -142,13 +142,14 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         isDate1OlderThanDate2(toDate,"mm/dd/yy",creationDate2,"dd/mm/yyyy");
         */
         communityPage.clickGroupItem();
+        driver.sleep(3);
         communityPage.clickContactItem();
         driver.sleep(3);
         //communityPage.setWordFilter("Hanan Prestner");
         communityPage.clickOnHeaderName();
-        driver.sleep(3);
+        driver.sleep(5);
         communityPage.clickLoadAll();
-        driver.sleep(7);
+        driver.sleep(10);
         String name1 = communityPage.getNnameInTable(0);
         String name2 = communityPage.getNnameInTable(1);
         assertAlphabeticalOrder(name1,name2);
@@ -159,10 +160,10 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickGroupItem();
         communityPage.clickContactItem();
         communityPage.clickOnHeaderName();
-        driver.sleep(4);
+        driver.sleep(5);
         communityPage.clickOnHeaderName2();
         communityPage.clickLoadAll();
-        driver.sleep(7);
+        driver.sleep(10);
         String namez = communityPage.getNnameInTable(0);
         String namez1 = communityPage.getNnameInTable(1);
         assertAlphabeticalOrder(namez1,namez);
