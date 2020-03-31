@@ -169,6 +169,14 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         String namea1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
         String namea = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
         assertAlphabeticalOrder(namea, namea1);
+        
+        isInputWordFilterVisible();
+        String search_word = "Nonnah";
+        communityPage.setWordFilter(search_word);
+        driver.sleep(3);
+        String result_name = communityPage.getNnameInTable(0);
+        assertTrue("The filter for words is not working",result_name.startsWith(search_word));
+        
         }
     
     //Check if Delete Button is visible
@@ -200,9 +208,17 @@ public class CommunityFiltersTestSet extends BasicTestSet {
            	communityPage = new CommunityPage(driver);
            }
            assertTrue("Load All button is not visible",
-                   communityPage.isLoadAllVisible());;
+                   communityPage.isLoadAllVisible());
          }
     
+       public void isInputWordFilterVisible() {
+           if (communityPage == null) {
+              	communityPage = new CommunityPage(driver);
+              }
+              assertTrue("Filfer for words is not visible",
+                      communityPage.isInputWordFilterVisible());
+        }
+       
     public void isDate1OlderThanDate2(String date1, String format1, String date2, String format2){
     	assertTrue("Date1 "+date1+" is older than date2 "+date2+" so it is not true",WebDriverUtils.dateCompareTo(date1, format1, date2, format2));
     }
