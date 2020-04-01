@@ -6,6 +6,7 @@
 			<class name="com.emergya.testSets.CommunityFiltersTestSet" >
 				<methods>
                     <include name="filterContact" />
+                    <include name="filterOrganizations" />
                 </methods>
             </class>
 			<class name="com.emergya.testSets.CreateOrganizationTestSet" >

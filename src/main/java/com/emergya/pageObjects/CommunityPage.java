@@ -53,6 +53,7 @@ public class CommunityPage extends BasePageObject {
     private static final String  NAMEINTABLE = "columnNameInTable";
     private static final String  RADIOUPDATED   = "radioUpdated";
     private static final String  RESULTSORDER   = "resultsOrder";
+    private static final String  ORGANIZATIONSITEM   = "contactOrganizationsItem";
     
     /**
      * Constructor method
@@ -480,6 +481,16 @@ public class CommunityPage extends BasePageObject {
                 + "]- End changeResultsOrder method");	
     }
     
+    public void clickOrganizationsItems() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOrganizationsItems method");
+    	if(isHeaderNameVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(ORGANIZATIONSITEM));
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOrganizationsItems method");
+    }
+    
     /**
      * Return if the button of contact is visible
      * @return
@@ -631,4 +642,12 @@ public class CommunityPage extends BasePageObject {
                 + "]- End isResultsOrderVisible method");
         return this.isElementVisibleByXPath(RESULTSORDER);
    }
+    
+    public boolean isOrganizationItemVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isOrganizationItemVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isOrganizationItemVisible method");
+           return this.isElementVisibleByXPath(ORGANIZATIONSITEM);
+      }
 }
