@@ -122,11 +122,11 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         String creationDate = communityPage.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
-        	isDate1OlderThanDate2(fromDate,"dd/mm/yy",creationDate,"dd/mm/yyyy");
-            isDate1OlderThanDate2(creationDate,"dd/mm/yyyy",toDate,"dd/mm/yy");
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
         }else {
-        	isDate1OlderThanDate2(fromDate,"dd/mm/yy",creationDate,"mm/dd/yyyy");
-            isDate1OlderThanDate2(creationDate,"mm/dd/yyyy",toDate,"dd/mm/yy");
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(creationDate,"MM/dd/yyyy",toDate,"dd/MM/yy");
         }
         
         
@@ -146,30 +146,13 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         String updateDate = communityPage.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
-        	isDate1OlderThanDate2(fromDate2,"dd/mm/yy",updateDate,"dd/mm/yyyy");
-            isDate1OlderThanDate2(updateDate,"dd/mm/yyyy",toDate2,"dd/mm/yy");
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
         }else {
-        	isDate1OlderThanDate2(fromDate2,"dd/mm/yy",updateDate,"mm/dd/yyyy");
-            isDate1OlderThanDate2(updateDate,"mm/dd/yyyy",toDate2,"dd/mm/yy");
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(updateDate,"MM/dd/yyyy",toDate2,"dd/MM/yy");
         }
         
-        /*
-        driver.navigate().back();
-        driver.sleep(2);
-        isFilterFromDateVisible();
-        communityPage.setFromDate(fromDate);
-        isFilterToDateVisible();
-        communityPage.setToDate(toDate);
-        driver.sleep(2);
-        isLoadAllVisible();
-        communityPage.clickLoadAll();
-        driver.sleep(7);
-        communityPage.clickElementNinTable(communityPage.getNumberElementsInTable()-1);
-        driver.sleep(7);
-        String creationDate2 = communityPage.getCreationDate();
-        isDate1OlderThanDate2(creationDate2,"dd/mm/yyyy",fromDate,"mm/dd/yy");
-        isDate1OlderThanDate2(toDate,"mm/dd/yy",creationDate2,"dd/mm/yyyy");
-        */
         communityPage.clickGroupItem();
         driver.sleep(3);
         communityPage.clickContactItem();
@@ -206,6 +189,25 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         String result_name = communityPage.getNnameInTable(0);
         assertTrue("The filter for words is not working",result_name.startsWith(search_word));
+        
+        driver.sleep(3);
+        communityPage.clickGroupItem();
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(3);
+        String dateElementPrior = communityPage.getCreationDate();
+        communityPage.clickGroupItem();
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.changeResultsOrder();
+        communityPage.clickElementNinTable(0);
+        String dateElementAfter = communityPage.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(dateElementAfter,"dd/MM/yyyy",dateElementPrior,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(dateElementAfter,"MM/dd/yyyy",dateElementPrior,"MM/dd/yyyy");
+        }
         
         }
     
@@ -250,7 +252,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
               }
        
     public void isDate1OlderThanDate2(String date1, String format1, String date2, String format2){
-    	assertTrue("Date1 "+date1+" is older than date2 "+date2+" so it is not true",WebDriverUtils.dateCompareTo(date1, format1, date2, format2));
+    	assertTrue("Date1 "+date1+" is older than date2 "+date2+" so it is not true",WebDriverUtils.dateCompareTo(date1, format1, date2, format2)<=0);
     }
     
     public void assertAlphabeticalOrder(String s1, String s2) {

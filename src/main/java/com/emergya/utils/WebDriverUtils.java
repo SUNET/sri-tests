@@ -115,7 +115,7 @@ public class WebDriverUtils {
 		}
 	}
 	
-	public static boolean dateCompareTo(String date1, String format1, String date2, String format2) {
+	public static int dateCompareTo(String date1, String format1, String date2, String format2) {
 		SimpleDateFormat sdformat = new SimpleDateFormat(format1);
 		Date d1 = null;
 		try {
@@ -130,7 +130,7 @@ public class WebDriverUtils {
 		} catch (ParseException e) {
 			Log.error("Error when parsing date2 in dateCompareTo");
 		}
-		return (d1.compareTo(d2) >= 0);
+		return d1.compareTo(d2);
 	}
 	
 	public static boolean isRemoteBrowser() {
