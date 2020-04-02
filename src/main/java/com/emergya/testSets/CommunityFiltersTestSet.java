@@ -318,6 +318,118 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         	isDate1OlderThanDate2(dateElementAfter,"MM/dd/yyyy",dateElementPrior,"MM/dd/yyyy");
         }
      }
+
+    @Test(description = "filterGroups",dataProvider = "remoteParams")
+    public void filterGroups(String remoteParams) {
+        //Go to community page
+        communityPage = sriHome.clickOnCommunity();    
+        driver.sleep(3);
+
+        
+        // Click on item contact in the menu
+        isGroupItemVisible();
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        isFilterFromDateVisible();
+        String fromDate = "01/04/20";
+        String toDate = "30/04/20";
+        communityPage.setFromDate(fromDate);
+        isFilterToDateVisible();
+        communityPage.setToDate(toDate);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(3);
+        String creationDate = communityPage.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(creationDate,"MM/dd/yyyy",toDate,"dd/MM/yy");
+        }
+        
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        isButtonUpdatedVisible();
+        communityPage.clickOnButtonUpdated();
+        isFilterFromDateVisible();
+        String fromDate2 = "01/04/20";
+        String toDate2 = "30/04/20";
+        communityPage.setFromDate(fromDate2);
+        isFilterToDateVisible();
+        communityPage.setToDate(toDate2);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(3);
+        String updateDate = communityPage.getUpdateDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(updateDate,"MM/dd/yyyy",toDate2,"dd/MM/yy");
+        }
+        
+        
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickGroupItem();
+        
+        driver.sleep(3);
+        //communityPage.setWordFilter("Hanan Prestner");
+        communityPage.clickOnHeaderName();
+        driver.sleep(5);
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String name1 = communityPage.getNnameInTable(0);
+        String name2 = communityPage.getNnameInTable(1);
+        assertAlphabeticalOrder(name1,name2);
+        String namen1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
+        String namen = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(namen1, namen);
+        
+        communityPage.clickOrganizationsItems();
+        communityPage.clickGroupItem();
+        communityPage.clickOnHeaderName();
+        driver.sleep(5);
+        communityPage.clickOnHeaderName2();
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String namez = communityPage.getNnameInTable(0);
+        String namez1 = communityPage.getNnameInTable(1);
+        assertAlphabeticalOrder(namez1,namez);
+        String namea1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
+        String namea = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(namea, namea1);
+        
+        
+        String search_word = "Group Test";
+        communityPage.setWordFilter(search_word);
+        driver.sleep(3);
+        String result_name = communityPage.getNnameInTable(0);
+        assertTrue("The filter for words is not working",result_name.startsWith(search_word));
+        
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(3);
+        String dateElementPrior = communityPage.getCreationDate();
+        communityPage.clickOrganizationsItems();
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.changeResultsOrder();
+        communityPage.clickElementNinTable(0);
+        String dateElementAfter = communityPage.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(dateElementAfter,"dd/MM/yyyy",dateElementPrior,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(dateElementAfter,"MM/dd/yyyy",dateElementPrior,"MM/dd/yyyy");
+        }
+     }    
+    
+    
     
     
     //Check if Delete Button is visible
@@ -374,5 +486,14 @@ public class CommunityFiltersTestSet extends BasicTestSet {
           }
           assertTrue("Organization item in menu is not visible",
                   communityPage.isOrganizationItemVisible());
+          }
+    
+
+    public void isGroupItemVisible() {
+    	if (communityPage == null) {
+          	communityPage = new CommunityPage(driver);
+          }
+          assertTrue("Groups item in menu is not visible",
+                  communityPage.isGroupItemVisible());
           }
 }
