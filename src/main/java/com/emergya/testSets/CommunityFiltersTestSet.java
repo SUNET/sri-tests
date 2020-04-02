@@ -293,7 +293,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         assertAlphabeticalOrder(namea, namea1);
         
         
-        String search_word = "Nonnah";
+        String search_word = "myworks";
         communityPage.setWordFilter(search_word);
         driver.sleep(3);
         String result_name = communityPage.getNnameInTable(0);
