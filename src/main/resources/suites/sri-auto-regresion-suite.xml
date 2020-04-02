@@ -7,6 +7,7 @@
 				<methods>
                     <include name="filterContact" />
                     <include name="filterOrganizations" />
+                    <include name="filterGroups" />
                 </methods>
             </class>
 			<class name="com.emergya.testSets.CreateOrganizationTestSet" >
