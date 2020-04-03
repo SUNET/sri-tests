@@ -17,6 +17,8 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.emergya.selenium.utils.Initialization;
 import com.sun.media.Log;
@@ -99,19 +101,35 @@ public class WebDriverUtils {
 	}
 	
 	public static void moveAndClick2(WebDriver driver, WebElement element) {
-		if(!WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+		if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
 			Actions builder = new Actions(driver);
 			Action mouseOver = builder
-                .click(element)
+                .moveToElement(driver.findElements(By.xpath("//img")).get(0))
                 .build();
 			mouseOver.perform();
+			Actions builder2 = new Actions(driver);
+			WebDriverWait wait = new WebDriverWait(driver, 120);
+
+			wait.until(ExpectedConditions.visibilityOf(element));
+
+			Action mouseOver2 = builder2
+					.moveToElement(element).click()
+					.build();
+			mouseOver2.perform();
+		}if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("microsoftedge")){
+	        Actions builder = new Actions(driver);
+	        Action click = builder.moveByOffset(-50, -50).build();
+	        click.perform();
+			/*Action mouseOver = builder
+                .click(element)
+                .build();
+			mouseOver.perform();*/
 		}else {
 			Actions builder = new Actions(driver);
 			Action mouseOver = builder
-                .moveToElement(element,-10,-10)
-                .build();
+					.click(element)
+					.build();
 			mouseOver.perform();
-			WebDriverUtils.click(driver, element);
 		}
 	}
 	

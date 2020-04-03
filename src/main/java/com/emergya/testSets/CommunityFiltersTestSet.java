@@ -293,6 +293,74 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         assertAlphabeticalOrder(namea, namea1);
         
         
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        //communityPage.setWordFilter("Hanan Prestner");
+        communityPage.clickOnHeaderOrganization();
+        driver.sleep(5);
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String org1 = communityPage.getNelementInSecondColumnInTable(0);
+        String org2 = communityPage.getNelementInSecondColumnInTable(1);
+        assertAlphabeticalOrder(org1,org2);
+        String orgn1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String orgn = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(orgn1, orgn);
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeOrderAZ();
+        communityPage.clickAcceptFilterRole();
+        String type1 = communityPage.getNelementInThirdColumnInTable(0);
+        String type2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertAlphabeticalOrder(type2, type1);
+        
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeOrderZA();
+        communityPage.clickAcceptFilterRole();
+        String typez = communityPage.getNelementInThirdColumnInTable(0);
+        String typea = communityPage.getNelementInThirdColumnInTable(1);
+        assertAlphabeticalOrder(typez, typea);
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeCommercial();
+        communityPage.clickAcceptFilterRole();
+        String typecommercial = communityPage.getNelementInThirdColumnInTable(0);
+        String typecommercial2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not Commercial",typecommercial.equals("partner"));
+        assertTrue("Second element is not Commercial",typecommercial2.equals("partner"));
+        
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeMuseum();
+        communityPage.clickAcceptFilterRole();
+        String typemuseum = communityPage.getNelementInThirdColumnInTable(0);
+        String typemuseum2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not Museum",typemuseum.equals("museum"));
+        assertTrue("Second element is not Museum",typemuseum2.equals("museum"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
         String search_word = "Myworks";
         communityPage.setWordFilter(search_word);
         driver.sleep(3);
@@ -477,7 +545,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
     }
     
     public void assertAlphabeticalOrder(String s1, String s2) {
-    	assertTrue("These string are not in the correct alphabetical order",s1.compareTo(s2)<0);
+    	assertTrue("These string are not in the correct alphabetical order",s1.compareTo(s2)<=0);
     }
     
     public void isOrganizationItemVisible() {
