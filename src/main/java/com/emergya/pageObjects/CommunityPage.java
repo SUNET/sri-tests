@@ -52,6 +52,7 @@ public class CommunityPage extends BasePageObject {
     private static final String  HEADERNAME = "headerName";
     private static final String  HEADERORGANIZATION = "headerOrganization";
     private static final String  HEADERCONTENTTYPE = "headerContentType";
+    private static final String  HEADERDESCRIPTION = "headerDescription";
     private static final String  NAMEINTABLE = "columnNameInTable";
     private static final String  COLUMN2INTABLE = "column2InTable";
     private static final String  COLUMN3INTABLE = "column3InTable";
@@ -550,6 +551,25 @@ public class CommunityPage extends BasePageObject {
                 + "]- End clickOnHeaderOrganization2 method");
     }
     
+    public void clickOnHeaderDescription() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOnHeaderDescription method");
+    	if(isHeaderDescriptionVisible()) {
+    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(HEADERDESCRIPTION).get(1));
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnHeaderDescription method");
+    }
+    
+    public void clickOnHeaderDescription2() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOnHeaderDescription2 method");
+    	WebDriverUtils.moveAndClick2(driver, this.getElementsByXPath(HEADERDESCRIPTION).get(0));
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnHeaderDescription2 method");
+    }
+    
+    
     public void clickOnHeaderIconSubMenu() {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderRole method");
@@ -919,6 +939,14 @@ public class CommunityPage extends BasePageObject {
                 + "]- End isHeaderContentTypeVisible method");
         return this.isElementVisibleByXPath(HEADERCONTENTTYPE);
    }
+    
+    public boolean isHeaderDescriptionVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isHeaderDescriptionVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isHeaderDescriptionVisible method");
+           return this.isElementVisibleByXPath(HEADERDESCRIPTION);
+      }
     
     public boolean isButtonUpdatedVisible() {
     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()

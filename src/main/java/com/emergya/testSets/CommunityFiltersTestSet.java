@@ -666,28 +666,58 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         //communityPage.setWordFilter("Hanan Prestner");
         communityPage.clickOnHeaderName();
         driver.sleep(5);
-        communityPage.clickLoadAll();
+        //communityPage.clickLoadAll();
         driver.sleep(10);
         String name1 = communityPage.getNnameInTable(0);
         String name2 = communityPage.getNnameInTable(1);
         assertAlphabeticalOrder(name1,name2);
-        String namen1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
-        String namen = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
-        assertAlphabeticalOrder(namen1, namen);
+        //String namen1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
+        //String namen = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
+        //assertAlphabeticalOrder(namen1, namen);
         
         communityPage.clickOrganizationsItems();
+        driver.sleep(3);
         communityPage.clickGroupItem();
-        communityPage.clickOnHeaderName();
-        driver.sleep(5);
+        driver.sleep(3);
         communityPage.clickOnHeaderName2();
-        communityPage.clickLoadAll();
+        driver.sleep(5);
+        communityPage.clickOnHeaderName();
+        //communityPage.clickLoadAll();
         driver.sleep(10);
         String namez = communityPage.getNnameInTable(0);
         String namez1 = communityPage.getNnameInTable(1);
-        assertAlphabeticalOrder(namez1,namez);
+        assertAlphabeticalOrder(namez,namez1);
         String namea1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
         String namea = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
-        assertAlphabeticalOrder(namea, namea1);
+        assertAlphabeticalOrder(namea1, namea);
+        
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickGroupItem();
+        
+        driver.sleep(3);
+        //communityPage.setWordFilter("Hanan Prestner");
+        communityPage.clickOnHeaderDescription();
+        driver.sleep(5);
+        //communityPage.clickLoadAll();
+        driver.sleep(10);
+        String description1 = communityPage.getNelementInSecondColumnInTable(0);
+        String description2 = communityPage.getNelementInSecondColumnInTable(1);
+        assertAlphabeticalOrder(description1,description2);
+        String descriptionn1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String descriptionn = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(descriptionn1, descriptionn);
+        
+        driver.sleep(5);
+        communityPage.clickOnHeaderDescription2();
+        //communityPage.clickLoadAll();
+        driver.sleep(10);
+        String descriptionz = communityPage.getNelementInSecondColumnInTable(0);
+        String descriptionz1 = communityPage.getNelementInSecondColumnInTable(1);
+        assertAlphabeticalOrder(descriptionz1,descriptionz);
+        String descriptiona1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String descriptiona = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(descriptiona, descriptiona1);
         
         
         String search_word = "Group Test";
