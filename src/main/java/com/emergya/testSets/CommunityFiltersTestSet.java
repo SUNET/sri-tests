@@ -361,6 +361,54 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeResearch();
+        communityPage.clickAcceptFilterRole();
+        String typeresearch = communityPage.getNelementInThirdColumnInTable(0);
+        String typeesearch2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not research",typeresearch.equals("research"));
+        assertTrue("Second element is not researc",typeesearch2.equals("research"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeStudent();
+        communityPage.clickAcceptFilterRole();
+        String typerstudent = communityPage.getNelementInThirdColumnInTable(0);
+        String typeestudent2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not student_net",typerstudent.equals("student_net"));
+        assertTrue("Second element is not student_net",typeestudent2.equals("student_net"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeUniversityCollege();
+        communityPage.clickAcceptFilterRole();
+        String typeunicol = communityPage.getNelementInThirdColumnInTable(0);
+        String typeunicol2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not university_college",typeunicol.equals("university_college"));
+        assertTrue("Second element is not university_college",typeunicol2.equals("university_college"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        communityPage.clickOnHeaderRole();
+        communityPage.selectTypeUniversityDepartment();
+        communityPage.clickAcceptFilterRole();
+        String typeunidep = communityPage.getNelementInThirdColumnInTable(0);
+        String typeunidep2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not university_coldep",typeunidep.equals("university_coldep"));
+        assertTrue("Second element is not university_coldep",typeunidep2.equals("university_coldep"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
         String search_word = "Myworks";
         communityPage.setWordFilter(search_word);
         driver.sleep(3);

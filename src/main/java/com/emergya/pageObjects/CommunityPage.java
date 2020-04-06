@@ -558,12 +558,57 @@ public class CommunityPage extends BasePageObject {
     public void selectTypeMuseum() {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeMuseum method");
-    	if(isTypeOrderZAVisible()) {
+    	if(isTypeMuseumVisible()) {
     		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPEMUSEUM).get(1));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End selectTypeMuseum method");
+    }
+    
+    public void selectTypeResearch() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start selectTypeResearch method");
+    	if(isTypeResearchVisible()) {
+    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPERESEARCH).get(1));
+    	}
+    	
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End selectTypeResearch method");
+    }
+    
+    
+    public void selectTypeStudent() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start selectTypeStudent method");
+    	if(isTypeStudentVisible()) {
+    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPESTUDENT).get(1));
+    	}
+    	
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End selectTypeStudent method");
+    }
+    
+    public void selectTypeUniversityCollege() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start selectTypeUniversityCollege method");
+    	if(isTypeUniversityCollegeVisible()) {
+    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPEUNIVERSITY).get(1));
+    	}
+    	
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End selectTypeUniversityCollege method");
+    }
+    
+    public void selectTypeUniversityDepartment() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start selectTypeUniversityDepartment method");
+    	if(isTypeUniversityDepartmentVisible()) {
+    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPEUNIVERSITY).get(3));
+    	}
+    	
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End selectTypeUniversityDepartment method");
     }
     
     public void clickAcceptFilterRole() {
@@ -797,7 +842,7 @@ public class CommunityPage extends BasePageObject {
                 + "]- Start isTypeCommercialVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isTypeCommercialVisible method");
-        return this.isVisible(this.getElementsByXPath(TYPECOMMERCIAL).get(0));
+        return this.isVisible(this.getElementsByXPath(TYPECOMMERCIAL).get(1));
    }
     
     public boolean isTypeMuseumVisible() {
@@ -805,7 +850,39 @@ public class CommunityPage extends BasePageObject {
                    + "]- Start isTypeMuseumVisible method");
            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                    + "]- End isTypeMuseumVisible method");
-           return this.isVisible(this.getElementsByXPath(TYPEMUSEUM).get(0));
+           return this.isVisible(this.getElementsByXPath(TYPEMUSEUM).get(1));
+      }
+    
+    public boolean isTypeResearchVisible() {
+     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- Start isTypeResearchVisible method");
+          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- End isTypeResearchVisible method");
+          return this.isVisible(this.getElementsByXPath(TYPERESEARCH).get(1));
+     }
+    
+    public boolean isTypeStudentVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isTypeStudentVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isTypeStudentVisible method");
+         return this.isVisible(this.getElementsByXPath(TYPESTUDENT).get(1));
+    }
+    
+    public boolean isTypeUniversityCollegeVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isTypeUniversityCollegeVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isTypeUniversityCollegeVisible method");
+        return this.isVisible(this.getElementsByXPath(TYPEUNIVERSITY).get(1));
+   }
+    
+    public boolean isTypeUniversityDepartmentVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isTypeUniversityCollegeVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isTypeUniversityCollegeVisible method");
+           return this.isVisible(this.getElementsByXPath(TYPEUNIVERSITY).get(3));
       }
     
     public boolean isButtonAcceptVisible() {
