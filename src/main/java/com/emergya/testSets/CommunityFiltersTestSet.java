@@ -183,7 +183,178 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         String namea = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
         assertAlphabeticalOrder(namea, namea1);
         
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        //communityPage.setWordFilter("Hanan Prestner");
+        communityPage.clickOnHeaderOrganization();;
+        driver.sleep(5);
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String organization1 = communityPage.getNelementInSecondColumnInTable(0);
+        String organization2 = communityPage.getNelementInSecondColumnInTable(1);
+        assertAlphabeticalOrder(organization1,organization2);
+        String organizationn1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String organizationn = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(organizationn1, organizationn);
         
+        communityPage.clickGroupItem();
+        communityPage.clickContactItem();
+        communityPage.clickOnHeaderOrganization();
+        driver.sleep(5);
+        communityPage.clickOnHeaderOrganization2();
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String organizationz = communityPage.getNelementInSecondColumnInTable(0);
+        String organizationz1 = communityPage.getNelementInSecondColumnInTable(1);
+        assertAlphabeticalOrder(organizationz1,organizationz);
+        String organizationa1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String organizationa = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(organizationa, organizationa1);
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectTypeOrderAZ();
+        communityPage.clickAcceptFilterRole();
+        String type1 = communityPage.getNelementInThirdColumnInTable(0);
+        String type2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertAlphabeticalOrder(type2, type1);
+        
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectTypeOrderZA();
+        communityPage.clickAcceptFilterRole();
+        String typez = communityPage.getNelementInThirdColumnInTable(0);
+        String typea = communityPage.getNelementInThirdColumnInTable(1);
+        assertAlphabeticalOrder(typez, typea);
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectRoleAbuse();
+        communityPage.clickAcceptFilterRole();
+        String roleabuse = communityPage.getNelementInThirdColumnInTable(0);
+        String roleabuse2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not Abuse",roleabuse.equals("Abuse"));
+        assertTrue("Second element is not Abuse",roleabuse2.equals("Abuse"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectRolePrimaryContact();
+        communityPage.clickAcceptFilterRole();
+        String roleprimarycontact = communityPage.getNelementInThirdColumnInTable(0);
+        String roleprimarycontact2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not Primary contact at incidents",roleprimarycontact.equals("Primary contact at incidents"));
+        assertTrue("Second element is not Primary contact at incidents",roleprimarycontact2.equals("Primary contact at incidents"));
+        
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectRoleSecondaryContact();
+        communityPage.clickAcceptFilterRole();
+        String rolesecondarycontact = communityPage.getNelementInThirdColumnInTable(0);
+        String rolesecondarycontact2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not Secondary contact at incidents",rolesecondarycontact.equals("Secondary contact at incidents"));
+        assertTrue("Second element is not Secondary contact at incidents",rolesecondarycontact2.equals("Secondary contact at incidents"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectRoleNOCTechnical();
+        communityPage.clickAcceptFilterRole();
+        String roleNOCTechnical = communityPage.getNelementInThirdColumnInTable(0);
+        String roleNOCTechnical2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not NOC Technical",roleNOCTechnical.equals("NOC Technical"));
+        assertTrue("Second element is not NOC Technical",roleNOCTechnical2.equals("NOC Technical"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectRoleNOCSecurity();
+        communityPage.clickAcceptFilterRole();
+        String roleNOCSecurity = communityPage.getNelementInThirdColumnInTable(0);
+        String roleNOCSecurity2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not NOC Security",roleNOCSecurity.equals("NOC Security"));
+        assertTrue("Second element is not NOC Security",roleNOCSecurity2.equals("NOC Security"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectRoleNOCManager();
+        communityPage.clickAcceptFilterRole();
+        String roleNOCManager = communityPage.getNelementInThirdColumnInTable(0);
+        String roleNOCManager2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not NOC Manager",roleNOCManager.equals("NOC Manager"));
+        assertTrue("Second element is not NOC Manager",roleNOCManager2.equals("NOC Manager"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderIconSubMenu();
+        communityPage.selectRoleEmployee();
+        communityPage.clickAcceptFilterRole();
+        String roleEmployee = communityPage.getNelementInThirdColumnInTable(0);
+        String roleEmployee2 = communityPage.getNelementInThirdColumnInTable(1);
+        assertTrue("First element is not Employee",roleEmployee.equals("Employee"));
+        assertTrue("Second element is not Employee",roleEmployee2.equals("Employee"));
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
+        communityPage.clickOnHeaderContentType();
+        driver.sleep(5);
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String contenttype1 = communityPage.getNelementInFourthColumnInTable(0);
+        String contenttype2 = communityPage.getNelementInFourthColumnInTable(1);
+        assertAlphabeticalOrder(contenttype1,contenttype2);
+        String contenttypen1 = communityPage.getNelementInFourthColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String contenttypen = communityPage.getNelementInFourthColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(contenttypen1, contenttypen);
+        
+        communityPage.clickGroupItem();
+        communityPage.clickContactItem();
+        communityPage.clickOnHeaderContentType();
+        driver.sleep(5);
+        communityPage.clickOnHeaderContentType2();
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String contenttypez = communityPage.getNelementInFourthColumnInTable(0);
+        String contenttypez1 = communityPage.getNelementInFourthColumnInTable(1);
+        assertAlphabeticalOrder(contenttypez1,contenttypez);
+        String contenttypea1 = communityPage.getNelementInFourthColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String contenttypea = communityPage.getNelementInFourthColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(contenttypea, contenttypea1);
+        
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickContactItem();
+        driver.sleep(3);
         String search_word = "Nonnah";
         communityPage.setWordFilter(search_word);
         driver.sleep(3);
@@ -313,7 +484,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeOrderAZ();
         communityPage.clickAcceptFilterRole();
         String type1 = communityPage.getNelementInThirdColumnInTable(0);
@@ -325,7 +496,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeOrderZA();
         communityPage.clickAcceptFilterRole();
         String typez = communityPage.getNelementInThirdColumnInTable(0);
@@ -336,7 +507,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeCommercial();
         communityPage.clickAcceptFilterRole();
         String typecommercial = communityPage.getNelementInThirdColumnInTable(0);
@@ -349,7 +520,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeMuseum();
         communityPage.clickAcceptFilterRole();
         String typemuseum = communityPage.getNelementInThirdColumnInTable(0);
@@ -361,7 +532,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeResearch();
         communityPage.clickAcceptFilterRole();
         String typeresearch = communityPage.getNelementInThirdColumnInTable(0);
@@ -373,7 +544,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeStudent();
         communityPage.clickAcceptFilterRole();
         String typerstudent = communityPage.getNelementInThirdColumnInTable(0);
@@ -385,7 +556,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeUniversityCollege();
         communityPage.clickAcceptFilterRole();
         String typeunicol = communityPage.getNelementInThirdColumnInTable(0);
@@ -397,7 +568,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        communityPage.clickOnHeaderRole();
+        communityPage.clickOnHeaderIconSubMenu();
         communityPage.selectTypeUniversityDepartment();
         communityPage.clickAcceptFilterRole();
         String typeunidep = communityPage.getNelementInThirdColumnInTable(0);
