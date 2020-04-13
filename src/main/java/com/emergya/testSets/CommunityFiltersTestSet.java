@@ -157,7 +157,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickContactItem();
         driver.sleep(3);
-        //communityPage.setWordFilter("Hanan Prestner");
+        isHeaderNameVisible();
         communityPage.clickOnHeaderName();
         driver.sleep(5);
         communityPage.clickLoadAll();
@@ -171,9 +171,12 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         
         communityPage.clickGroupItem();
         communityPage.clickContactItem();
+        driver.sleep(3);
+        isHeaderNameVisible();
         communityPage.clickOnHeaderName();
         driver.sleep(5);
-        communityPage.clickOnHeaderName2();
+        isHeaderNameVisible();
+        communityPage.clickOnHeaderName();
         communityPage.clickLoadAll();
         driver.sleep(10);
         String namez = communityPage.getNnameInTable(0);
@@ -188,7 +191,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickContactItem();
         driver.sleep(3);
         //communityPage.setWordFilter("Hanan Prestner");
-        communityPage.clickOnHeaderOrganization();;
+        communityPage.clickOnHeaderOrganization();
         driver.sleep(5);
         communityPage.clickLoadAll();
         driver.sleep(10);
@@ -203,7 +206,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickContactItem();
         communityPage.clickOnHeaderOrganization();
         driver.sleep(5);
-        communityPage.clickOnHeaderOrganization2();
+        communityPage.clickOnHeaderOrganization();
         communityPage.clickLoadAll();
         driver.sleep(10);
         String organizationz = communityPage.getNelementInSecondColumnInTable(0);
@@ -340,7 +343,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickContactItem();
         communityPage.clickOnHeaderContentType();
         driver.sleep(5);
-        communityPage.clickOnHeaderContentType2();
+        communityPage.clickOnHeaderContentType();
         communityPage.clickLoadAll();
         driver.sleep(10);
         String contenttypez = communityPage.getNelementInFourthColumnInTable(0);
@@ -389,8 +392,8 @@ public class CommunityFiltersTestSet extends BasicTestSet {
 
         
         // Click on item contact in the menu
-        isOrganizationItemVisible();
-        communityPage.clickOrganizationsItems();
+        //isOrganizationItemVisible();
+        //communityPage.clickOrganizationsItems();
         driver.sleep(3);
         isFilterFromDateVisible();
         String fromDate = "01/04/20";
@@ -437,7 +440,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
-        //communityPage.setWordFilter("Hanan Prestner");
+        isHeaderNameVisible();
         communityPage.clickOnHeaderName();
         driver.sleep(5);
         communityPage.clickLoadAll();
@@ -449,11 +452,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         String namen = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
         assertAlphabeticalOrder(namen1, namen);
         
-        communityPage.clickGroupItem();
-        communityPage.clickOrganizationsItems();
-        communityPage.clickOnHeaderName();
         driver.sleep(5);
-        communityPage.clickOnHeaderName2();
+        isHeaderNameVisible();
+        communityPage.clickOnHeaderName();
         communityPage.clickLoadAll();
         driver.sleep(10);
         String namez = communityPage.getNnameInTable(0);
@@ -469,7 +470,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
         //communityPage.setWordFilter("Hanan Prestner");
-        communityPage.clickOnHeaderOrganization();
+        communityPage.clickOnHeaderOrganizationID();
         driver.sleep(5);
         communityPage.clickLoadAll();
         driver.sleep(10);
@@ -479,6 +480,25 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         String orgn1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
         String orgn = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
         assertAlphabeticalOrder(orgn1, orgn);
+        
+        communityPage.clickGroupItem();
+        driver.sleep(3);
+        communityPage.clickOrganizationsItems();
+        driver.sleep(3);
+        //communityPage.setWordFilter("Hanan Prestner");
+        communityPage.clickOnHeaderOrganizationID();
+        driver.sleep(5);
+        communityPage.clickOnHeaderOrganizationID();
+        driver.sleep(5);
+        communityPage.clickLoadAll();
+        driver.sleep(10);
+        String orgz = communityPage.getNelementInSecondColumnInTable(0);
+        String orgz1 = communityPage.getNelementInSecondColumnInTable(1);
+        assertAlphabeticalOrder(orgz1,orgz);
+        String orga1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        String orga = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        assertAlphabeticalOrder(orga, orga1);
+        
         
         communityPage.clickGroupItem();
         driver.sleep(3);
@@ -663,7 +683,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickGroupItem();
         
         driver.sleep(3);
-        //communityPage.setWordFilter("Hanan Prestner");
+        isHeaderNameVisible();
         communityPage.clickOnHeaderName();
         driver.sleep(5);
         //communityPage.clickLoadAll();
@@ -679,17 +699,19 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         communityPage.clickGroupItem();
         driver.sleep(3);
-        communityPage.clickOnHeaderName2();
+        isHeaderNameVisible();
+        communityPage.clickOnHeaderName();
         driver.sleep(5);
+        isHeaderNameVisible();
         communityPage.clickOnHeaderName();
         //communityPage.clickLoadAll();
         driver.sleep(10);
         String namez = communityPage.getNnameInTable(0);
         String namez1 = communityPage.getNnameInTable(1);
-        assertAlphabeticalOrder(namez,namez1);
-        String namea1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
-        String namea = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
-        assertAlphabeticalOrder(namea1, namea);
+        assertAlphabeticalOrder(namez1,namez);
+        //String namea1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
+        //String namea = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
+        //assertAlphabeticalOrder(namea1, namea);
         
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
@@ -703,21 +725,21 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(10);
         String description1 = communityPage.getNelementInSecondColumnInTable(0);
         String description2 = communityPage.getNelementInSecondColumnInTable(1);
-        assertAlphabeticalOrder(description1,description2);
-        String descriptionn1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
-        String descriptionn = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
-        assertAlphabeticalOrder(descriptionn1, descriptionn);
+        assertAlphabeticalOrder(description2,description1);
+        //String descriptionn1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        //String descriptionn = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        //assertAlphabeticalOrder(descriptionn1, descriptionn);
         
         driver.sleep(5);
-        communityPage.clickOnHeaderDescription2();
+        communityPage.clickOnHeaderDescription();
         //communityPage.clickLoadAll();
         driver.sleep(10);
         String descriptionz = communityPage.getNelementInSecondColumnInTable(0);
         String descriptionz1 = communityPage.getNelementInSecondColumnInTable(1);
         assertAlphabeticalOrder(descriptionz1,descriptionz);
-        String descriptiona1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
-        String descriptiona = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
-        assertAlphabeticalOrder(descriptiona, descriptiona1);
+        //String descriptiona1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
+        //String descriptiona = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
+        //assertAlphabeticalOrder(descriptiona, descriptiona1);
         
         
         String search_word = "Group Test";
@@ -812,5 +834,12 @@ public class CommunityFiltersTestSet extends BasicTestSet {
           }
           assertTrue("Groups item in menu is not visible",
                   communityPage.isGroupItemVisible());
+          }
+    public void isHeaderNameVisible() {
+    	if (communityPage == null) {
+          	communityPage = new CommunityPage(driver);
+          }
+          assertTrue("Header name in the table is not visible",
+                  communityPage.isHeaderNameVisible());
           }
 }

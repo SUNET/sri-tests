@@ -9,6 +9,12 @@
           <include name="googleDoSearchAndAccessToPage" />
         </methods>
       </class>
+      <class name="com.emergya.testSets.CommunityFiltersTestSet">
+        <methods>
+          <include name="filterContact" />
+          <include name="filterGroups" />
+        </methods>
+      </class>
     </classes>
   </test>
 </suite>

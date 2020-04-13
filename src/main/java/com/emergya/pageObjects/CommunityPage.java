@@ -50,6 +50,7 @@ public class CommunityPage extends BasePageObject {
     private static final String  FILTERWORD = "filterWord";
     private static final String  LOADALLBUTTON = "loadAllButton";
     private static final String  HEADERNAME = "headerName";
+    private static final String  HEADERORGANIZATIONID = "headerOrganizationID";
     private static final String  HEADERORGANIZATION = "headerOrganization";
     private static final String  HEADERCONTENTTYPE = "headerContentType";
     private static final String  HEADERDESCRIPTION = "headerDescription";
@@ -67,7 +68,8 @@ public class CommunityPage extends BasePageObject {
     private static final String  TYPEMUSEUM   = "typeMuseum";
     private static final String  TYPERESEARCH   = "typeReseach";
     private static final String  TYPESTUDENT   = "typeStudent";
-    private static final String  TYPEUNIVERSITY   = "typeUniversity";
+    private static final String  TYPEUNIVERSITY = "typeUniversity";
+    private static final String  TYPEUNIDEP =  "typeUniDep";
     private static final String  TYPEALL   = "typeAll";
     private static final String  ROLEABUSE   = "roleAbuse";
     private static final String  ROLEPRIMARYCONTACT   = "rolePrimaryContact";
@@ -495,7 +497,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderName method");
     	if(isHeaderNameVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(HEADERNAME).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(HEADERNAME));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderName method");
@@ -505,7 +507,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderName2 method");
     	if(isHeaderNameVisible()) {
-    		WebDriverUtils.moveAndClick2(driver, this.getElementsByXPath(HEADERNAME).get(0));
+    		WebDriverUtils.moveAndClick2(driver, this.getElementByXPath(HEADERNAME));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderName2 method");
@@ -515,7 +517,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderContentType method");
     	if(isHeaderNameVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(HEADERCONTENTTYPE).get(1));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(HEADERCONTENTTYPE).get(0));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderContentType method");
@@ -531,11 +533,31 @@ public class CommunityPage extends BasePageObject {
                 + "]- End clickOnHeaderContentType2 method");
     }
     
+    public void clickOnHeaderOrganizationID() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOnHeaderOrganization method");
+    	//if(isHeaderOrganizationVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(HEADERORGANIZATIONID));
+    	//}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnHeaderOrganization method");
+    }
+    
+    public void clickOnHeaderOrganizationID2() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOnHeaderOrganization2 method");
+    	if(isHeaderOrganizationIDVisible()) {
+    		WebDriverUtils.moveAndClick2(driver, this.getElementByXPath(HEADERORGANIZATIONID));
+    	}
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnHeaderOrganization2 method");
+    }
+    
     public void clickOnHeaderOrganization() {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderOrganization method");
     	if(isHeaderOrganizationVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(HEADERORGANIZATION).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(HEADERORGANIZATION));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderOrganization method");
@@ -545,7 +567,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderOrganization2 method");
     	if(isHeaderOrganizationVisible()) {
-    		WebDriverUtils.moveAndClick2(driver, this.getElementsByXPath(HEADERORGANIZATION).get(0));
+    		WebDriverUtils.moveAndClick2(driver, this.getElementByXPath(HEADERORGANIZATION));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderOrganization2 method");
@@ -555,7 +577,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderDescription method");
     	if(isHeaderDescriptionVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(HEADERDESCRIPTION).get(1));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(HEADERDESCRIPTION).get(0));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderDescription method");
@@ -584,7 +606,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeOrderAZ method");
     	if(isTypeOrderAZVisible()) {
-    		WebDriverUtils.click(driver, this.getElementByXPath(TYPEORDERAZ));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPEORDERAZ).get(0));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -595,7 +617,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeOrderZA method");
     	if(isTypeOrderZAVisible()) {
-    		WebDriverUtils.click(driver, this.getElementByXPath(TYPEORDERZA));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPEORDERAZ).get(1));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -605,8 +627,8 @@ public class CommunityPage extends BasePageObject {
     public void selectTypeCommercial() {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeCommercial method");
-    	if(isTypeOrderZAVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPECOMMERCIAL).get(1));
+    	if(isTypeCommercialVisible()) {
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPECOMMERCIAL).get(0));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -617,7 +639,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeMuseum method");
     	if(isTypeMuseumVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPEMUSEUM).get(1));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPEMUSEUM).get(0));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -628,7 +650,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeResearch method");
     	if(isTypeResearchVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPERESEARCH).get(1));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPERESEARCH).get(0));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -640,7 +662,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeStudent method");
     	if(isTypeStudentVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPESTUDENT).get(1));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPESTUDENT).get(0));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -651,7 +673,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeUniversityCollege method");
     	if(isTypeUniversityCollegeVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPEUNIVERSITY).get(1));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPEUNIVERSITY).get(0));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -662,7 +684,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectTypeUniversityDepartment method");
     	if(isTypeUniversityDepartmentVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(TYPEUNIVERSITY).get(3));
+    		WebDriverUtils.click(driver, this.getElementsByXPath(TYPEUNIDEP).get(0));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -673,7 +695,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectRoleAbuse method");
     	if(isRoleAbuseVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(ROLEABUSE).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(ROLEABUSE));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -684,7 +706,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectRolePrimaryContact method");
     	if(isRolePrimaryContactVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(ROLEPRIMARYCONTACT).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(ROLEPRIMARYCONTACT));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -695,7 +717,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectRoleSecondaryContact method");
     	if(isRoleSecondaryContactVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(ROLESECONDARYCONTACT).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(ROLESECONDARYCONTACT));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -706,7 +728,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectRoleNOCTechnical method");
     	if(isRoleNOCTechnicaltVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(ROLENOCTECHNICAL).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(ROLENOCTECHNICAL));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -717,7 +739,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectRoleNOCSecurity method");
     	if(isRoleNOCSecuritytVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(ROLENOCSECURITY).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(ROLENOCSECURITY));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -728,7 +750,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectRoleNOCManager method");
     	if(isRoleNOCManagerVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(ROLENOCMANAGER).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(ROLENOCMANAGER));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -739,7 +761,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start selectRoleEmployee method");
     	if(isRoleEmployeeVisible()) {
-    		WebDriverUtils.moveAndClick(driver, this.getElementsByXPath(ROLEEMPLOYEE).get(1));
+    		WebDriverUtils.click(driver, this.getElementByXPath(ROLEEMPLOYEE));
     	}
     	
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -781,9 +803,9 @@ public class CommunityPage extends BasePageObject {
     public void clickOrganizationsItems() {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOrganizationsItems method");
-    	if(isHeaderOrganizationVisible()) {
+    	//if(isHeaderOrganizationVisible()) {
     		WebDriverUtils.click(driver, this.getElementByXPath(ORGANIZATIONSITEM));
-    	}
+    	//}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOrganizationsItems method");
     }
@@ -924,13 +946,21 @@ public class CommunityPage extends BasePageObject {
           return this.isElementVisibleByXPath(HEADERNAME);
      }
     
-    public boolean isHeaderOrganizationVisible() {
+    public boolean isHeaderOrganizationIDVisible() {
     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                  + "]- Start isHeaderNameVisible method");
          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                  + "]- End isHeaderNameVisible method");
-         return this.isElementVisibleByXPath(HEADERORGANIZATION);
+         return this.isElementVisibleByXPath(HEADERORGANIZATIONID);
     }
+    
+    public boolean isHeaderOrganizationVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isHeaderNameVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isHeaderNameVisible method");
+        return this.isElementVisibleByXPath(HEADERORGANIZATION);
+   }
     
     public boolean isHeaderContentTypeVisible() {
    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -985,7 +1015,7 @@ public class CommunityPage extends BasePageObject {
                  + "]- Start isTypeOrderZAVisible method");
          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                  + "]- End isTypeOrderZAVisible method");
-         return this.isVisible(this.getElementsByXPath(TYPEORDERZA).get(0));
+         return this.isVisible(this.getElementsByXPath(TYPEORDERAZ).get(1));
     }
     
     public boolean isTypeCommercialVisible() {
@@ -993,7 +1023,7 @@ public class CommunityPage extends BasePageObject {
                 + "]- Start isTypeCommercialVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isTypeCommercialVisible method");
-        return this.isVisible(this.getElementsByXPath(TYPECOMMERCIAL).get(1));
+        return this.isElementVisibleByXPath(TYPECOMMERCIAL);
    }
     
     public boolean isTypeMuseumVisible() {
@@ -1001,7 +1031,7 @@ public class CommunityPage extends BasePageObject {
                    + "]- Start isTypeMuseumVisible method");
            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                    + "]- End isTypeMuseumVisible method");
-           return this.isVisible(this.getElementsByXPath(TYPEMUSEUM).get(1));
+           return this.isElementVisibleByXPath(TYPEMUSEUM);
       }
     
     public boolean isTypeResearchVisible() {
@@ -1009,7 +1039,7 @@ public class CommunityPage extends BasePageObject {
                   + "]- Start isTypeResearchVisible method");
           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                   + "]- End isTypeResearchVisible method");
-          return this.isVisible(this.getElementsByXPath(TYPERESEARCH).get(1));
+          return this.isElementVisibleByXPath(TYPERESEARCH);
      }
     
     public boolean isTypeStudentVisible() {
@@ -1017,7 +1047,7 @@ public class CommunityPage extends BasePageObject {
                  + "]- Start isTypeStudentVisible method");
          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                  + "]- End isTypeStudentVisible method");
-         return this.isVisible(this.getElementsByXPath(TYPESTUDENT).get(1));
+         return this.isElementVisibleByXPath(TYPESTUDENT);
     }
     
     public boolean isTypeUniversityCollegeVisible() {
@@ -1025,7 +1055,7 @@ public class CommunityPage extends BasePageObject {
                 + "]- Start isTypeUniversityCollegeVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isTypeUniversityCollegeVisible method");
-        return this.isVisible(this.getElementsByXPath(TYPEUNIVERSITY).get(1));
+        return this.isElementVisibleByXPath(TYPEUNIVERSITY);
    }
     
     public boolean isTypeUniversityDepartmentVisible() {
@@ -1033,7 +1063,7 @@ public class CommunityPage extends BasePageObject {
                    + "]- Start isTypeUniversityCollegeVisible method");
            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                    + "]- End isTypeUniversityCollegeVisible method");
-           return this.isVisible(this.getElementsByXPath(TYPEUNIVERSITY).get(3));
+           return this.isElementVisibleByXPath(TYPEUNIDEP);
       }
     
     public boolean isButtonAcceptVisible() {
@@ -1041,7 +1071,7 @@ public class CommunityPage extends BasePageObject {
                  + "]- Start isButtonAcceptVisible method");
          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                  + "]- End isButtonAcceptVisible method");
-         return this.isVisible(this.getElementsByXPath(BUTTONACCEPT).get(0));
+         return this.isElementVisibleByXPath(BUTTONACCEPT);
     }
     
     public boolean isRoleAbuseVisible() {
@@ -1049,7 +1079,7 @@ public class CommunityPage extends BasePageObject {
                 + "]- Start isRoleAbuseVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isRoleAbuseVisible method");
-        return this.isVisible(this.getElementsByXPath(ROLEABUSE).get(1));
+        return this.isElementVisibleByXPath(ROLEABUSE);
    }
     
     public boolean isRolePrimaryContactVisible() {
@@ -1057,7 +1087,7 @@ public class CommunityPage extends BasePageObject {
                    + "]- Start isRolePrimaryContactVisible method");
            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                    + "]- End isRolePrimaryContactVisible method");
-           return this.isVisible(this.getElementsByXPath(ROLEPRIMARYCONTACT).get(1));
+           return this.isElementVisibleByXPath(ROLEPRIMARYCONTACT);
       }
     
     public boolean isRoleSecondaryContactVisible() {
@@ -1065,7 +1095,7 @@ public class CommunityPage extends BasePageObject {
                   + "]- Start isRoleSecondaryContactVisible method");
           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                   + "]- End isRoleSecondaryContactVisible method");
-          return this.isVisible(this.getElementsByXPath(ROLESECONDARYCONTACT).get(1));
+          return this.isElementVisibleByXPath(ROLESECONDARYCONTACT);
      }
     
     public boolean isRoleNOCTechnicaltVisible() {
@@ -1073,7 +1103,7 @@ public class CommunityPage extends BasePageObject {
                  + "]- Start isRoleNOCTechnicaltVisible method");
          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                  + "]- End isRoleNOCTechnicaltVisible method");
-         return this.isVisible(this.getElementsByXPath(ROLENOCTECHNICAL).get(1));
+         return this.isElementVisibleByXPath(ROLENOCTECHNICAL);
     }
     
     public boolean isRoleNOCSecuritytVisible() {
@@ -1081,7 +1111,7 @@ public class CommunityPage extends BasePageObject {
                 + "]- Start isRoleNOCSecuritytVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isRoleNOCSecuritytVisible method");
-        return this.isVisible(this.getElementsByXPath(ROLENOCSECURITY).get(1));
+        return this.isElementVisibleByXPath(ROLENOCSECURITY);
    }
     
     public boolean isRoleNOCManagerVisible() {
@@ -1089,7 +1119,7 @@ public class CommunityPage extends BasePageObject {
                    + "]- Start isRoleNOCManagerVisible method");
            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                    + "]- End isRoleNOCManagerVisible method");
-           return this.isVisible(this.getElementsByXPath(ROLENOCMANAGER).get(1));
+           return this.isElementVisibleByXPath(ROLENOCMANAGER);
       }
     
     public boolean isRoleEmployeeVisible() {
@@ -1097,7 +1127,7 @@ public class CommunityPage extends BasePageObject {
                   + "]- Start isRoleEmployeeVisible method");
           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                   + "]- End isRoleEmployeeVisible method");
-          return this.isVisible(this.getElementsByXPath(ROLEEMPLOYEE).get(1));
+          return this.isElementVisibleByXPath(ROLEEMPLOYEE);
      }
     
     public boolean isIconSubMenutVisible() {
@@ -1105,6 +1135,6 @@ public class CommunityPage extends BasePageObject {
                 + "]- Start isIconSubMenutVisible method");
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End isIconSubMenutVisible method");
-        return this.isVisible(this.getElementsByXPath(ROLEICON).get(0));
+        return this.isElementVisibleByXPath(ROLEICON);
    }
 }
