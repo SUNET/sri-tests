@@ -474,7 +474,7 @@ public class CommunityPage extends BasePageObject {
     	String res = "";
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickLoadMore method");
-    	if(isCreationDateVisible()) {
+    	if(isUpdateDateVisible()) {
     		res = this.getElementsByXPath(ELEMENTDATES).get(1).getText();
     		res = res.replace("Last update: ", "");
     	}
@@ -516,7 +516,7 @@ public class CommunityPage extends BasePageObject {
     public void clickOnHeaderContentType() {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderContentType method");
-    	if(isHeaderNameVisible()) {
+    	if(isHeaderContentTypeVisible()) {
     		WebDriverUtils.click(driver, this.getElementsByXPath(HEADERCONTENTTYPE).get(0));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -536,9 +536,9 @@ public class CommunityPage extends BasePageObject {
     public void clickOnHeaderOrganizationID() {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderOrganization method");
-    	//if(isHeaderOrganizationVisible()) {
+    	if(isHeaderOrganizationIDVisible()) {
     		WebDriverUtils.click(driver, this.getElementByXPath(HEADERORGANIZATIONID));
-    	//}
+    	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderOrganization method");
     }
@@ -929,6 +929,14 @@ public class CommunityPage extends BasePageObject {
                    + "]- End isCreationDateVisible method");
            return this.isVisible(this.getElementsByXPath(ELEMENTDATES).get(0));
       }
+    
+    public boolean isUpdateDateVisible() {
+     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- Start isUpdateDateVisible method");
+          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- End isUpdateDateVisible method");
+          return this.isVisible(this.getElementsByXPath(ELEMENTDATES).get(1));
+     }
     
     public boolean isInputWordFilterVisible() {
       	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
