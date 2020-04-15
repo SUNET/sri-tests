@@ -577,7 +577,7 @@ public class CommunityPage extends BasePageObject {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickOnHeaderDescription method");
     	if(isHeaderDescriptionVisible()) {
-    		WebDriverUtils.click(driver, this.getElementsByXPath(HEADERDESCRIPTION).get(0));
+    		WebDriverUtils.click(driver, this.getElementByXPath(HEADERDESCRIPTION));
     	}
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickOnHeaderDescription method");

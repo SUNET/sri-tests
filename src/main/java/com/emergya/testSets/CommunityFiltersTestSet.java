@@ -170,6 +170,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         assertAlphabeticalOrder(namen1, namen);
         
         communityPage.clickGroupItem();
+        driver.sleep(3);
         communityPage.clickContactItem();
         driver.sleep(3);
         isHeaderNameVisible();
@@ -203,6 +204,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         assertAlphabeticalOrder(organizationn1, organizationn);
         
         communityPage.clickGroupItem();
+        driver.sleep(3);
         communityPage.clickContactItem();
         communityPage.clickOnHeaderOrganization();
         driver.sleep(5);
@@ -725,7 +727,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(10);
         String description1 = communityPage.getNelementInSecondColumnInTable(0);
         String description2 = communityPage.getNelementInSecondColumnInTable(1);
-        assertAlphabeticalOrder(description2,description1);
+        assertAlphabeticalOrder(description1,description2);
         //String descriptionn1 = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-2);
         //String descriptionn = communityPage.getNelementInSecondColumnInTable(communityPage.getNumberElementsInTable()-1);
         //assertAlphabeticalOrder(descriptionn1, descriptionn);
