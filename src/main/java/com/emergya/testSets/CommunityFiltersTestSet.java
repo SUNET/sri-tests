@@ -958,7 +958,11 @@ public class CommunityFiltersTestSet extends BasicTestSet {
     }
     
     public void assertAlphabeticalOrder(String s1, String s2) {
-    	assertTrue("These string are not in the correct alphabetical order",s1.compareTo(s2)<=0);
+    	if(!s1.equals("") && s2.equals("")) {
+    		assertTrue("These strings are in the correct alphabetical order", true);
+    	}else {
+        	assertTrue("These strings are not in the correct alphabetical order",s1.compareTo(s2)<=0);
+    	}
     }
     
     public void isOrganizationItemVisible() {

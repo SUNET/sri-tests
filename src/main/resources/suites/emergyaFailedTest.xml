@@ -11,13 +11,7 @@
       </class>
       <class name="com.emergya.testSets.CommunityFiltersTestSet">
         <methods>
-          <include name="filterGroups" />
           <include name="filterContact" />
-        </methods>
-      </class>
-      <class name="com.emergya.testSets.CreateContactTestSet">
-        <methods>
-          <include name="createContact" />
         </methods>
       </class>
     </classes>
