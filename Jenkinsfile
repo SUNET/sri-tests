@@ -1,6 +1,6 @@
 properties([[$class: 'JiraProjectProperty'], parameters([
 text(defaultValue: 'Windows 10,Firefox,73x64,1920x1080', description: '', name: 'remoteConfiguration'),
-text(defaultValue: 'Windows 10,Firefox,73x64,1920x1080', description: '', name: 'remoteConfiguration2')
+text(defaultValue: 'stage', description: '', name: 'environmentToTest')
 ])])
 
 library identifier: 'shared-library@master', retriever: modernSCM(
