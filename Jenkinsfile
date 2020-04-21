@@ -26,7 +26,7 @@ pipeline {
                                 string(credentialsId: 'remoteUserKey', variable: 'remoteUserKey'),
                                 string(credentialsId: 'remoteUserName', variable: 'remoteUserName')
                         ]){
-                            sh "mvn test '-DremoteUserKey=$remoteUserKey' '-DremoteUserName=$remoteUserName' '-DremoteConfiguration=$remoteConfiguration'"
+                            sh "mvn test '-DremoteUserKey=$remoteUserKey' '-DremoteUserName=$remoteUserName' '-DremoteConfiguration=$remoteConfiguration' package -P${environmentToTest}"
                         }  
                     }
                 }

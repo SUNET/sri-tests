@@ -109,18 +109,22 @@
 	<profiles>
 		<!-- Sample environment profiles -->
 		<profile>
-			<id>QA-ENV</id>
+			<id>stage</id>
 			<properties>
-				<environment.url>****URL****</environment.url>
-				<env.context>****CONTEXT****</env.context>
+				<environment.url>https://sri-dev.ed-integrations.com/dashboard</environment.url>
+				<activare.Video.Recording>true</activare.Video.Recording>
+				<save.Video.For.Passed>true</save.Video.For.Passed>
+				<env.context></env.context>
 			</properties>
 		</profile>
 
 		<profile>
-			<id>STG-ENV</id>
+			<id>master</id>
 			<properties>
-				<environment.url>****URL****</environment.url>
-				<env.context>****CONTEXT****</env.context>
+				<environment.url>https://sri.ed-integrations.com/dashboard</environment.url>
+				<activare.Video.Recording>true</activare.Video.Recording>
+				<save.Video.For.Passed>true</save.Video.For.Passed>
+				<env.context></env.context>
 			</properties>
 		</profile>
 
