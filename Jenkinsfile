@@ -1,6 +1,4 @@
-properties([[$class: 'JiraProjectProperty'], parameters(
-[text
-(defaultValue: 'Windows 10,Firefox,73x64,1920x1080', description: '', name: 'remoteConfiguration'),(defaultValue: 'master', description: '', name: 'environmentToTest')])])
+properties([[$class: 'JiraProjectProperty'], parameters([text(defaultValue: 'Windows 10,Firefox,73x64,1920x1080', description: '', name: 'remoteConfiguration')],[text(defaultValue: 'master', description: '', name: 'environmentToTest')])])
 
 library identifier: 'shared-library@master', retriever: modernSCM(
   [$class: 'GitSCMSource',
