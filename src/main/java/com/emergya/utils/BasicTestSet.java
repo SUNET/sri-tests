@@ -1,6 +1,7 @@
 package com.emergya.utils;
 
 import com.emergya.pageObjects.Login;
+import com.emergya.pageObjects.NetworkPage;
 import com.emergya.pageObjects.NewContact;
 import com.emergya.pageObjects.NewGroup;
 import com.emergya.pageObjects.NewOrganization;
@@ -30,6 +31,7 @@ public abstract class BasicTestSet extends DefaultTestSet {
     protected NewOrganization newOrganization;
     protected NewContact newContact;
     protected NewGroup newGroup;
+    protected NetworkPage networkPage;
     
     // ************************ After Methods *************************
     /**

@@ -64,7 +64,7 @@
 		<test.suite>src/main/resources/suites/sri-auto-regresion-suite.xml</test.suite>
 
 		<!-- Default parameters for selenium -->
-		<environment.url>https://sri.ed-integrations.com/</environment.url>
+		<environment.url>https://sri-dev.ed-integrations.com/dashboard</environment.url>
 		<env.context></env.context>
 	</properties>
 

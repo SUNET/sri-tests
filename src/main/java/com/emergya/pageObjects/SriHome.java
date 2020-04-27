@@ -25,6 +25,7 @@ public class SriHome extends BasePageObject {
      * Items keys selectors.
      */
     private static final String COMMUNITY = "communityButton";
+    private static final String NETWORK = "networkButton";
     
 
     /**
@@ -79,6 +80,28 @@ public class SriHome extends BasePageObject {
         return new CommunityPage(driver);
         
     }
+    
+    public NetworkPage clickOnNetwork() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickOnCommunity method");
+
+        if (networkButtonVisible()) {
+            this.getElementByXPath(NETWORK).click();
+        }
+        
+        if(WebDriverUtils.getBrowserName(driver).toLowerCase().equals("safari")) {
+        	WebElement element = this.getElementByXPath(NETWORK);
+        	if(element != null) {
+        		WebDriverUtils.clickButtonSafari(driver,element);
+        	}
+        }
+
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickOnLogin method");
+        return new NetworkPage(driver);
+        
+    }
+    
     /**
     * Return if the button of contact is visible
     * @return
@@ -91,6 +114,15 @@ public class SriHome extends BasePageObject {
 
        return this.isElementVisibleByXPath(COMMUNITY);
     }
+    
+    public boolean networkButtonVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start networkButtonVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End networkButtonVisible method");
+
+        return this.isElementVisibleByXPath(NETWORK);
+     }
     
 }
 
