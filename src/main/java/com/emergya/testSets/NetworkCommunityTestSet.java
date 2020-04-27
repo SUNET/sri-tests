@@ -80,6 +80,10 @@ public class NetworkCommunityTestSet extends BasicTestSet {
         driver.sleep(3);
         // Click on item contact in the menu
         isReady();
+        //networkPage.clickAddButton();
+        networkPage.clicMenuItemEndUsers();
+        driver.sleep(4);
+        networkPage.clicMenuItemCustomers();
      }   
     
     public void isReady() {
