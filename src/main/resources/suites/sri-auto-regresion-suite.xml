@@ -25,12 +25,20 @@
                     <include name="createGroup" />
                 </methods>
             </class>
-            	<class name="com.emergya.testSets.AddNetworkCommunityEntitiesTestSet" >
+            <class name="com.emergya.testSets.AddNetworkCommunityEntitiesTestSet" >
 				<methods>
                     <include name="addCustomers" />
                     <include name="addEndUsers" />
                     <include name="addProviders" />
                     <include name="addOwners" />
+                </methods>
+            </class>
+            <class name="com.emergya.testSets.FilterNetworkCommunityEntitiesTestSet" >
+				<methods>
+                    <include name="filtersCustomers" />
+                    <include name="filtersEndUsers" />
+                    <include name="filtersProviders" />
+                    <include name="filtersOwners" />
                 </methods>
             </class>
 		</classes>
