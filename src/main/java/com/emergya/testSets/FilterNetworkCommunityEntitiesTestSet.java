@@ -76,20 +76,23 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         sriHome = login.clickOnLogin();
     }
 
-    @Test(description = "AddCustomers",dataProvider = "remoteParams")
+    @Test(description = "filterCustomers",dataProvider = "remoteParams")
     public void filtersCustomers(String remoteParams) {
         //Go to community page
         networkPage = sriHome.clickOnNetwork();    
         driver.sleep(3);
         // Click on item contact in the menu
         isReady();
-        String fromDate = "20/04/20";
-        String toDate = "08/05/20";
+        String fromDate = "01/04/20";
+        String toDate = "28/04/20";
+        isInputFromDateVisible();
         networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
         addEntityOrganization = networkPage.clickRowN(0);
         driver.sleep(3);
+        isCreationDateVisible();
         String creationDate = addEntityOrganization.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
@@ -100,14 +103,18 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         }
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
+        isRadioUpdatedVisible();
         networkPage.clickRadioUpdated();
-        String fromDate2 = "20/04/20";
-        String toDate2 = "08/05/20";
+        String fromDate2 = "01/04/20";
+        String toDate2 = "28/04/20";
+        isInputFromDateVisible();
         networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
         addEntityOrganization = networkPage.clickRowN(0);
         driver.sleep(3);
+        isUpdateDateVisible();
         String updateDate = addEntityOrganization.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
@@ -121,8 +128,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         driver.sleep(3);
+        isHeaderNameVisible();
         networkPage.clickHeaderName();
         driver.sleep(3);
+        isButtonLoadAllVisible();
         networkPage.clickButtonLoadAll();
         driver.sleep(3);
         String name0 = networkPage.getNcolumnMrow(1, 0);
@@ -131,7 +140,9 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         String namen1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
         String namen = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
         assertAlphabeticalOrder(namen1,namen);
+        isHeaderNameVisible();
         networkPage.clickHeaderName();
+        isButtonLoadAllVisible();
         networkPage.clickButtonLoadAll();
         driver.sleep(3);
         String namez = networkPage.getNcolumnMrow(1, 0);
@@ -145,8 +156,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         driver.sleep(3);
+        isHeaderDescriptionVisible();
         networkPage.clickHeaderDescription();
         driver.sleep(3);
+        isButtonLoadAllVisible();
         networkPage.clickButtonLoadAll();
         driver.sleep(3);
         String description0 = networkPage.getNcolumnMrow(3, 0);
@@ -155,8 +168,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         String deescriptionn1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
         String descriptionn = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
         assertAlphabeticalOrder(deescriptionn1,descriptionn);
+        isHeaderDescriptionVisible();
         networkPage.clickHeaderDescription();
         driver.sleep(3);
+        isButtonLoadAllVisible();
         networkPage.clickButtonLoadAll();
         driver.sleep(3);
         String descriptionz = networkPage.getNcolumnMrow(3, 0);
@@ -171,13 +186,552 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         networkPage.clickMenuItemCustomers();
         driver.sleep(3);
         String searchWord = "Wilson";
+        isWordFilterVisible();
         networkPage.setWordFilter(searchWord);
         driver.sleep(3);
         String name = networkPage.getNcolumnMrow(1, 0);
         assertTrue("The filter for words did not work properly",name.contains(searchWord));
-        
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String date1 = addEntityOrganization.getCreationDate();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String date2 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"MM/dd/yyyy");
+        }
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String daten = addEntityOrganization.getCreationDate();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String daten1 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"MM/dd/yyyy");
+        }
      }
     
+
+    @Test(description = "filterEndUsers",dataProvider = "remoteParams")
+    public void filtersEndUsers(String remoteParams) {
+        //Go to community page
+        networkPage = sriHome.clickOnNetwork();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        driver.sleep(3);
+        // Click on item contact in the menu
+        isReady();
+        String fromDate = "01/04/20";
+        String toDate = "28/04/20";
+        isInputFromDateVisible();
+        networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        isCreationDateVisible();
+        String creationDate = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(creationDate,"MM/dd/yyyy",toDate,"dd/MM/yy");
+        }
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isRadioUpdatedVisible();
+        networkPage.clickRadioUpdated();
+        String fromDate2 = "01/04/20";
+        String toDate2 = "28/04/20";
+        isInputFromDateVisible();
+        networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        isUpdateDateVisible();
+        String updateDate = addEntityOrganization.getUpdateDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(updateDate,"MM/dd/yyyy",toDate2,"dd/MM/yy");
+        }
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        driver.sleep(3);
+        isHeaderNameVisible();
+        networkPage.clickHeaderName();
+        driver.sleep(3);
+        isButtonLoadAllVisible();
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String name0 = networkPage.getNcolumnMrow(1, 0);
+        String name1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(name0,name1);
+        String namen1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namen = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namen1,namen);
+        isHeaderNameVisible();
+        networkPage.clickHeaderName();
+        isButtonLoadAllVisible();
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String namez = networkPage.getNcolumnMrow(1, 0);
+        String namez1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(namez1,namez);
+        String namea1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namea = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namea,namea1);
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        driver.sleep(3);
+        isHeaderDescriptionVisible();
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        isButtonLoadAllVisible();
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String description0 = networkPage.getNcolumnMrow(3, 0);
+        String description1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(description0,description1);
+        String deescriptionn1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptionn = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(deescriptionn1,descriptionn);
+        isHeaderDescriptionVisible();
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        isButtonLoadAllVisible();
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String descriptionz = networkPage.getNcolumnMrow(3, 0);
+        String descriptionz1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(descriptionz1,descriptionz);
+        String descriptiona1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptiona = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(descriptiona,descriptiona1);
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        driver.sleep(3);
+        String searchWord = "Ashley";
+        isWordFilterVisible();
+        networkPage.setWordFilter(searchWord);
+        driver.sleep(3);
+        String name = networkPage.getNcolumnMrow(1, 0);
+        assertTrue("The filter for words did not work properly",name.contains(searchWord));
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String date1 = addEntityOrganization.getCreationDate();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String date2 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"MM/dd/yyyy");
+        }
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String daten = addEntityOrganization.getCreationDate();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String daten1 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"MM/dd/yyyy");
+        }
+     }
+    
+    @Test(description = "filterProviders",dataProvider = "remoteParams")
+    public void filtersProviders(String remoteParams) {
+        //Go to community page
+        networkPage = sriHome.clickOnNetwork();
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        driver.sleep(3);
+        // Click on item contact in the menu
+        isReady();
+        String fromDate = "01/04/20";
+        String toDate = "28/04/20";
+        isInputFromDateVisible();
+        networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        isCreationDateVisible();
+        String creationDate = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(creationDate,"MM/dd/yyyy",toDate,"dd/MM/yy");
+        }
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        isRadioUpdatedVisible();
+        networkPage.clickRadioUpdated();
+        String fromDate2 = "01/04/20";
+        String toDate2 = "28/04/20";
+        isInputFromDateVisible();
+        networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        isUpdateDateVisible();
+        String updateDate = addEntityOrganization.getUpdateDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(updateDate,"MM/dd/yyyy",toDate2,"dd/MM/yy");
+        }
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        driver.sleep(3);
+        isHeaderNameVisible();
+        networkPage.clickHeaderName();
+        driver.sleep(3);
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String name0 = networkPage.getNcolumnMrow(1, 0);
+        String name1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(name0,name1);
+        String namen1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namen = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namen1,namen);
+        isHeaderNameVisible();
+        networkPage.clickHeaderName();
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String namez = networkPage.getNcolumnMrow(1, 0);
+        String namez1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(namez1,namez);
+        String namea1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namea = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namea,namea1);
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        driver.sleep(3);
+        isHeaderDescriptionVisible();
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String description0 = networkPage.getNcolumnMrow(3, 0);
+        String description1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(description0,description1);
+        String deescriptionn1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptionn = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(deescriptionn1,descriptionn);
+        isHeaderDescriptionVisible();
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String descriptionz = networkPage.getNcolumnMrow(3, 0);
+        String descriptionz1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(descriptionz1,descriptionz);
+        String descriptiona1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptiona = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(descriptiona,descriptiona1);
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        driver.sleep(3);
+        String searchWord = "Allen";
+        isWordFilterVisible();
+        networkPage.setWordFilter(searchWord);
+        driver.sleep(3);
+        String name = networkPage.getNcolumnMrow(1, 0);
+        assertTrue("The filter for words did not work properly",name.contains(searchWord));
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String date1 = addEntityOrganization.getCreationDate();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String date2 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"MM/dd/yyyy");
+        }
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemProvidersVisible();
+        networkPage.clickMenuItemProviders();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String daten = addEntityOrganization.getCreationDate();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String daten1 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"MM/dd/yyyy");
+        }
+     }
+    
+    @Test(description = "filterOwners",dataProvider = "remoteParams")
+    public void filtersOwners(String remoteParams) {
+        //Go to community page
+        networkPage = sriHome.clickOnNetwork();
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        driver.sleep(3);
+        // Click on item contact in the menu
+        isReady();
+        String fromDate = "01/04/20";
+        String toDate = "28/04/20";
+        isInputFromDateVisible();
+        networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        isCreationDateVisible();
+        String creationDate = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(creationDate,"MM/dd/yyyy",toDate,"dd/MM/yy");
+        }
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        isRadioUpdatedVisible();
+        networkPage.clickRadioUpdated();
+        String fromDate2 = "01/04/20";
+        String toDate2 = "28/04/20";
+        isInputFromDateVisible();
+        networkPage.setFromDate(fromDate);
+        isInputToDateVisible();
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        isUpdateDateVisible();
+        String updateDate = addEntityOrganization.getUpdateDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(updateDate,"MM/dd/yyyy",toDate2,"dd/MM/yy");
+        }
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        driver.sleep(3);
+        isHeaderNameVisible();
+        networkPage.clickHeaderName();
+        driver.sleep(3);
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String name0 = networkPage.getNcolumnMrow(1, 0);
+        String name1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(name0,name1);
+        String namen1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namen = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namen1,namen);
+        isHeaderNameVisible();
+        networkPage.clickHeaderName();
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String namez = networkPage.getNcolumnMrow(1, 0);
+        String namez1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(namez1,namez);
+        String namea1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namea = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namea,namea1);
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        driver.sleep(3);
+        isHeaderDescriptionVisible();
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String description0 = networkPage.getNcolumnMrow(3, 0);
+        String description1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(description0,description1);
+        String deescriptionn1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptionn = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(deescriptionn1,descriptionn);
+        isHeaderDescriptionVisible();
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        //isButtonLoadAllVisible();
+        //networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String descriptionz = networkPage.getNcolumnMrow(3, 0);
+        String descriptionz1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(descriptionz1,descriptionz);
+        String descriptiona1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptiona = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(descriptiona,descriptiona1);
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        driver.sleep(3);
+        String searchWord = "Gunnar";
+        isWordFilterVisible();
+        networkPage.setWordFilter(searchWord);
+        driver.sleep(3);
+        String name = networkPage.getNcolumnMrow(1, 0);
+        assertTrue("The filter for words did not work properly",name.contains(searchWord));
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String date1 = addEntityOrganization.getCreationDate();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String date2 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"MM/dd/yyyy");
+        }
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemOwnersVisible();
+        networkPage.clickMenuItemOwners();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(0);
+        String daten = addEntityOrganization.getCreationDate();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        networkPage.clickOrderBy();
+        driver.sleep(3);
+        addEntityOrganization = networkPage.clickRowN(1);
+        String daten1 = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
+        }else {
+        	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"MM/dd/yyyy");
+        }
+     }
     
     public void isReady() {
     	if (networkPage == null) {
@@ -217,6 +771,78 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
           }
           assertTrue("Menu item Owners is not visible",
                   networkPage.isMenuItemOwnersVisible());
+          }
+    
+    public void isInputFromDateVisible() {
+    	if (networkPage == null) {
+          	networkPage = new NetworkPage(driver);
+          }
+          assertTrue("Input for From Date is not visible",
+                  networkPage.isInputFromDateVisible());
+          }
+    
+    public void isInputToDateVisible() {
+    	if (networkPage == null) {
+          	networkPage = new NetworkPage(driver);
+          }
+          assertTrue("Input for To Date is not visible",
+                  networkPage.isInputToDateVisible());
+          }
+    
+    public void isCreationDateVisible() {
+    	if (addEntityOrganization == null) {
+          	addEntityOrganization = new AddEntityOrganization(driver);
+          }
+          assertTrue("Creation Date is not visible",
+                 addEntityOrganization.isCreationDateVisible());
+          }
+    
+    public void isUpdateDateVisible() {
+    	if (addEntityOrganization == null) {
+          	addEntityOrganization = new AddEntityOrganization(driver);
+          }
+          assertTrue("Update Date is not visible",
+                 addEntityOrganization.isUpdateDateVisible());
+          }
+    
+    public void isRadioUpdatedVisible() {
+    	if (networkPage == null) {
+          	networkPage = new NetworkPage(driver);
+          }
+          assertTrue("Radio Updated is not visible",
+                  networkPage.isRadioUpdatedVisible());
+          }
+    
+    public void isButtonLoadAllVisible() {
+    	if (networkPage == null) {
+          	networkPage = new NetworkPage(driver);
+          }
+          assertTrue("Button Load All is not visible",
+                  networkPage.isButtonLoadAllVisible());
+          }
+    
+    public void isHeaderNameVisible() {
+    	if (networkPage == null) {
+          	networkPage = new NetworkPage(driver);
+          }
+          assertTrue("Header Name is not visible",
+                  networkPage.isHeaderNameVisible());
+          }
+    
+    public void isHeaderDescriptionVisible() {
+    	if (networkPage == null) {
+          	networkPage = new NetworkPage(driver);
+          }
+          assertTrue("Header Description is not visible",
+                  networkPage.isHeaderDescriptionVisible());
+          }
+    
+    public void isWordFilterVisible() {
+    	if (networkPage == null) {
+          	networkPage = new NetworkPage(driver);
+          }
+          assertTrue("Filter for words is not visible",
+                  networkPage.isWordFilterVisible());
           }
     
     public void isDate1OlderThanDate2(String date1, String format1, String date2, String format2){
