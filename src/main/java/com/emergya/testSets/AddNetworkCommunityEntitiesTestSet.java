@@ -89,7 +89,7 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         String user = "Test" + result;
         addEntityOrganization = networkPage.clickAddButton();
         driver.sleep(3);
-        //isFieldNameVisible();
+        isFieldNameVisible();
         addEntityOrganization.setName(user);
         isFieldDescriptionVisible();
         addEntityOrganization.setDescription("This is a description");

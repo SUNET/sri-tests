@@ -22,6 +22,8 @@ static Logger log = Logger.getLogger(CommunityPage.class);
 	private static final String BUTTONSEND = "buttonsend";
 	private static final String BUTTONDELETE = "buttondelete";
 	private static final String TEXTAREACOMMENT = "textareacomment";
+	private static final String DATEFIELDS = "datesfields";
+	
 	
 	public AddEntityOrganization(EmergyaWebDriver driver) {
 		super(driver);
@@ -132,6 +134,32 @@ static Logger log = Logger.getLogger(CommunityPage.class);
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End clickButtonDelete method");
     }
+    
+    public String getCreationDate() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start getCreationDate method");
+    	String date = "";
+    	if(isCreationDateVisible()) {
+    		WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(0);
+    		date = creationDate.getText();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End getCreationDate method");
+    	return date;
+    }
+    
+    public String getUpdateDate() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start getUpdateDate method");
+    	String date = "";
+    	if(isUpdateDateVisible()) {
+    		WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(2);
+    		date = creationDate.getText();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End getUpdateDate method");
+    	return date;
+    }
 	
     public boolean isBackButtonVisible() {
       	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -212,4 +240,22 @@ static Logger log = Logger.getLogger(CommunityPage.class);
                   + "]- End isButtonDeleteVisible method");
           return this.isElementVisibleByXPath(BUTTONDELETE);
      }
+    
+    public boolean isCreationDateVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isCreationDateVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isCreationDateVisible method");
+         WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(0);
+         return this.isVisible(creationDate);
+    }
+    
+    public boolean isUpdateDateVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isUpdateDateVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isUpdateDateVisible method");
+        WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(1);
+        return this.isVisible(creationDate);
+   }
 }

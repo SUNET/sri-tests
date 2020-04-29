@@ -18,7 +18,14 @@ public class NetworkPage extends BasePageObject{
 	private static final String MENUITEMENDUSERS = "menuitemendusers";
 	private static final String MENUITEMPROVIDERS = "menuitemproviders";
 	private static final String MENUITEMOWNERS = "menuitemsiteowners";
+	private static final String RADIOUPDATED = "radioupdated";
+	private static final String FROMDATE = "fromDate";
+	private static final String TODATE = "toDate";
+	private static final String BUTTONRESET = "buttonReset";
+	private static final String WORDFILTER = "wordFilter";
+	private static final String ORDERBY = "orderBy";
 	private static String USERIDXPATH = "//span[contains(text(),\"{USER}\")]";
+	private static String NCOLUMN = "//td[position()= {ncol}]";
 
 	public NetworkPage(EmergyaWebDriver driver) {
 		super(driver);
@@ -89,6 +96,66 @@ public class NetworkPage extends BasePageObject{
                + " - End clickMenuItemOwners method");
     }
     
+    public void clickRadioUpdated() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickRadioUpdate method");
+    	if(isRadioUpdatedVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(RADIOUPDATED));
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickRadioUpdate method");
+    }
+    
+    public void clickButtonReset() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickButtonReset method");
+    	if(isButtonResetVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(BUTTONRESET));
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickButtonReset method");
+    }
+    
+    public void clickOrderBy() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickOrderBy method");
+    	if(isButtonResetVisible()) {
+    		WebDriverUtils.click(driver, this.getElementById(ORDERBY));
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickOrderBy method");
+    }
+    
+    public void setFromDate(String date) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setFromDate method");
+    	if(isInputFromDateVisible()) {
+    		this.getElementByXPath(FROMDATE).sendKeys(date);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setFromDate method");
+    }
+    
+    public void setToDate(String date) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setToDate method");
+    	if(isInputToDateVisible()) {
+    		this.getElementByXPath(TODATE).sendKeys(date);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setToDate method");
+    }
+    
+    public void setWordFilter(String word) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start setWordFilter method");
+    	if(isWordFilterVisible()) {
+    		this.getElementByXPath(WORDFILTER).sendKeys(word);
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End setWordFilter method");
+    }
+    
     public AddEntityOrganization clickInUser(String user) {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setName method");
@@ -102,7 +169,15 @@ public class NetworkPage extends BasePageObject{
     	return new AddEntityOrganization(driver);
     }
     
-    
+    public String getNcolumnMrow(Integer n, Integer m) {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getNcolumnMrow method");
+    	String column = NCOLUMN.replace("{ncol}",n.toString());
+    	String cell = this.getElementsByXPath(column).get(m).getText();
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getNcolumnMrow method");
+    	return cell;
+    }
     
     public boolean isAddButtonVisible() {
    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -143,6 +218,54 @@ public class NetworkPage extends BasePageObject{
                 + "]- End isMenuItemOwnersVisible method");
         return this.isElementVisibleByXPath(MENUITEMOWNERS);
    }
+    
+    public boolean isRadioUpdatedVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isRadioUpdatedVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isRadioUpdatedVisible method");
+           return this.isElementVisibleByXPath(RADIOUPDATED);
+      }
+    
+    public boolean isInputFromDateVisible() {
+     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- Start isInputFromDateVisible method");
+          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- End isInputFromDateVisible method");
+          return this.isElementVisibleByXPath(FROMDATE);
+     }
+    
+    public boolean isInputToDateVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isInputFromDateVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isInputFromDateVisible method");
+         return this.isElementVisibleByXPath(TODATE);
+    }
+    
+    public boolean isButtonResetVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isButtonResetVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isButtonResetVisible method");
+        return this.isElementVisibleByXPath(BUTTONRESET);
+   }
+    
+    public boolean isWordFilterVisible() {
+      	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- Start isWordFilterVisible method");
+           log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                   + "]- End isWordFilterVisible method");
+           return this.isElementVisibleByXPath(WORDFILTER);
+      }
+    
+    public boolean isOrderByVisible() {
+     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- Start isOrderByVisible method");
+          log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                  + "]- End isOrderByVisible method");
+          return this.isElementVisibleById(ORDERBY);
+     }
     
     public boolean isUserVisible(String user) {
     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
