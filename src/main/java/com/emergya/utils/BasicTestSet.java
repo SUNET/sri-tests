@@ -10,6 +10,7 @@ import com.emergya.pageObjects.SriHome;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 
+import com.emergya.pageObjects.AddEntityOrganization;
 import com.emergya.pageObjects.AddOrganization;
 import com.emergya.pageObjects.CommunityPage;
 import com.emergya.selenium.testSet.DefaultTestSet;
@@ -32,6 +33,7 @@ public abstract class BasicTestSet extends DefaultTestSet {
     protected NewContact newContact;
     protected NewGroup newGroup;
     protected NetworkPage networkPage;
+    protected AddEntityOrganization addEntityOrganization;
     
     // ************************ After Methods *************************
     /**
