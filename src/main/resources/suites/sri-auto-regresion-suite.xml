@@ -25,6 +25,14 @@
                     <include name="createGroup" />
                 </methods>
             </class>
+            	<class name="com.emergya.testSets.AddNetworkCommunityEntitiesTestSet" >
+				<methods>
+                    <include name="addCustomers" />
+                    <include name="addEndUsers" />
+                    <include name="addProviders" />
+                    <include name="addOwners" />
+                </methods>
+            </class>
 		</classes>
 	</test>
 </suite>
