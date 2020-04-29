@@ -1,5 +1,7 @@
 package com.emergya.pageObjects;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -24,6 +26,9 @@ public class NetworkPage extends BasePageObject{
 	private static final String BUTTONRESET = "buttonReset";
 	private static final String WORDFILTER = "wordFilter";
 	private static final String ORDERBY = "orderBy";
+	private static final String HEADERNAME = "headerName";
+	private static final String HEADERDESCRIPTION = "headerDescription";
+	private static final String BUTTONLOADALL = "buttonLoadAll";
 	private static String USERIDXPATH = "//span[contains(text(),\"{USER}\")]";
 	private static String NCOLUMN = "//td[position()= {ncol}]";
 
@@ -126,6 +131,36 @@ public class NetworkPage extends BasePageObject{
                + " - End clickOrderBy method");
     }
     
+    public void clickHeaderName() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clicHeaderName method");
+    	if(isHeaderNameVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(HEADERNAME));
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clicHeaderName method");
+    }
+    
+    public void clickHeaderDescription() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clicHeaderDescription method");
+    	if(isHeaderDescriptionVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(HEADERDESCRIPTION));
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clicHeaderDescription method");
+    }
+    
+    public void clickButtonLoadAll() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start clickButtonLoadAll method");
+    	if(isButtonLoadAllVisible()) {
+    		WebDriverUtils.click(driver, this.getElementByXPath(BUTTONLOADALL));
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End clickButtonLoadAll method");
+    }
+    
     public void setFromDate(String date) {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setFromDate method");
@@ -169,14 +204,36 @@ public class NetworkPage extends BasePageObject{
     	return new AddEntityOrganization(driver);
     }
     
+    public Integer getNumberRowsInTable() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getNumberRowsInTable method");
+    	String column = NCOLUMN.replace("{ncol}","'1'");
+    	Integer n = driver.findElementsByXPath(column).size();
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getNumberRowsInTable method");
+    	return n;
+    }
+    
     public String getNcolumnMrow(Integer n, Integer m) {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start getNcolumnMrow method");
     	String column = NCOLUMN.replace("{ncol}",n.toString());
-    	String cell = this.getElementsByXPath(column).get(m).getText();
+    	List<WebElement> l = driver.findElementsByXPath(column);
+    	String cell = l.get(m).getText();
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End getNcolumnMrow method");
     	return cell;
+    }
+    
+    public AddEntityOrganization clickRowN(Integer n) {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start clickRowN method");
+    	String column = NCOLUMN.replace("{ncol}","'1'");
+    	List<WebElement> l = driver.findElementsByXPath(column);
+    	l.get(n).click();
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End clickRowN method");
+    	return new AddEntityOrganization(driver);
     }
     
     public boolean isAddButtonVisible() {
@@ -266,6 +323,30 @@ public class NetworkPage extends BasePageObject{
                   + "]- End isOrderByVisible method");
           return this.isElementVisibleById(ORDERBY);
      }
+    
+    public boolean isButtonLoadAllVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isButtonLoadAllVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isButtonLoadAllVisible method");
+         return this.isElementVisibleByXPath(BUTTONLOADALL);
+    }
+    
+    public boolean isHeaderNameVisible() {
+    	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- Start isHeaderNameVisible method");
+         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                 + "]- End isHeaderNameVisible method");
+         return this.isElementVisibleByXPath(HEADERNAME);
+    }
+    
+    public boolean isHeaderDescriptionVisible() {
+   	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isHeaderDescriptionVisible method");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isHeaderDescriptionVisible method");
+        return this.isElementVisibleByXPath(HEADERDESCRIPTION);
+   }
     
     public boolean isUserVisible(String user) {
     	 log.info("[log-pageObjects]" + this.getClass().getSimpleName()

@@ -3,6 +3,7 @@ package com.emergya.testSets;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.Method;
+import java.net.NetPermission;
 import java.util.List;
 import java.util.Random;
 
@@ -76,17 +77,104 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
     }
 
     @Test(description = "AddCustomers",dataProvider = "remoteParams")
-    public void addCustomers(String remoteParams) {
+    public void filtersCustomers(String remoteParams) {
         //Go to community page
         networkPage = sriHome.clickOnNetwork();    
         driver.sleep(3);
         // Click on item contact in the menu
         isReady();
-        Random r = new Random();
-        int low = 0;
-        int high = 100;
-        Integer result = r.nextInt(high-low) + low;
-        String user = "Test" + result;
+        String fromDate = "20/04/20";
+        String toDate = "08/05/20";
+        networkPage.setFromDate(fromDate);
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        String creationDate = addEntityOrganization.getCreationDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(creationDate,"MM/dd/yyyy",toDate,"dd/MM/yy");
+        }
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        networkPage.clickRadioUpdated();
+        String fromDate2 = "20/04/20";
+        String toDate2 = "08/05/20";
+        networkPage.setFromDate(fromDate);
+        networkPage.setToDate(toDate);
+        driver.sleep(5);
+        addEntityOrganization = networkPage.clickRowN(0);
+        driver.sleep(3);
+        String updateDate = addEntityOrganization.getUpdateDate();
+        if(!WebDriverUtils.isRemoteBrowser()) {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
+            isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
+        }else {
+        	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"MM/dd/yyyy");
+            isDate1OlderThanDate2(updateDate,"MM/dd/yyyy",toDate2,"dd/MM/yy");
+        }
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        driver.sleep(3);
+        networkPage.clickHeaderName();
+        driver.sleep(3);
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String name0 = networkPage.getNcolumnMrow(1, 0);
+        String name1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(name0,name1);
+        String namen1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namen = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namen1,namen);
+        networkPage.clickHeaderName();
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String namez = networkPage.getNcolumnMrow(1, 0);
+        String namez1 = networkPage.getNcolumnMrow(1, 1);
+        assertAlphabeticalOrder(namez1,namez);
+        String namea1 = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-2);
+        String namea = networkPage.getNcolumnMrow(1, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(namea,namea1);
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        driver.sleep(3);
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String description0 = networkPage.getNcolumnMrow(3, 0);
+        String description1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(description0,description1);
+        String deescriptionn1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptionn = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(deescriptionn1,descriptionn);
+        networkPage.clickHeaderDescription();
+        driver.sleep(3);
+        networkPage.clickButtonLoadAll();
+        driver.sleep(3);
+        String descriptionz = networkPage.getNcolumnMrow(3, 0);
+        String descriptionz1 = networkPage.getNcolumnMrow(3, 1);
+        assertAlphabeticalOrder(descriptionz1,descriptionz);
+        String descriptiona1 = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-2);
+        String descriptiona = networkPage.getNcolumnMrow(3, networkPage.getNumberRowsInTable()-1);
+        assertAlphabeticalOrder(descriptiona,descriptiona1);
+        isMenuItemEndUsersVisible();
+        networkPage.clickMenuItemEndUsers();
+        isMenuItemCustomersVisible();
+        networkPage.clickMenuItemCustomers();
+        driver.sleep(3);
+        String searchWord = "Wilson";
+        networkPage.setWordFilter(searchWord);
+        driver.sleep(3);
+        String name = networkPage.getNcolumnMrow(1, 0);
+        assertTrue("The filter for words did not work properly",name.contains(searchWord));
         
      }
     
@@ -130,4 +218,16 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
           assertTrue("Menu item Owners is not visible",
                   networkPage.isMenuItemOwnersVisible());
           }
+    
+    public void isDate1OlderThanDate2(String date1, String format1, String date2, String format2){
+    	assertTrue("Date1 "+date1+" is older than date2 "+date2+" so it is not true",WebDriverUtils.dateCompareTo(date1, format1, date2, format2)<=0);
+    }
+    
+    public void assertAlphabeticalOrder(String s1, String s2) {
+    	if(!s1.equals("") && s2.equals("")) {
+    		assertTrue("These strings are in the correct alphabetical order", true);
+    	}else {
+        	assertTrue("These strings are not in the correct alphabetical order",s1.compareTo(s2)<=0);
+    	}
+    }
 }

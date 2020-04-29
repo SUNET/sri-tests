@@ -142,6 +142,7 @@ static Logger log = Logger.getLogger(CommunityPage.class);
     	if(isCreationDateVisible()) {
     		WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(0);
     		date = creationDate.getText();
+    		date = date.replace("Created: ", "");
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End getCreationDate method");
@@ -153,8 +154,9 @@ static Logger log = Logger.getLogger(CommunityPage.class);
                 + " - Start getUpdateDate method");
     	String date = "";
     	if(isUpdateDateVisible()) {
-    		WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(2);
+    		WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(1);
     		date = creationDate.getText();
+    		date = date.replace("Last update: ", "");
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End getUpdateDate method");
