@@ -1,5 +1,10 @@
 package com.emergya.pageObjects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.apache.log4j.Logger;
 import com.emergya.selenium.pageObject.*;
 
@@ -31,10 +36,12 @@ public class NewOrganization extends BasePageObject {
     
     private static final String NEWORGANIZATION = "NewOrganization";
     private static final String ORGANIZATIONAME = "OrganizationName";
+    private static final String ORGANIZATIONNUMBER =  "OrganizationNumber";
     private static final String ORGANIZATIONTYPE = "OrganizationType";
     private static final String ORGANIZATIONTYPE1 = "OrganizationType1";
     private static final String AFFILIATION = "Affiation";
     private static final String ORGANIZATIONID = "OrganizationID";
+    private static final String PARENTORGANIZATIONID = "parentOrganizationID";
     private static final String ORGANIZATIONDESCRIPTION = "Description";
     private static final String ORGANIZATIONWEBSITE = "OrganizationWebsite";
     private static final String ADDNEWADDRESS = "AddNewAdress";
@@ -47,7 +54,15 @@ public class NewOrganization extends BasePageObject {
     private static final String DELETEBUTTON = "DeleteButton";
     private static final String EDITBUTTON = "EditButton";
     private static final String PROVIDERAFFILICATION = "providerAffiliation";
-
+    private static final String AFFILIATIONCHECKED = "AffiliationSelected";
+    private static String STREET_N = "//input[@name='addresses[{n}].street']";
+    private static String POSTALCODE_N = "//input[@name='addresses[{n}].postal_code']";
+    private static String POSTALAREA_N = "//input[@name='addresses[{n}].postal_area']";
+    private static String PHONEADDRESS_N = "//input[@name='addresses[{n}].phone']";
+    private static final String CONTACTSROWS = "contactsRow";
+    private static String CONTACTSFIELD = "div";
+    private static final String WORKLOG = "worklog";
+    
     /**
      * Constructor method
      * @param driver selenium webdriver
@@ -92,7 +107,24 @@ public class NewOrganization extends BasePageObject {
                 + "]- End organizationNameVisible method");
 
         return this.isElementVisibleByXPath(ORGANIZATIONAME);
-    }  
+    } 
+    
+    public String getOrganizationName() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getOrganizationName method");
+    	String name = "";
+    	if(this.organizationNameVisible()) {
+    		name = this.getElementByXPath(ORGANIZATIONAME).getAttribute("value");
+    	}else {
+    		log.error("Field Name is not visible");
+    		throw new NoSuchElementException();
+    	}
+    	
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getOrganizationName method");
+        return name;
+    }
+    
     
  // Description name field
     public void organizationDescription(String stringSearch) {
@@ -108,7 +140,25 @@ public class NewOrganization extends BasePageObject {
                 "[log-" + this.getClass().getSimpleName() + "]- End organizationName -["
                         + this.getClass().getSimpleName() + "- method]");
     }
+    
+    
+    public String getOrganizationDescription() {
+        log.info("[log-" + this.getClass().getSimpleName()
+                + "]- Start getOrganizationDescription -[" + this.getClass().getSimpleName()
+                + "- method]");
+        String description = "";
+        if ((organizationDescriptionVisible())) {
+            description = this.getElementByXPath(ORGANIZATIONDESCRIPTION).getText();
+        }else {
+    		log.error("Field Description is not visible");
+    		throw new NoSuchElementException();
+    	}
 
+        log.info(
+                "[log-" + this.getClass().getSimpleName() + "]- End getOrganizationDescription -["
+                        + this.getClass().getSimpleName() + "- method]");
+        return description;
+    }
     
  // Check if Description is visible
     public boolean organizationDescriptionVisible() {
@@ -140,13 +190,29 @@ public class NewOrganization extends BasePageObject {
             		WebDriverUtils.clickButtonSafari(driver,element1);
             	}
             }
-           // this.getElementByXPath(ORGANIZATIONTYPE).sendKeys(stringSearch);
-      
 
         log.info(
                 "[log-" + this.getClass().getSimpleName() + "]- End organizationName -["
                         + this.getClass().getSimpleName() + "- method]");
     }
+    
+    public String getOrganizationType() {
+    	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start organizationTypeVisible method");
+    	String type = "";
+    	if(this.organizationTypeVisible()) {
+    		type = WebDriverUtils.getSelectCurrentItem(this, ORGANIZATIONTYPE);
+    	}else {
+    		log.error("Field Type is not visible");
+    		throw new NoSuchElementException();
+    	}
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End organizationTypeVisible method");
+
+        return type;
+
+    }
+    
  // Check if OrganizationType is visible
     public boolean organizationTypeVisible() {
         log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -181,8 +247,22 @@ public class NewOrganization extends BasePageObject {
                 	}
                 }
                 driver.sleep(2);
-       
-        }     
+        }
+        
+        public List<String> getAffiliationChecked(){
+        	List<String> listItems = new ArrayList<String>();
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getAffiliationChecked method");
+            List<WebElement> items = this.getElementsByXPath(AFFILIATIONCHECKED);
+            for(WebElement item: items){
+            	String textItem = item.getText();
+            	listItems.add(textItem);
+            }
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getAffiliationChecked method");
+            return listItems;
+        			
+        }
         
         //Check if organization ID is visible
         public boolean organizationIDVisible() {
@@ -209,6 +289,25 @@ public class NewOrganization extends BasePageObject {
                             + this.getClass().getSimpleName() + "- method]");
         }
         
+        // Organization ID field
+        public String getOrganizationID() {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start organizationID -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            String organizationID = "";
+            if (organizationIDVisible()) {
+                organizationID = this.getElementByXPath(ORGANIZATIONID).getAttribute("value");
+            }else{
+        		log.error("Field Organization ID is not visible");
+        		throw new NoSuchElementException();
+            }
+
+            log.info(
+                    "[log-" + this.getClass().getSimpleName() + "]- End organizationID -["
+                            + this.getClass().getSimpleName() + "- method]");
+            return organizationID;
+        }
+        
      // Website field
         public void organizationWebsite(String stringSearch) {
             log.info("[log-" + this.getClass().getSimpleName()
@@ -232,7 +331,45 @@ public class NewOrganization extends BasePageObject {
                     + "]- End organizationWebsiteVisible method");
 
             return this.isElementVisibleByXPath(ORGANIZATIONWEBSITE);
-        }  
+        } 
+        
+        
+        // Website field
+        public String getOrganizationWebsite() {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start getOrganizationWebsite -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            String website = "";
+            if ((organizationWebsiteVisible())) {
+                website = this.getElementByXPath(ORGANIZATIONWEBSITE).getAttribute("value");
+            }else {
+            	log.error("Field Website is not available");
+            	throw new NoSuchElementException();
+            }
+
+            log.info(
+                    "[log-" + this.getClass().getSimpleName() + "]- End getOrganizationWebsite -["
+                            + this.getClass().getSimpleName() + "- method]");
+            return website;
+        }
+        
+        public String getParentOrganizationID() {
+        	log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start getParentOrganizationID -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            String parentOrganizationID = "";
+            if (this.isElementVisibleByXPath(PARENTORGANIZATIONID)) {
+                parentOrganizationID = this.getElementByXPath(PARENTORGANIZATIONID).getAttribute("value");;
+            }else {
+            	log.error("Field Website is not available");
+            	throw new NoSuchElementException();
+            }
+
+            log.info(
+                    "[log-" + this.getClass().getSimpleName() + "]- End getParentOrganizationID -["
+                            + this.getClass().getSimpleName() + "- method]");
+            return parentOrganizationID;
+        }
 
         //Add new Adress
         public void AddNewAdress() {
@@ -277,6 +414,18 @@ public class NewOrganization extends BasePageObject {
                             + this.getClass().getSimpleName() + "- method]");
         }
         
+        public String getOrganizationStreetN(Integer n) {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start getOrganizationStreet -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            String xpath = STREET_N.replace("{n}", n.toString());
+        	String organizationStreet = driver.findElementByXPath(xpath).getAttribute("value");
+            log.info(
+                    "[log-" + this.getClass().getSimpleName() + "]- End getOrganizationStreet -["
+                            + this.getClass().getSimpleName() + "- method]");
+            return organizationStreet;
+        }
+        
      // Check Street Field
         public boolean StreetVisible() {
             log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -300,6 +449,18 @@ public class NewOrganization extends BasePageObject {
             log.info(
                     "[log-" + this.getClass().getSimpleName() + "]- End PostalCode -["
                             + this.getClass().getSimpleName() + "- method]");
+        }
+        
+        public String getOrganizationPostalCodeN(Integer n) {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start getOrganizationPostalCodeN -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            String xpath = POSTALCODE_N.replace("{n}", n.toString());
+            String postalCode = driver.findElementByXPath(xpath).getAttribute("value");
+            log.info(
+                    "[log-" + this.getClass().getSimpleName() + "]- End getOrganizationPostalCodeN -["
+                            + this.getClass().getSimpleName() + "- method]");
+            return postalCode;
         }
         
      // Check Postal Code
@@ -327,6 +488,18 @@ public class NewOrganization extends BasePageObject {
                             + this.getClass().getSimpleName() + "- method]");
         }
         
+        public String getOrganizationPostalAreaN(Integer n) {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start getOrganizationPostalAreaN -[" + this.getClass().getSimpleName()
+                    + "- method]");
+            String xpath = POSTALAREA_N.replace("{n}", n.toString());
+            String postalArea = driver.findElementByXPath(xpath).getAttribute("value");
+            log.info(
+                    "[log-" + this.getClass().getSimpleName() + "]- End getOrganizationPostalAreaN -["
+                            + this.getClass().getSimpleName() + "- method]");
+            return postalArea;
+        }
+        
      // Check Area Code
         public boolean PostalAreaVisible() {
             log.info("[log-pageObjects]" + this.getClass().getSimpleName()
@@ -352,17 +525,87 @@ public class NewOrganization extends BasePageObject {
                             + this.getClass().getSimpleName() + "- method]");
         }
         
+        public String getOrganizationAddressPhoneN(Integer n) {
+            log.info("[log-" + this.getClass().getSimpleName()
+                    + "]- Start Phone -[" + this.getClass().getSimpleName()
+                    + "- method]");
+        	String xpath = PHONEADDRESS_N.replace("{n}", n.toString());
+            String addressPhone = driver.findElementByXPath(xpath).getAttribute("value");
+            log.info(
+                    "[log-" + this.getClass().getSimpleName() + "]- End PostalArea -["
+                            + this.getClass().getSimpleName() + "- method]");
+            return addressPhone;
+        }
+        
      // Check Phone Field
         public boolean PhoneVisible() {
             log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                     + "]- Start PhoneVisible method");
             log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                     + "]- End PhoneVisible method");
-
             return this.isElementVisibleByXPath(PHONE);
         }  
         
-      
+        
+        public Integer getOrganizationNumbersContact() {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getOrganizationContactN method");
+            Integer n = this.getElementsByXPath(CONTACTSROWS).size();
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getOrganizationContactN method");
+            return n;
+        }
+        
+        public WebElement getOrganizationContactN(Integer n) {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getOrganizationContactN method");
+            WebElement row = this.getElementsByXPath(CONTACTSROWS).get(n);
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getOrganizationContactN method");
+            return row;
+        }
+        
+        public String getContactNameRowN(Integer n) {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getContactNameRowN method");
+            WebElement row = getOrganizationContactN(n);
+            String name = row.findElements(By.xpath(CONTACTSFIELD)).get(0).getText();
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getContactNameRowN method");
+            return name;
+        }
+        
+        public String getContactRoleRowN(Integer n) {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getContactNameRowN method");
+            WebElement row = getOrganizationContactN(n);
+            String role = row.findElements(By.xpath(CONTACTSFIELD)).get(1).getText();
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getContactNameRowN method");
+            return role;
+        }
+        
+        public List<String> getContactEmailsRowN(Integer n) {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getContactNameRowN method");
+            WebElement row = getOrganizationContactN(n);
+            String data = row.findElements(By.xpath(CONTACTSFIELD)).get(2).getText();
+            List<String> mail = Arrays.asList(data.split("\n"));
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getContactNameRowN method");
+            return mail;
+        }
+        
+        public List<String> getContactPhoneRowN(Integer n) {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getContactNameRowN method");
+            WebElement row = getOrganizationContactN(n);
+            String phones = row.findElements(By.xpath(CONTACTSFIELD)).get(3).getText();
+            List<String> lphones= Arrays.asList(phones.split("\n"));
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getContactNameRowN method");
+            return lphones;
+        }
         //Save
         public void SaveButton() {
             log.info("[log-" + this.getClass().getSimpleName()
@@ -501,4 +744,211 @@ public class NewOrganization extends BasePageObject {
             }
             driver.sleep(2);
         }
+        
+        public boolean isOrganizationNumberVisible() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isOrganizationNumberVisible method");
+        
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isOrganizationNumberVisible method");
+
+        return this.isElementVisibleByXPath(ORGANIZATIONNUMBER);
+        }
+        
+        public String getOrganizationNumber() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start isOrganizationNumberVisible method");
+        String organizationNumber = "";
+        if(this.isOrganizationNumberVisible()) {
+        	organizationNumber = this.getElementByXPath(ORGANIZATIONNUMBER).getAttribute("value");
+        }else {
+        	log.error("Field Organization Number is not visible");
+        	throw new NoSuchElementException();
+        }
+        
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End isOrganizationNumberVisible method");
+
+        return organizationNumber;
+        }
+        
+        public void setOrganizationNumber(String organizationNumber) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setOrganizationNumber method");
+        if(this.isOrganizationNumberVisible()) {
+        	this.getElementByXPath(ORGANIZATIONNUMBER).sendKeys(organizationNumber);
+        }
+        
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setOrganizationNumber method");
+        }
+       
+        public boolean isOrganizationWorklogVisible() {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start isOrganizationWorklogVisible method");
+            
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End isOrganizationWorklogVisible method");
+
+            return this.isElementVisibleById(WORKLOG);
+            }
+            
+            public String getOrganizationWorklogN(Integer n) {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start getOrganizationWorklog method");
+            String organizationNumber = "";
+            if(this.isOrganizationWorklogVisible()) {
+            	organizationNumber = this.getElementsByXPath(WORKLOG).get(n).getText();
+            }else {
+            	log.error("Field worklog is not visible");
+            	throw new NoSuchElementException();
+            }
+            
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End getOrganizationWorklog method");
+
+            return organizationNumber;
+            }
+            
+            public Integer getNumberOfWorklogsSaved() {
+                log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                        + "]- Start getNumberOfWorklogsSaved method");
+                Integer n = 0;
+                if(this.isOrganizationWorklogVisible()) {
+                	n = this.getElementsByXPath(WORKLOG).size();
+                }else {
+                	log.error("Field worklog is not visible");
+                	throw new NoSuchElementException();
+                }
+                
+                log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                        + "]- End getNumberOfWorklogsSaved method");
+
+                return n;
+            }
+            
+            public void setOrganizationWorklog(String worklog) {
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- Start setOrganizationWorklog method");
+            if(this.isOrganizationWorklogVisible()) {
+            	this.getElementById(WORKLOG).sendKeys(worklog);
+            }
+            
+            log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                    + "]- End setOrganizationWorklog method");
+            }
+            
+            public boolean equals(String name, String description, String type, List<String> affiliation,
+            		String organizationID, String parentOrganizationID, String website, String organizationNumber,
+            		List<String> streets, List<String> postalcodes, List<String> postalareas, List<String> phones,
+            		List<List<String>> contacts, List<String> worklog) {
+            	boolean result = this.getOrganizationName().equals(name);
+            	if(!result) {
+            		return false;
+            	}
+            	result &= this.getOrganizationDescription().equals(description);
+            	if(!result) {
+            		return false;
+            	}
+            	result &= this.getOrganizationType().contentEquals(type);
+            	if(!result) {
+            		return false;
+            	}
+            	result &= this.getAffiliationChecked().containsAll(affiliation);
+            	if(!result) {
+            		return false;
+            	}
+            	result &= this.getOrganizationID().equals(organizationID);
+            	if(!result) {
+            		return false;
+            	}
+            	result &= this.getParentOrganizationID().equals(parentOrganizationID);
+            	if(!result) {
+            		return false;
+            	}
+            	result &= this.getOrganizationWebsite().equals(website);
+            	if(!result) {
+            		return false;
+            	}
+            	result &= this.getOrganizationNumber().equals(organizationNumber);
+            	if(!result) {
+            		return false;
+            	}
+            	boolean explore = true;
+            	Integer n = 0;
+            	Integer nStreets = streets.size();
+            	while(explore) {
+            		try {
+            			String street = this.getOrganizationStreetN(n);
+            			result &= streets.get(n).contentEquals(street);
+            			if(!result) {
+            				return false;
+            			}
+            			n++;
+            		}catch(org.openqa.selenium.NoSuchElementException e) {
+            			explore = false;
+            		}
+            	}
+            	if(n!=nStreets) {
+            		return false;
+            	}
+            	
+            	explore = true;
+            	n = 0;
+            	Integer nPostalCodes = postalcodes.size();
+            	while(explore) {
+            		try {
+            			String postalcode = this.getOrganizationPostalCodeN(n);
+            			result &= postalcodes.get(n).contentEquals(postalcode);
+            			if(!result) {
+            				return false;
+            			}
+            			n++;
+            		}catch(org.openqa.selenium.NoSuchElementException e) {
+            			explore = false;
+            		}
+            	}
+            	if(n!=nPostalCodes) {
+            		return false;
+            	}
+            	
+            	explore = true;
+            	n = 0;
+            	Integer nPostalAreas = postalareas.size();
+            	while(explore) {
+            		try {
+            			String postalarea = this.getOrganizationPostalAreaN(n);
+            			result &= postalareas.get(n).contentEquals(postalarea);
+            			if(!result) {
+            				return false;
+            			}
+            			n++;
+            		}catch(org.openqa.selenium.NoSuchElementException e) {
+            			explore = false;
+            		}
+            	}
+            	if(n!=nPostalAreas) {
+            		return false;
+            	}
+            	
+            	explore = true;
+            	n = 0;
+            	Integer nPhones = phones.size();
+            	while(explore) {
+            		try {
+            			String phone = this.getOrganizationAddressPhoneN(n);
+            			result &= phones.get(n).contentEquals(phone);
+            			if(!result) {
+            				return false;
+            			}
+            			n++;
+            		}catch(org.openqa.selenium.NoSuchElementException e) {
+            			explore = false;
+            		}
+            	}
+            	if(n!=nPhones) {
+            		return false;
+            	}
+            	return result;
+            }
    }   

@@ -18,8 +18,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.emergya.selenium.pageObject.BasePageObject;
 import com.emergya.selenium.utils.Initialization;
 import com.sun.media.Log;
 
@@ -28,6 +30,13 @@ public class WebDriverUtils {
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 	    String browserName = cap.getBrowserName().toLowerCase();
 	    return browserName;
+	}
+	
+	public static String getSelectCurrentItem(BasePageObject pageObject, String xpath) {
+		WebElement selectWebElement = pageObject.getElementByXPath(xpath);
+		Select select = new Select(selectWebElement);
+		String type = select.getFirstSelectedOption().getText();
+		return type;
 	}
 	
 	public static void clickButtonSafari(WebDriver driver, WebElement element) {

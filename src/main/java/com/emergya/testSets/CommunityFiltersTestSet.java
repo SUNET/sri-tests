@@ -3,6 +3,8 @@ package com.emergya.testSets;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -462,7 +464,6 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         //Go to community page
         communityPage = sriHome.clickOnCommunity();    
         driver.sleep(3);
-
         
         // Click on item contact in the menu
         //isOrganizationItemVisible();
