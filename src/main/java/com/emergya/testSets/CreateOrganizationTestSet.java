@@ -3,6 +3,8 @@ package com.emergya.testSets;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -81,7 +83,14 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        isReady(newOrganization = new NewOrganization(driver));
        newOrganization.organizationID(organizationID);
        driver.sleep(1);
-
+       
+       
+       String parentOrganizationID = "12121212r";
+       newOrganization.setParentOrganization(parentOrganizationID);
+       
+       String organizationNumber = "A23";
+       newOrganization.setOrganizationNumber(organizationNumber);
+       
        //Organization Website
        String organizationWebsite = "www.emergya.com/es";
        isReady (newOrganization = new NewOrganization(driver));
@@ -92,30 +101,54 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        newOrganization.AddNewAdress();
        driver.sleep(1);
 
-      //Street       
+      //Street
+       List<String> streets = new ArrayList<String>();
        String Street = "Luis de Morales 32, 5º";
+       streets.add(Street);
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.Street(Street);       
+       newOrganization.Street(Street,0);       
        driver.sleep(2);
 
        //Postal Code
+       List<String> postalcodes = new ArrayList<String>();
        String postalCode = "41018";
+       postalcodes.add(postalCode);
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.PostalCode(postalCode);  
+       newOrganization.PostalCode(postalCode,0);  
        driver.sleep(1);
 
        //Postal Area
+       List<String> postalareas = new ArrayList<String>();
        String postalArea = "Sevilla";
+       postalareas.add(postalArea);
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.PostaArea(postalArea); 
+       newOrganization.PostalArea(postalArea,0); 
        driver.sleep(2);
 
        //Phone
+       List<String> phones = new ArrayList<String>();
        String Phone = "954 51 75 77";
+       phones.add(Phone);
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.Phone(Phone); 
+       newOrganization.Phone(Phone,0); 
        driver.sleep(1);
-
+       String contact_name = "Nonnah Bottini";
+       newOrganization.setContact(contact_name);
+       List<Object> contact1 = new ArrayList<Object>();
+       contact1.add("Nonnah Bottini");
+       contact1.add("Abuse");
+       List<String> emails = Arrays.asList("nbottinidv@de.vu","Work");
+       contact1.add(emails);
+       List<String> contact_phones = Arrays.asList("266-755-0405","793-796-2217");
+       contact1.add(contact_phones);
+       List<List<Object>> contacts = new ArrayList<List<Object>>();
+       contacts.add(contact1);
+       String worklog = "Worklog test";
+       List<String> worklogs = new ArrayList<String>();
+       worklogs.add(worklog);
+       isOrganizationFirstWorklogVisible();
+       newOrganization.setOrganizationFirstWorklog(worklog);
+       String parentOrganization = "Myworks - 12121212r";
        //Save
        isSaveButtonVisible();
        newOrganization.SaveButton();
@@ -135,6 +168,11 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        
        isEditButtonVisible();
        newOrganization.clickEditButton();
+       List<String> affiliation = Arrays.asList("End user");
+       boolean res = newOrganization.equals(organizationName, organizationDescription, "Student network", affiliation, 
+    		   organizationID, parentOrganization, organizationWebsite, organizationNumber, streets, 
+    		   postalcodes, postalareas, phones, contacts, worklogs);
+       assertTrue("The details does not display the same fields as when created", res);
        
        String organizationName2 = "44";
        isReady (newOrganization = new NewOrganization(driver));
@@ -171,30 +209,62 @@ public class CreateOrganizationTestSet extends BasicTestSet {
       //Street       
        String Street2 = "Calle";
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.Street(Street2);       
+       newOrganization.Street(Street2,0);       
        driver.sleep(2);
-
+       streets.clear();
+       streets.add(Street+Street2);
        //Postal Code
        String postalCode2 = "2";
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.PostalCode(postalCode2);  
+       newOrganization.PostalCode(postalCode2,0);  
        driver.sleep(1);
-
+       postalcodes.clear();
+       postalcodes.add(postalCode+postalCode2);
        //Postal Area
        String postalArea2 = "(SEVILLA)";
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.PostaArea(postalArea2); 
+       newOrganization.PostalArea(postalArea2,0); 
        driver.sleep(2);
-
+       postalareas.clear();
+       postalareas.add(postalArea+postalArea2);
        //Phone
        String Phone2 = "11";
        isReady(newOrganization = new NewOrganization(driver));
-       newOrganization.Phone(Phone2); 
+       newOrganization.Phone(Phone2,0); 
        driver.sleep(1);
-       
+       phones.clear();
+       phones.add(Phone+Phone2);
+       newOrganization.AddNewAdress();
+       String street3 = "Fake St";
+       newOrganization.Street(street3, 1);
+       streets.add(street3);
+       String postalCode3 = "40303";
+       newOrganization.PostalCode(postalCode3, 1);
+       postalcodes.add(postalCode3);
+       String postalArea3 = "NOWHERE";
+       newOrganization.PostalArea(postalArea3, 1);
+       postalareas.add(postalArea3);
+       String Phone3="954003030";
+       newOrganization.Phone(Phone3, 1);
+       phones.add(Phone3);
        isProviderAffiliationVisible();
        newOrganization.clickProviderAffiliationButton();
-       
+       List<String> affiliation2 = Arrays.asList("Provider");
+       List<Object> contact2 = new ArrayList<Object>();
+       contact2.add("Arte Pollie");
+       contact2.add("Developer III");
+       List<String> mail = Arrays.asList("apollie24@blog.com","Work");
+       contact2.add(mail);
+       contact_phones = Arrays.asList("707-800-5688","924-757-2869");
+       contact2.add(contact_phones);
+       newOrganization.setEditContact((String) contact2.get(0));
+       contacts.clear();
+       contacts.add(contact2);
+       contacts.add(contact1);
+       String worklog2 = "Another Comment";
+       newOrganization.setOrganizationWorklog(worklog2);
+       newOrganization.clickSendButton();
+       worklogs.add(worklog2);
        isSaveButtonVisible();
        newOrganization.SaveButton();
        
@@ -205,6 +275,12 @@ public class CreateOrganizationTestSet extends BasicTestSet {
        isOrganizationVisible(organizationName);
        newOrganization.ClickOnTest();
        
+       newOrganization.clickEditButton();
+       res = newOrganization.equals(organizationName + organizationName2, 
+    		   organizationDescription + organizationDescription2, "Student network", 
+    		   affiliation2, organizationID + organizationID2, parentOrganization, organizationWebsite + organizationWebsite2
+    		   , organizationNumber, streets, postalcodes, postalareas, phones, contacts, worklogs);
+       assertTrue("The details does not display the same fields after being edited", res);
        //delete the test
        isDeleteButtonVisible();
        newOrganization.DeleteButton();
@@ -257,4 +333,18 @@ public class CreateOrganizationTestSet extends BasicTestSet {
         }
         assertTrue("Button Provider in affiliation is not visible",newOrganization.isProviderAffiliationVisible());
     }
+    
+    public void SendButtonVisible() {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+        assertTrue("Button Edit in affiliation is not visible",newOrganization.SendButtonVisible());
+    }
+    
+    public void isOrganizationFirstWorklogVisible() {
+        if (newOrganization == null) {
+            newOrganization = new NewOrganization(driver);
+        }
+        assertTrue("Worklog is not visible",newOrganization.isOrganizationFirstWorklogVisible());
+        }
    }
