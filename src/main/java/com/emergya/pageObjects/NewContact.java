@@ -1,5 +1,9 @@
 package com.emergya.pageObjects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import com.emergya.selenium.pageObject.*;
 
@@ -48,7 +52,16 @@ public class NewContact extends BasePageObject {
     private static final String  EDITBUTTON = "editContant";
     private static final String  SENDBUTTON = "clickSend";
     private static final String  DELETEBUTTON = "clickDelete";
-
+    private static final String  WORKLOGENTRY = "worklogEntry";
+    private static final String  BUTTONSSAVE = "buttonsSave";
+    private static String  MAIL_ADDRESS = "//input[@name='emails[{n}].email']";
+    private static String  MAIL_TYPE = "//select[@name='emails[{n}].type']";
+    private static String  PHONE_NUMBER = "//input[@name='phones[{n}].phone']";
+    private static String  PHONE_TYPE = "//select[@name='phones[{n}].type']";
+    private static String  ORGANIZATION_ROLE = "//select[@name='organizations[{n}].role']";
+    private static String  ORGANIZATION_ID = "//input[@name='organizations[{n}].organization_id']";
+    private static String  ORGANIZATION_NAME = "//select[@name='organizations[{n}].organization']";
+    
     /**
      * Constructor method
      * @param driver selenium webdriver
@@ -500,4 +513,336 @@ public class NewContact extends BasePageObject {
                 + "]- End isButtonDeteleVisible method");
         return this.isElementVisibleByXPath(DELETEBUTTON);
     }
+    
+    public String getName() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getName method");
+    	String name = this.getElementByXPath(NEWCONTACT).getAttribute("value");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getName method");
+        return name;
+    }
+    
+    public String getLastName() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getLastName method");
+    	String lastName = this.getElementByXPath(LASTNAMEINPUT).getAttribute("value");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getLastName method");
+        return lastName;
+    }
+    
+    public String getNotes() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getNotes method");
+    	String notes = this.getElementByXPath(ADDNOTESTEXT).getText();
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getNotes method");
+        return notes;
+    }
+    
+    public String getTypeTitle() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getTypeTitle method");
+    	String typeTitle = this.getElementByXPath(TYPETITLE).getAttribute("value");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getTypeTitle method");
+        return typeTitle;
+    }
+    
+    public String getType() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getType method");
+    	String type = WebDriverUtils.getSelectCurrentItem(this, SELECTTYPE);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getType method");
+        return type;
+    }
+    
+    public String getMailAddressN(Integer n) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getType method");
+        String xpath = MAIL_ADDRESS.replace("{n}", n.toString());
+        String mailAddress = driver.findElementByXPath(xpath).getAttribute("value");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getType method");
+        return mailAddress;
+    }
+    
+    public String getMailTypeN(Integer n) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getMailTypeN method");
+        String xpath = MAIL_TYPE.replace("{n}", n.toString());
+        WebElement element_mail_type = driver.findElementByXPath(xpath);
+        Select select_mail_type = new Select(element_mail_type);
+        String mail_type = select_mail_type.getFirstSelectedOption().getText();
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getMailTypeN method");
+        return mail_type;
+    }
+    
+    public List<String> getMailN(Integer n){
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getMailN method");
+    	String email_address = this.getMailAddressN(n);
+    	String email_type = this.getMailTypeN(n);
+    	List<String> mail = Arrays.asList(email_address, email_type);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getMailN method");
+        return mail;	
+    }
+    
+    public void setMailAddressN(Integer n, String emailAddress) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setMailAddressN method");
+        String xpath = MAIL_ADDRESS.replace("{n}", n.toString());
+        driver.findElementByXPath(xpath).sendKeys(emailAddress);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setMailAddressN method");
+        }
+    
+    public void setMailTypeN(Integer n, String emailType) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setMailTypeN method");
+        String xpath = MAIL_TYPE.replace("{n}", n.toString());
+        WebElement element_mail_type = driver.findElementByXPath(xpath);
+        Select select_mail_type = new Select(element_mail_type);
+        select_mail_type.selectByVisibleText(emailType);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setMailTypeN method");
+    }
+    
+    public String getPhoneNumberN(Integer n) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getPhoneNumberN method");
+        String xpath = PHONE_NUMBER.replace("{n}", n.toString());
+        String phoneNumber = driver.findElementByXPath(xpath).getAttribute("value");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getPhoneNumberN method");
+        return phoneNumber;
+    }
+    
+    public void setPhoneTypeN(Integer n, String type) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setPhoneTypeN method");
+        String xpath = PHONE_TYPE.replace("{n}", n.toString());
+        WebElement element_phone_type = driver.findElementByXPath(xpath);
+        Select select_phone_type = new Select(element_phone_type);
+        select_phone_type.selectByVisibleText(type);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setPhoneTypeN method");
+    }
+    
+    public void setPhoneNumberN(Integer n, String phone) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start setPhoneNumberN method");
+        String xpath = PHONE_NUMBER.replace("{n}", n.toString());
+        driver.findElementByXPath(xpath).sendKeys(phone);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End setPhoneNumberN method");
+    }
+    
+    public String getPhoneTypeN(Integer n) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getPhoneTypeN method");
+        String xpath = PHONE_TYPE.replace("{n}", n.toString());
+        WebElement element_phone_type = driver.findElementByXPath(xpath);
+        Select select_phone_type = new Select(element_phone_type);
+        String phone_type = select_phone_type.getFirstSelectedOption().getText();
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getPhoneTypeN method");
+        return phone_type;
+    }
+    
+    public List<String> getPhoneN(Integer n){
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getPhoneN method");
+    	String phone_number = this.getPhoneNumberN(n);
+    	String phone_type = this.getPhoneTypeN(n);
+    	List<String> phone = Arrays.asList(phone_number, phone_type);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getPhoneN method");
+        return phone;	
+    }
+    
+    public String getFingerprint() {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getFingerprint method");
+        String fingerprint = this.getElementByXPath(PGPFINGERPRINT).getAttribute("value");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getFingerprint method");
+        return fingerprint;
+    }
+    
+    public String getOrganizationRoleN(Integer n) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getOrganizationRoleN method");
+        String xpath = ORGANIZATION_ROLE.replace("{n}", n.toString());
+        WebElement element_organization_role = driver.findElementByXPath(xpath);
+        Select select_organization_role = new Select(element_organization_role);
+        String organization_role = select_organization_role.getFirstSelectedOption().getText();
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getOrganizationRoleN method");
+        return organization_role;
+    }
+    
+    public String getOrganizationIdN(Integer n) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getOrganizationIdN method");
+        String xpath = ORGANIZATION_ID.replace("{n}", n.toString());
+        String organizationID = driver.findElementByXPath(xpath).getAttribute("value");
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getOrganizationIdN method");
+        return organizationID;
+    }
+    
+    public String getOrganizationNameN(Integer n) {
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getPhoneTypeN method");
+        String xpath = ORGANIZATION_NAME.replace("{n}", n.toString());
+        WebElement element_organization_name = driver.findElementByXPath(xpath);
+        Select select_organization_name = new Select(element_organization_name);
+        String organization_name = select_organization_name.getFirstSelectedOption().getText();
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getPhoneTypeN method");
+        return organization_name;
+    }
+    
+    public List<String> getOrganizationsN(Integer n){
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getPhoneN method");
+    	String organization_role = this.getOrganizationRoleN(n);
+    	String organization_id = this.getOrganizationIdN(n);
+    	String organization_name = this.getOrganizationNameN(n);
+    	List<String> organization = Arrays.asList(organization_role, organization_id, organization_name);
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getPhoneN method");
+        return organization;	
+    }
+    
+    public List<String> getWorklogs(){
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- Start getWorklogs method");
+    	List<WebElement> worklogs = this.getElementsByXPath(WORKLOGENTRY);
+    	List<String> logs = new ArrayList<String>();
+    	for(WebElement worklog: worklogs){
+    		logs.add(worklog.getText());
+    	}
+        log.info("[log-pageObjects]" + this.getClass().getSimpleName()
+                + "]- End getWorklogs method");
+        return logs;
+    }
+    
+    public boolean equals(String name, String lastName, String notes, String typeTitle, String type,
+    		List<List<String>> mails, List<List<String>> phones, String fingerprint,
+    		List<List<String>> organizations, List<String> worklogs) {
+    	driver.sleep(4);
+    	boolean result = this.getName().equals(name);
+    	if(!result) {
+    		return false;
+    	}
+    	result &= this.getLastName().equals(lastName);
+    	if(!result) {
+    		return false;
+    	}
+    	result &= this.getNotes().equals(notes);
+    	if(!result) {
+    		return false;
+    	}
+    	result &= this.getTypeTitle().equals(typeTitle);
+    	if(!result) {
+    		return false;
+    	}
+    	result &= this.getType().equals(type);
+    	if(!result) {
+    		return false;
+    	}
+    	Integer n = 0;
+    	Integer n_mails = mails.size();
+    	while(true) {
+        	try {
+        		List<String> v_mail = mails.get(n);
+        		List<String> j_mail = this.getMailN(n);
+        		result &= v_mail.get(0).equals(j_mail.get(0));
+        		if(!result) {
+        			return false;
+        		}
+        		result &= v_mail.get(1).equals(j_mail.get(1));
+        		if(!result) {
+        			return false;
+        		}
+        		n++;
+        	}catch(Exception e) {
+        		break;
+        	}
+    	}
+    	if(n!=n_mails) {
+    		return false;
+    	}
+    	n = 0;
+    	Integer n_phones = phones.size();
+    	while(true) {
+        	try {
+        		List<String> v_phones = phones.get(n);
+        		List<String> j_phones = this.getPhoneN(n);
+
+        		result &= v_phones.get(0).equals(j_phones.get(0));
+        		if(!result) {
+        			return false;
+        		}
+        		result &= v_phones.get(1).equals(j_phones.get(1));
+        		if(!result) {
+        			return false;
+        		}
+        		n++;
+        	}catch(Exception e) {
+        		break;
+        	}
+    	}
+    	if(n!=n_phones) {
+    		return false;
+    	}
+    	
+    	result &= this.getFingerprint().equals(fingerprint);
+    	if(!result) {
+    		return false;
+    	}
+    	n = 0;
+    	Integer n_organizations = organizations.size();
+    	while(true) {
+        	try {
+        		List<String> v_organizations = organizations.get(n);
+        		List<String> j_organizations = this.getOrganizationsN(n);
+        		result &= v_organizations.get(0).equals(j_organizations.get(0));
+        		if(!result) {
+        			return false;
+        		}
+        		result &= v_organizations.get(1).equals(j_organizations.get(1));
+        		if(!result) {
+        			return false;
+        		}
+        		result &= v_organizations.get(2).equals(j_organizations.get(2));
+        		if(!result) {
+        			return false;
+        		}
+        		n++;
+        	}catch(Exception e) {
+        		break;
+        	}
+    	}
+    	if(n!=n_organizations) {
+    		return false;
+    	}
+    	if(worklogs.size() != this.getWorklogs().size()) {
+    		return false;
+    	}
+    	for(int i=0;i<worklogs.size();i++) {
+    		result &= worklogs.get(i) != this.getWorklogs().get(i);
+    		if(!result) {
+    			return false;
+    		}
+    	}
+    	return result;
+    }
+    
  }
