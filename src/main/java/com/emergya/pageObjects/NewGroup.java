@@ -412,8 +412,6 @@ public class NewGroup extends BasePageObject {
         			return false;
         		}
         		for(int i=0;i<j_phones.size();i++) {
-        			String j_p = j_phones.get(i);
-        			String v_p = v_phones.get(i);
         			result &= j_phones.get(i).equals(v_phones.get(i));
         			if(!result) {
         				return false;

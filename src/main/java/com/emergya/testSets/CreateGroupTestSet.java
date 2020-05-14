@@ -178,7 +178,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         isInputSearchContactVisible();
         String contact_name2 = "Nonnah Bottini";
         newGroup.setSearchForContact(contact_name2);
-        String contact_organization2 = "Tave";
+        String contact_organization2 = "Tavu";
         List<String> contact2_mail1 = new ArrayList<String>();
         contact2_mail1.add("nbottinidv@de.vu");
         contact2_mail1.add("Work");
@@ -192,7 +192,9 @@ public class CreateGroupTestSet extends BasicTestSet {
         contact2.add(contact_organization2);
         contact2.add(contact2_mail);
         contact2.add(contact2_phones);
-        contacts.set(0, contact2);
+        contacts.clear();
+        contacts.add(contact2);
+        contacts.add(contact);
         driver.sleep(2);
         isCommentAreaVisible();
         String worklog2 = "This is a new comment";
@@ -213,6 +215,7 @@ public class CreateGroupTestSet extends BasicTestSet {
         isButtonEditVisible();
         newGroup.clickEdit();
         res = newGroup.equals(name, description, contacts, worklogs);
+        assertTrue("The fields don't display the info which this group was edited", res);
         isButtonDeteleVisible();
         newGroup.clickDelete();
         driver.sleep(3);
