@@ -3,6 +3,7 @@ package com.emergya.testSets;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.emergya.pageObjects.AddEntityOrganization;
+import com.emergya.pageObjects.AddEntityForNetwork;
 import com.emergya.pageObjects.AddOrganization;
 import com.emergya.pageObjects.CommunityPage;
 import com.emergya.pageObjects.Login;
@@ -81,57 +82,74 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         networkPage = sriHome.clickOnNetwork();    
         driver.sleep(3);
         // Click on item contact in the menu
-        isReady();
+        //isReady();
         Random r = new Random();
         int low = 0;
         int high = 100;
         Integer result = r.nextInt(high-low) + low;
         String user = "Test" + result;
-        addEntityOrganization = networkPage.clickAddButton();
+        addEntityForNetwork = networkPage.clickAddButton();
         driver.sleep(3);
         isFieldNameVisible();
-        addEntityOrganization.setName(user);
+        addEntityForNetwork.setName(user);
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("This is a description");
+        String description = "This is a description";
+        addEntityForNetwork.setDescription(description);
         isFieldURLVisible();
-        addEntityOrganization.setURL("http://www.elpais.es");
+        String url = "http://www.elpais.es";
+        addEntityForNetwork.setURL(url);
         isFieldWorklogVisible();
-        addEntityOrganization.setWorklog("This is a worklog");
+        String worklog1 = "This is a worklog";
+        addEntityForNetwork.setWorklog(worklog1);
+        List<String> worklogs = new ArrayList<String>();
+        worklogs.add(worklog1);
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         driver.sleep(3);
         assertTrue("Customer was not created",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
         isButtonEditVisible();
-        addEntityOrganization.clickButtonEdit();
+        addEntityForNetwork.clickButtonEdit();
+        boolean res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was created with",res);
         driver.sleep(3);
         String useredit = " EDIT";
         isFieldNameVisible();
-        addEntityOrganization.setName(useredit);
-        user = user + useredit;
+        addEntityForNetwork.setName(useredit);
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("EDIT");
+        String descriptionedit = "EDIT";
+        addEntityForNetwork.setDescription(descriptionedit);
+        description = description + descriptionedit;
         isFieldURLVisible();
-        addEntityOrganization.setURL("/com");
+        String urledit = "/com";
+        addEntityForNetwork.setURL(urledit);
+        url = url + urledit;
         isFieldTextAreaCommentVisible();
-        addEntityOrganization.setTextAreaComment("This is a new comment");
+        String worklog2 = "This is a new comment";
+        addEntityForNetwork.setTextAreaComment(worklog2);
+        worklogs.add(worklog2);
         isButtonSendVisible();
-        addEntityOrganization.clickButtonSend();
+        addEntityForNetwork.clickButtonSend();
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         driver.sleep(3);
         assertTrue("Customer was not updated",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
+        user = user + useredit;
         driver.sleep(3);
+        isButtonEditVisible();
+        addEntityForNetwork.clickButtonEdit();
+        res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was created with",res);
         isButtonDeleteVisible();
-        addEntityOrganization.clickButtonDelete();
+        addEntityForNetwork.clickButtonDelete();
         driver.sleep(3);
         assertTrue("Customer was not deleted",!networkPage.isUserVisible(user));
      }
@@ -150,51 +168,68 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         int high = 100;
         Integer result = r.nextInt(high-low) + low;
         String user = "Test" + result;
-        addEntityOrganization = networkPage.clickAddButton();
+        addEntityForNetwork = networkPage.clickAddButton();
         driver.sleep(3);
         isFieldNameVisible();
-        addEntityOrganization.setName(user);
+        addEntityForNetwork.setName(user);
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("This is a description");
+        String description = "This is a description";
+        addEntityForNetwork.setDescription(description);
         isFieldURLVisible();
-        addEntityOrganization.setURL("http://www.elpais.es");
+        String url = "http://www.elpais.es";
+        addEntityForNetwork.setURL(url);
         isFieldWorklogVisible();
-        addEntityOrganization.setWorklog("This is a worklog");
+        String worklog1 = "This is a worklog";
+        addEntityForNetwork.setWorklog(worklog1);
+        List<String> worklogs = new ArrayList<String>();
+        worklogs.add(worklog1);
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemEndUsersVisible();
         networkPage.clickMenuItemEndUsers();
         driver.sleep(3);
         assertTrue("Customer was not created",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
         isButtonEditVisible();
-        addEntityOrganization.clickButtonEdit();
+        addEntityForNetwork.clickButtonEdit();
+        boolean res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was created with",res);
         String useredit = " EDIT";
         driver.sleep(3);
         isFieldNameVisible();
-        addEntityOrganization.setName(useredit);
+        addEntityForNetwork.setName(useredit);
         user = user + useredit;
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("EDIT");
+        String descriptionedit = "EDIT";
+        addEntityForNetwork.setDescription(descriptionedit);
+        description = description + descriptionedit;
         isFieldURLVisible();
-        addEntityOrganization.setURL("/com");
+        String urledit = "/com";
+        addEntityForNetwork.setURL(urledit);
+        url = url + urledit;
         isFieldTextAreaCommentVisible();
-        addEntityOrganization.setTextAreaComment("This is a new comment");
+        String worklog2 = "This is a new comment";
+        addEntityForNetwork.setTextAreaComment(worklog2);
+        worklogs.add(worklog2);
         isButtonSendVisible();
-        addEntityOrganization.clickButtonSend();
+        addEntityForNetwork.clickButtonSend();
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemEndUsersVisible();
         networkPage.clickMenuItemEndUsers();
         driver.sleep(3);
         assertTrue("Customer was not updated",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
+        isButtonEditVisible();
+        addEntityForNetwork.clickButtonEdit();
+        res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was edited with",res);
         isButtonDeleteVisible();
-        addEntityOrganization.clickButtonDelete();
+        addEntityForNetwork.clickButtonDelete();
         driver.sleep(3);
         assertTrue("Customer was not deleted",!networkPage.isUserVisible(user));
      }   
@@ -213,51 +248,68 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         int high = 100;
         Integer result = r.nextInt(high-low) + low;
         String user = "Test" + result;
-        addEntityOrganization = networkPage.clickAddButton();
+        addEntityForNetwork = networkPage.clickAddButton();
         driver.sleep(3);
         isFieldNameVisible();
-        addEntityOrganization.setName(user);
+        addEntityForNetwork.setName(user);
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("This is a description");
+        String description = "This is a description";
+        addEntityForNetwork.setDescription(description);
         isFieldURLVisible();
-        addEntityOrganization.setURL("http://www.elpais.es");
+        String url = "http://www.elpais.es";
+        addEntityForNetwork.setURL(url);
         isFieldWorklogVisible();
-        addEntityOrganization.setWorklog("This is a worklog");
+        String worklog1 = "This is a worklog";
+        addEntityForNetwork.setWorklog(worklog1);
+        List<String> worklogs = new ArrayList<String>();
+        worklogs.add(worklog1);
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemProvidersVisible();
         networkPage.clickMenuItemProviders();
         driver.sleep(3);
         assertTrue("Customer was not created",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
         isButtonEditVisible();
-        addEntityOrganization.clickButtonEdit();
+        addEntityForNetwork.clickButtonEdit();
+        boolean res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was created with",res);
         String useredit = " EDIT";
         driver.sleep(3);
         isFieldNameVisible();
-        addEntityOrganization.setName(useredit);
+        addEntityForNetwork.setName(useredit);
         user = user + useredit;
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("EDIT");
+        String descriptionedit = "EDIT";
+        addEntityForNetwork.setDescription(descriptionedit);
+        description = description + descriptionedit;
         isFieldURLVisible();
-        addEntityOrganization.setURL("/com");
+        String urledit = "/com";
+        addEntityForNetwork.setURL(urledit);
+        url = url + urledit;
         isFieldTextAreaCommentVisible();
-        addEntityOrganization.setTextAreaComment("This is a new comment");
+        String worklog2 = "This is a new comment";
+        addEntityForNetwork.setTextAreaComment(worklog2);
+        worklogs.add(worklog2);
         isButtonSendVisible();
-        addEntityOrganization.clickButtonSend();
+        addEntityForNetwork.clickButtonSend();
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemProvidersVisible();
         networkPage.clickMenuItemProviders();
         driver.sleep(3);
         assertTrue("Customer was not updated",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
+        isButtonEditVisible();
+        addEntityForNetwork.clickButtonEdit();
+        res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was edited with",res);
         isButtonDeleteVisible();
-        addEntityOrganization.clickButtonDelete();
+        addEntityForNetwork.clickButtonDelete();
         driver.sleep(3);
         assertTrue("Customer was not deleted",!networkPage.isUserVisible(user));
      }
@@ -276,51 +328,68 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         int high = 100;
         Integer result = r.nextInt(high-low) + low;
         String user = "Test" + result;
-        addEntityOrganization = networkPage.clickAddButton();
+        addEntityForNetwork = networkPage.clickAddButton();
         driver.sleep(3);
         isFieldNameVisible();
-        addEntityOrganization.setName(user);
+        addEntityForNetwork.setName(user);
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("This is a description");
+        String description = "This is a description";
+        addEntityForNetwork.setDescription(description);
         isFieldURLVisible();
-        addEntityOrganization.setURL("http://www.elpais.es");
+        String url = "http://www.elpais.es";
+        addEntityForNetwork.setURL(url);
         isFieldWorklogVisible();
-        addEntityOrganization.setWorklog("This is a worklog");
+        String worklog1 = "This is a worklog";
+        addEntityForNetwork.setWorklog(worklog1);
+        List<String> worklogs = new ArrayList<String>();
+        worklogs.add(worklog1);
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemOwnersVisible();
         networkPage.clickMenuItemOwners();
         driver.sleep(3);
         assertTrue("Customer was not created",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
         isButtonEditVisible();
-        addEntityOrganization.clickButtonEdit();
+        addEntityForNetwork.clickButtonEdit();
+        boolean res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was created with",res);
         String useredit = " EDIT";
         driver.sleep(3);
         isFieldNameVisible();
-        addEntityOrganization.setName(useredit);
+        addEntityForNetwork.setName(useredit);
         user = user + useredit;
         isFieldDescriptionVisible();
-        addEntityOrganization.setDescription("EDIT");
+        String descriptionedit = "EDIT";
+        addEntityForNetwork.setDescription(descriptionedit);
+        description = description + descriptionedit;
         isFieldURLVisible();
-        addEntityOrganization.setURL("/com");
+        String urledit = "/com";
+        addEntityForNetwork.setURL(urledit);
+        url = url + urledit;
         isFieldTextAreaCommentVisible();
-        addEntityOrganization.setTextAreaComment("This is a new comment");
+        String worklog2 = "This is a new comment";
+        addEntityForNetwork.setTextAreaComment(worklog2);
+        worklogs.add(worklog2);
         isButtonSendVisible();
-        addEntityOrganization.clickButtonSend();
+        addEntityForNetwork.clickButtonSend();
         isButtonSaveVisible();
-        addEntityOrganization.clickButtonSave();
+        addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
         isMenuItemOwnersVisible();
         networkPage.clickMenuItemOwners();
         driver.sleep(3);
         assertTrue("Customer was not updated",networkPage.isUserVisible(user));
-        addEntityOrganization = networkPage.clickInUser(user);
+        addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
+        isButtonEditVisible();
+        addEntityForNetwork.clickButtonEdit();
+        res = addEntityForNetwork.equals(user, description, url, worklogs);
+        assertTrue("The fields don't display the same info which it was edited with",res);
         isButtonDeleteVisible();
-        addEntityOrganization.clickButtonDelete();
+        addEntityForNetwork.clickButtonDelete();
         driver.sleep(3);
         assertTrue("Customer was not deleted",!networkPage.isUserVisible(user));
      }
@@ -366,74 +435,74 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
           }
     
     public void isFieldNameVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Field Name is not visible",
-                  addEntityOrganization.isFieldNameVisible());
+                  addEntityForNetwork.isFieldNameVisible());
     }
     
     public void isFieldDescriptionVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Field Description is not visible",
-                  addEntityOrganization.isFieldDescriptionVisible());
+                  addEntityForNetwork.isFieldDescriptionVisible());
     }
     
     public void isFieldURLVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Field URL is not visible",
-                  addEntityOrganization.isFieldURLVisible());
+                  addEntityForNetwork.isFieldURLVisible());
     }
     
     public void isFieldWorklogVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Field Worklog is not visible",
-                  addEntityOrganization.isFieldWorklogVisible());
+                  addEntityForNetwork.isFieldWorklogVisible());
     }
     
     public void isFieldTextAreaCommentVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Textarea Comment is not visible",
-                  addEntityOrganization.isTextAreaCommentVisible());
+                  addEntityForNetwork.isTextAreaCommentVisible());
     }
     
     public void isButtonDeleteVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Button Delete is not visible",
-                  addEntityOrganization.isButtonDeleteVisible());
+                  addEntityForNetwork.isButtonDeleteVisible());
     }
     
     public void isButtonEditVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Button Edit is not visible",
-                  addEntityOrganization.isButtonEditVisible());
+                  addEntityForNetwork.isButtonEditVisible());
     }
     
     public void isButtonSaveVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Button Save is not visible",
-                  addEntityOrganization.isButtonSaveVisible());
+                  addEntityForNetwork.isButtonSaveVisible());
     }
     
     public void isButtonSendVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Button Send is not visible",
-                  addEntityOrganization.isButtonSendVisible());
+                  addEntityForNetwork.isButtonSendVisible());
     }
 }

@@ -1,5 +1,7 @@
 package com.emergya.pageObjects;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
@@ -7,7 +9,7 @@ import com.emergya.selenium.drivers.EmergyaWebDriver;
 import com.emergya.selenium.pageObject.BasePageObject;
 import com.emergya.utils.WebDriverUtils;
 
-public class AddEntityOrganization extends BasePageObject{
+public class AddEntityForNetwork extends BasePageObject{
 	
 static Logger log = Logger.getLogger(CommunityPage.class);
 	
@@ -23,9 +25,10 @@ static Logger log = Logger.getLogger(CommunityPage.class);
 	private static final String BUTTONDELETE = "buttondelete";
 	private static final String TEXTAREACOMMENT = "textareacomment";
 	private static final String DATEFIELDS = "datesfields";
+	private static final String COMMENT = "comment";
 	
 	
-	public AddEntityOrganization(EmergyaWebDriver driver) {
+	public AddEntityForNetwork(EmergyaWebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}
@@ -52,7 +55,19 @@ static Logger log = Logger.getLogger(CommunityPage.class);
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End setName method");
     }
-	
+    
+    public String getName() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start getName method");
+    	String name = "";
+    	if(isFieldNameVisible()) {
+    		name = this.getElementByXPath(FIELDNAME).getAttribute("value");
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End getName method");
+    	return name;
+    }
+    
     public void setDescription(String description) {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setDescription method");
@@ -63,6 +78,18 @@ static Logger log = Logger.getLogger(CommunityPage.class);
                + " - End setDescription method");
     }
     
+    public String getDescription() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start getDescription method");
+    	String description = "";
+    	if(isFieldDescriptionVisible()) {
+    		description = this.getElementByXPath(FIELDDESCRIPTION).getText();
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End getDescription method");
+    	return description;
+    }
+    
     public void setURL(String url) {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setURL method");
@@ -71,6 +98,18 @@ static Logger log = Logger.getLogger(CommunityPage.class);
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End setURL method");
+    }
+    
+    public String getURL() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start getURL method");
+    	String url = "";
+    	if(isFieldURLVisible()) {
+    		url = this.getElementByXPath(FIELDURL).getAttribute("value");
+    	}
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End getURL method");
+    	return url;
     }
     
     public void setWorklog(String worklog) {
@@ -91,6 +130,24 @@ static Logger log = Logger.getLogger(CommunityPage.class);
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End setTextAreaComment method");
+    }
+    
+    public Integer getNumberOfComments() {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start getNumbersOfComment method");
+    	Integer n = this.getElementsByXPath(COMMENT).size();
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End getNumbersOfComment method");
+    	return n;
+    }
+    
+    public String getCommentN(Integer n) {
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+                + " - Start getCommentN method");
+    	String comment = this.getElementsByXPath(COMMENT).get(n).getText();
+    	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
+               + " - End getCommentN method");
+    	return comment;
     }
     
     public void clickButtonSave() {
@@ -260,4 +317,30 @@ static Logger log = Logger.getLogger(CommunityPage.class);
         WebElement creationDate = this.getElementsByXPath(DATEFIELDS).get(1);
         return this.isVisible(creationDate);
    }
+    
+    public boolean equals(String name, String description, String url, List<String> worklogs) {
+    	boolean result = name.equals(this.getName());
+    	if(!result) {
+    		return false;
+    	}
+    	result &= description.equals(this.getDescription());
+    	if(!result) {
+    		return false;
+    	}
+    	result &= url.equals(this.getURL());
+    	if(!result) {
+    		return false;
+    	}
+    	result &= this.getNumberOfComments().equals(worklogs.size());
+    	if(!result) {
+    		return false;
+    	}
+    	for(int i=0;i<this.getNumberOfComments();i++) {
+    		result &= this.getCommentN(i).equals(worklogs.get(i));
+    		if(!result) {
+    			return false;
+    		}
+    	}
+    	return result;
+    }
 }

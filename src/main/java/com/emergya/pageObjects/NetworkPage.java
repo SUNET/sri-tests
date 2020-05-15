@@ -50,7 +50,7 @@ public class NetworkPage extends BasePageObject{
         return status;
     }
 	
-    public AddEntityOrganization clickAddButton() {
+    public AddEntityForNetwork clickAddButton() {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setName method");
     	if(isAddButtonVisible()) {
@@ -58,7 +58,7 @@ public class NetworkPage extends BasePageObject{
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End setName method");
-    	return new AddEntityOrganization(driver);
+    	return new AddEntityForNetwork(driver);
     }
     
     public void clickMenuItemCustomers() {
@@ -191,7 +191,7 @@ public class NetworkPage extends BasePageObject{
                + " - End setWordFilter method");
     }
     
-    public AddEntityOrganization clickInUser(String user) {
+    public AddEntityForNetwork clickInUser(String user) {
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                 + " - Start setName method");
     	if(isUserVisible(user)) {
@@ -201,7 +201,7 @@ public class NetworkPage extends BasePageObject{
     	}
     	log.info("[log-PageObjects] " + this.getClass().getSimpleName()
                + " - End setName method");
-    	return new AddEntityOrganization(driver);
+    	return new AddEntityForNetwork(driver);
     }
     
     public Integer getNumberRowsInTable() {
@@ -225,7 +225,7 @@ public class NetworkPage extends BasePageObject{
     	return cell;
     }
     
-    public AddEntityOrganization clickRowN(Integer n) {
+    public AddEntityForNetwork clickRowN(Integer n) {
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- Start clickRowN method");
     	String column = NCOLUMN.replace("{ncol}","'1'");
@@ -233,7 +233,7 @@ public class NetworkPage extends BasePageObject{
     	l.get(n).click();
     	log.info("[log-pageObjects]" + this.getClass().getSimpleName()
                 + "]- End clickRowN method");
-    	return new AddEntityOrganization(driver);
+    	return new AddEntityForNetwork(driver);
     }
     
     public boolean isAddButtonVisible() {

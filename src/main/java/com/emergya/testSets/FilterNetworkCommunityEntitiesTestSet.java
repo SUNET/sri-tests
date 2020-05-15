@@ -14,7 +14,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.emergya.pageObjects.AddEntityOrganization;
+import com.emergya.pageObjects.AddEntityForNetwork;
 import com.emergya.pageObjects.AddOrganization;
 import com.emergya.pageObjects.CommunityPage;
 import com.emergya.pageObjects.Login;
@@ -90,10 +90,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isCreationDateVisible();
-        String creationDate = addEntityOrganization.getCreationDate();
+        String creationDate = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
@@ -112,10 +112,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isUpdateDateVisible();
-        String updateDate = addEntityOrganization.getUpdateDate();
+        String updateDate = addEntityForNetwork.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
@@ -197,15 +197,15 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         networkPage.clickMenuItemCustomers();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String date1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String date1 = addEntityForNetwork.getCreationDate();
         networkPage.clickMenuItemEndUsers();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String date2 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String date2 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
         }else {
@@ -219,8 +219,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String daten = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String daten = addEntityForNetwork.getCreationDate();
         networkPage.clickMenuItemEndUsers();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
@@ -228,8 +228,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String daten1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String daten1 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
         }else {
@@ -254,10 +254,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isCreationDateVisible();
-        String creationDate = addEntityOrganization.getCreationDate();
+        String creationDate = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
@@ -276,10 +276,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isUpdateDateVisible();
-        String updateDate = addEntityOrganization.getUpdateDate();
+        String updateDate = addEntityForNetwork.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
@@ -361,16 +361,16 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         networkPage.clickMenuItemEndUsers();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String date1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String date1 = addEntityForNetwork.getCreationDate();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         isMenuItemEndUsersVisible();
         networkPage.clickMenuItemEndUsers();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String date2 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String date2 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
         }else {
@@ -384,8 +384,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String daten = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String daten = addEntityForNetwork.getCreationDate();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         isMenuItemEndUsersVisible();
@@ -394,8 +394,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String daten1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String daten1 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
         }else {
@@ -419,10 +419,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isCreationDateVisible();
-        String creationDate = addEntityOrganization.getCreationDate();
+        String creationDate = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
@@ -441,10 +441,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isUpdateDateVisible();
-        String updateDate = addEntityOrganization.getUpdateDate();
+        String updateDate = addEntityForNetwork.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
@@ -526,16 +526,16 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         networkPage.clickMenuItemProviders();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String date1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String date1 = addEntityForNetwork.getCreationDate();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         isMenuItemProvidersVisible();
         networkPage.clickMenuItemProviders();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String date2 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String date2 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
         }else {
@@ -549,8 +549,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String daten = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String daten = addEntityForNetwork.getCreationDate();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         isMenuItemEndUsersVisible();
@@ -559,8 +559,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String daten1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String daten1 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
         }else {
@@ -584,10 +584,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isCreationDateVisible();
-        String creationDate = addEntityOrganization.getCreationDate();
+        String creationDate = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate,"dd/MM/yy",creationDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(creationDate,"dd/MM/yyyy",toDate,"dd/MM/yy");
@@ -606,10 +606,10 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         isInputToDateVisible();
         networkPage.setToDate(toDate);
         driver.sleep(5);
-        addEntityOrganization = networkPage.clickRowN(0);
+        addEntityForNetwork = networkPage.clickRowN(0);
         driver.sleep(3);
         isUpdateDateVisible();
-        String updateDate = addEntityOrganization.getUpdateDate();
+        String updateDate = addEntityForNetwork.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(fromDate2,"dd/MM/yy",updateDate,"dd/MM/yyyy");
             isDate1OlderThanDate2(updateDate,"dd/MM/yyyy",toDate2,"dd/MM/yy");
@@ -691,16 +691,16 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         networkPage.clickMenuItemOwners();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String date1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String date1 = addEntityForNetwork.getCreationDate();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         isMenuItemOwnersVisible();
         networkPage.clickMenuItemOwners();
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String date2 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String date2 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(date1,"dd/MM/yy",date2,"dd/MM/yyyy");
         }else {
@@ -714,8 +714,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(0);
-        String daten = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(0);
+        String daten = addEntityForNetwork.getCreationDate();
         isMenuItemCustomersVisible();
         networkPage.clickMenuItemCustomers();
         isMenuItemEndUsersVisible();
@@ -724,8 +724,8 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
         driver.sleep(3);
         networkPage.clickOrderBy();
         driver.sleep(3);
-        addEntityOrganization = networkPage.clickRowN(1);
-        String daten1 = addEntityOrganization.getCreationDate();
+        addEntityForNetwork = networkPage.clickRowN(1);
+        String daten1 = addEntityForNetwork.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
         	isDate1OlderThanDate2(daten1,"dd/MM/yy",daten,"dd/MM/yyyy");
         }else {
@@ -790,19 +790,19 @@ public class FilterNetworkCommunityEntitiesTestSet extends BasicTestSet {
           }
     
     public void isCreationDateVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Creation Date is not visible",
-                 addEntityOrganization.isCreationDateVisible());
+                 addEntityForNetwork.isCreationDateVisible());
           }
     
     public void isUpdateDateVisible() {
-    	if (addEntityOrganization == null) {
-          	addEntityOrganization = new AddEntityOrganization(driver);
+    	if (addEntityForNetwork == null) {
+          	addEntityForNetwork = new AddEntityForNetwork(driver);
           }
           assertTrue("Update Date is not visible",
-                 addEntityOrganization.isUpdateDateVisible());
+                 addEntityForNetwork.isUpdateDateVisible());
           }
     
     public void isRadioUpdatedVisible() {
