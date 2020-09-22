@@ -22,7 +22,7 @@
 		<webdriver.ie.driver>src/main/resources/files/software/${local.OS}/IEDriverServer.exe</webdriver.ie.driver>
 		<webdriver.firefox.driver>src/main/resources/files/software/${local.OS}/geckodriver</webdriver.firefox.driver>
 
-		<!-- Versions section -->
+		<!-- Versions section s-->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<selenium.version>3.141.59</selenium.version>

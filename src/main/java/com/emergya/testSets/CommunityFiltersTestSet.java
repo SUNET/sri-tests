@@ -121,8 +121,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.setFromDate(fromDate);
         isFilterToDateVisible();
         communityPage.setToDate(toDate);
-        communityPage.clickElementNinTable(0);
         driver.sleep(3);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isCreationDateVisible();
         String creationDate = communityPage.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -148,8 +149,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.setFromDate(fromDate2);
         isFilterToDateVisible();
         communityPage.setToDate(toDate2);
-        communityPage.clickElementNinTable(0);
         driver.sleep(3);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isUpdateDateVisible();
         String updateDate = communityPage.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -438,7 +440,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickContactItem();
         driver.sleep(3);
         communityPage.clickElementNinTable(0);
-        driver.sleep(3);
+        driver.sleep(5);
         isCreationDateVisible();
         String dateElementPrior = communityPage.getCreationDate();
         isGroupItemVisible();
@@ -449,7 +451,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         isResultsOrderVisible();
         communityPage.changeResultsOrder();
+        driver.sleep(3);
         communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isCreationDateVisible();
         String dateElementAfter = communityPage.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -475,8 +479,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.setFromDate(fromDate);
         isFilterToDateVisible();
         communityPage.setToDate(toDate);
-        communityPage.clickElementNinTable(0);
         driver.sleep(3);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isCreationDateVisible();
         String creationDate = communityPage.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -501,8 +506,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.setFromDate(fromDate2);
         isFilterToDateVisible();
         communityPage.setToDate(toDate2);
-        communityPage.clickElementNinTable(0);
         driver.sleep(3);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isUpdateDateVisible();
         String updateDate = communityPage.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -734,7 +740,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickOrganizationsItems();
         driver.sleep(3);
         communityPage.clickElementNinTable(0);
-        driver.sleep(3);
+        driver.sleep(5);
         isCreationDateVisible();
         String dateElementPrior = communityPage.getCreationDate();
         isGroupItemVisible();
@@ -744,7 +750,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         isResultsOrderVisible();
         communityPage.changeResultsOrder();
+        driver.sleep(3);
         communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isCreationDateVisible();
         String dateElementAfter = communityPage.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -771,8 +779,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.setFromDate(fromDate);
         isFilterToDateVisible();
         communityPage.setToDate(toDate);
-        communityPage.clickElementNinTable(0);
         driver.sleep(3);
+        communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isCreationDateVisible();
         String creationDate = communityPage.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -796,8 +805,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.setFromDate(fromDate2);
         isFilterToDateVisible();
         communityPage.setToDate(toDate2);
-        communityPage.clickElementNinTable(0);
         driver.sleep(3);
+        communityPage.clickElementNinTable(1);
+        driver.sleep(5);
         isUpdateDateVisible();
         String updateDate = communityPage.getUpdateDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
@@ -821,7 +831,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         //communityPage.clickLoadAll();
         driver.sleep(10);
         String name1 = communityPage.getNnameInTable(0);
-        String name2 = communityPage.getNnameInTable(1);
+        String name2 = communityPage.getNnameInTable(0);
         assertAlphabeticalOrder(name1,name2);
         //String namen1 = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-2);
         //String namen = communityPage.getNnameInTable(communityPage.getNumberElementsInTable()-1);
@@ -893,7 +903,7 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         communityPage.clickGroupItem();
         driver.sleep(3);
         communityPage.clickElementNinTable(0);
-        driver.sleep(3);
+        driver.sleep(5);
         isCreationDateVisible();
         String dateElementPrior = communityPage.getCreationDate();
         isOrganizationItemVisible();
@@ -904,7 +914,9 @@ public class CommunityFiltersTestSet extends BasicTestSet {
         driver.sleep(3);
         isResultsOrderVisible();
         communityPage.changeResultsOrder();
+        driver.sleep(3);
         communityPage.clickElementNinTable(0);
+        driver.sleep(5);
         isCreationDateVisible();
         String dateElementAfter = communityPage.getCreationDate();
         if(!WebDriverUtils.isRemoteBrowser()) {
