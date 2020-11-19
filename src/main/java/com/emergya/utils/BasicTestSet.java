@@ -80,13 +80,7 @@ public abstract class BasicTestSet extends DefaultTestSet {
     }
 
     // ************************ Private Methods *************************
-    /**
-     * This is the method that does the real task of sending a request to CrossBrowserTesting's API
-     * to set our tests pass or fail
-     * @param seleniumTestId
-     * @param score
-     * @return
-     */
+    
     private JsonNode setScore(String seleniumTestId, String score) {
         // Mark a Selenium test as Pass/Fail
         HttpResponse<JsonNode> response = null;
