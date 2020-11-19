@@ -29,10 +29,6 @@ import com.emergya.utils.WebDriverUtils;
 import net.bytebuddy.matcher.IsNamedMatcher;
 
 /**
- * A test class contain the tests of a specific page in the application
- * @author Jose Antonio Sanchez <jasanchez@emergya.com>
- * @author Ivan Bermudez <ibermudez@emergya.com>
- * @author Ivan Gomez <igomez@emergya.com>
  */
 public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
 
@@ -133,7 +129,10 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         addEntityForNetwork.setTextAreaComment(worklog2);
         worklogs.add(worklog2);
         isButtonSendVisible();
-        addEntityForNetwork.clickButtonSend();
+        addEntityForNetwork.clickButtonSend * A test class contain the tests of a specific page in the application
+        * @author Jose Antonio Sanchez <jasanchez@emergya.com>
+        * @author Ivan Bermudez <ibermudez@emergya.com>
+        * @author Ivan Gomez <igomez@emergya.com>();
         isButtonSaveVisible();
         addEntityForNetwork.clickButtonSave();
         driver.sleep(3);
@@ -217,10 +216,10 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         addEntityForNetwork.clickButtonSend();
         isButtonSaveVisible();
         addEntityForNetwork.clickButtonSave();
-        driver.sleep(3);
+        driver.sleep(4);
         isMenuItemEndUsersVisible();
         networkPage.clickMenuItemEndUsers();
-        driver.sleep(3);
+        driver.sleep(5);
         assertTrue("Customer was not updated",networkPage.isUserVisible(user));
         addEntityForNetwork = networkPage.clickInUser(user);
         driver.sleep(3);
@@ -230,7 +229,7 @@ public class AddNetworkCommunityEntitiesTestSet extends BasicTestSet {
         assertTrue("The fields don't display the same info which it was edited with",res);
         isButtonDeleteVisible();
         addEntityForNetwork.clickButtonDelete();
-        driver.sleep(3);
+        driver.sleep(4);
         assertTrue("Customer was not deleted",!networkPage.isUserVisible(user));
      }   
     
